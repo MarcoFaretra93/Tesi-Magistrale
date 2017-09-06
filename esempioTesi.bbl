@@ -17,17 +17,22 @@ Trevor~H. Jones and Il-Yeol Song.
   entity-relationship modeling.
 \newblock {\em Data Knowledge Engineering}, 19(1):39--64, 1996.
 
-\bibitem[MS05]{UUID:2005}
-M.~Mealling and R.~Salz.
-\newblock A universally unique identifier (uuid) urn namespace.
-\newblock {\em RFC 4122}, 2005.
+\bibitem[Lar05]{LAR:2005}
+C.~Larman.
+\newblock {\em Applicare UML e i pattern - Analisi e progettazione orientata
+  agli oggetti - 3a Edizione}.
+\newblock Prentice Hall, 2005.
 
 \bibitem[oEE90]{IEEE:1990}
 Institute of~Electrical and Electronics Engineers.
 \newblock Ieee standard computer dictionary: A compilation of ieee standard
   computer glossaries, 1990.
 
-\bibitem[Wik]{WIKI:INTEROP}
+\bibitem[Wika]{WIKI:DATALOG}
+Wikipedia.
+\newblock \url{https://it.wikipedia.org/wiki/Datalog}.
+
+\bibitem[Wikb]{WIKI:INTEROP}
 Wikipedia.
 \newblock \url{http://en.wikipedia.org/wiki/Interoperability}.
 
