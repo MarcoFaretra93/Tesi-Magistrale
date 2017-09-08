@@ -1,13 +1,16 @@
 \select@language {italian}
 \select@language {italian}
 \contentsline {chapter}{Introduzione}{iv}{chapter*.2}
-\contentsline {chapter}{Indice}{vi}{section*.3}
-\contentsline {chapter}{Elenco delle figure}{vii}{section*.4}
-\contentsline {chapter}{\chapternumberline {1}Esempio di Capitolo}{1}{chapter.1}
+\contentsline {chapter}{Indice}{vii}{section*.3}
+\contentsline {chapter}{Elenco delle figure}{viii}{section*.4}
+\contentsline {chapter}{\chapternumberline {1}Vadalog Engine}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Questa \`e una Sezione}{1}{section.1.1}
 \contentsline {subsection}{\numberline {1.1.1}Questa \`e una Sottosezione}{1}{subsection.1.1.1}
-\contentsline {chapter}{\chapternumberline {2}Altro Esempio di Capitolo}{2}{chapter.2}
+\contentsline {chapter}{\chapternumberline {2}Il linguaggio Vadalog}{2}{chapter.2}
 \contentsline {section}{\numberline {2.1}Questa \`e una Sezione}{2}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Questa \`e una Sottosezione}{2}{subsection.2.1.1}
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{4}{chapter*.5}
-\contentsline {chapter}{Bibliografia}{5}{section*.7}
+\contentsline {chapter}{\chapternumberline {3}Algoritmi}{4}{chapter.3}
+\contentsline {chapter}{\chapternumberline {4}Prove sperimentali}{5}{chapter.4}
+\contentsline {chapter}{\chapternumberline {5}Related Work}{6}{chapter.5}
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{7}{chapter*.5}
+\contentsline {chapter}{Bibliografia}{8}{section*.7}
