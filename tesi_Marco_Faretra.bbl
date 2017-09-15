@@ -11,26 +11,20 @@ D.~Box.
 \newblock {\em Essential COM}.
 \newblock Addison Wesley Professional, 1997.
 
-\bibitem[JS96]{jones96analysis}
-Trevor~H. Jones and Il-Yeol Song.
-\newblock Analysis of binary/ternary cardinality combinations in
-  entity-relationship modeling.
-\newblock {\em Data Knowledge Engineering}, 19(1):39--64, 1996.
-
-\bibitem[Lar05]{LAR:2005}
-C.~Larman.
-\newblock {\em Applicare UML e i pattern - Analisi e progettazione orientata
-  agli oggetti - 3a Edizione}.
-\newblock Prentice Hall, 2005.
-
 \bibitem[oEE90]{IEEE:1990}
 Institute of~Electrical and Electronics Engineers.
 \newblock Ieee standard computer dictionary: A compilation of ieee standard
   computer glossaries, 1990.
 
-\bibitem[Wika]{WIKI:DATALOG}
+\bibitem[PA06]{Atzeni:DATALOG}
+Pietro Fraternali Stefano Paraboschi Riccardo~Torlone Paolo~Atzeni,
+  Stefano~Ceri.
+\newblock {\em Basi di dati, Modelli e linguaggi di interrogazione}.
+\newblock McGraw-Hill, 1996-2006.
+
+\bibitem[Wika]{WIKI:STREAM}
 Wikipedia.
-\newblock \url{https://it.wikipedia.org/wiki/Datalog}.
+\newblock \url{https://it.wikipedia.org/wiki/Stream_processing}.
 
 \bibitem[Wikb]{WIKI:INTEROP}
 Wikipedia.
