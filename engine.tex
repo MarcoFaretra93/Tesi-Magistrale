@@ -7,7 +7,7 @@ Un KGMS completo deve disporre di diversi requisiti, che elencheremo sulla base 
 Dovrebbe esistere un formalismo logico per esprimere fatti e regole, e di un engine per il reasoning che usa tale linguaggio che dovrebbe fornire le seguenti caratteristiche:
 \begin{itemize}
 	\item Sintassi semplice e modulare: Deve essere semplice aggiungere e cancellare fatti e nuove regole. I fatti devono coincidere con le tuple sul database.
-	\item Alta potenza espressiva: Datalog è un buon punto di riferimento per il potere espressivo delle regole. Con una negazione molto lieve cattura PTIME.
+	\item Alta potenza espressiva: Datalog~\cite{ceri2012logic, huang2011datalog} è un buon punto di riferimento per il potere espressivo delle regole. Con una negazione molto lieve cattura PTIME~\cite{dantsin2001complexity}.
 	\item Calcolo numerico e aggregazioni: Il linguaggio deve essere arricchito con funzioni di aggregazione per la gestione di valori numerici.
 	\item Probabilistic Reasoning: Il linguaggio dovrebbe essere adatto ad incorporare metodi di reasoning probabilistico e il sistema dovrebbe propagare probabilità o valori di certezza durante il processo di reasoning.
 	\item Bassa complessità: Il reasoning dovrebbe essere tracciabile nella complessità dei dati. Quando possibile il sistema dovrebbe essere in grado di riconoscere e trarre vantaggio da set di regole che possono essere elaborate in classi di complessità a basso livello di spazio. 
@@ -18,10 +18,10 @@ Dovrebbe esistere un formalismo logico per esprimere fatti e regole, e di un eng
 \subsection{Accesso e gestione dei Big Data}
 
 \begin{itemize}
-	\item Accesso ai Big Data: Il sistema deve essere in grado di fornire un accesso efficace alle sorgenti e ai sistemi Big Data. L'integrazione di tali tecniche dovrebbe essere possibile se il volume dei dati lo rende necessario.
+	\item Accesso ai Big Data: Il sistema deve essere in grado di fornire un accesso efficace alle sorgenti e ai sistemi Big Data. L'integrazione di tali tecniche dovrebbe essere possibile se il volume dei dati lo rende necessario ~\cite{shkapsky2016big}.
 	\item Accesso a Database e Data Warehouse: Dovrebbe essere concesso un accesso a database relazionali, graph databases, data warehouse, RDF stores ed i maggiori NoSQL stores. I dati nei vari storage dovrebbero essere direttamente utilizzabili come fatti per il reasoning.
-	\item Ontology-based Data Access (OBDA): Consente ad un sistema di compilare una query che è stata formulata in testa ad un'ontologia direttamente all'interno del database.
-	\item Supporto multi-query: Laddove possibile e appropriato, i risultati parziali di query ripetute dovrebbero essere valutati una volta e ottimizzati a questo proposito.
+	\item Ontology-based Data Access (OBDA): OBDA~\cite{calvanese2011mastro} consente ad un sistema di compilare una query che è stata formulata in testa ad un'ontologia direttamente all'interno del database.
+	\item Supporto multi-query: Laddove possibile e appropriato, i risultati parziali di query ripetute dovrebbero essere valutati una volta~\cite{roy2000efficient} e ottimizzati a questo proposito.
 	\item Pulizia dei dati, Scambio e Integrazione: L'integrazione, la modifica e la pulizia dei dati dovrebbero essere supportati direttamente (attraverso il linguaggio).
 	\item Estrazione di dati web, Interazione e IOT: Un KGMS dovrebbe essere in grado di interagire con il web mediante estrazione dei dati web rilevanti (prezzi pubblicizzati dai concorrenti) e integrandoli in database locali e scambiare dati con moduli e server web disponibili (API).
 \end{itemize}

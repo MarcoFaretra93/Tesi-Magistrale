@@ -1,33 +1,69 @@
-\begin{thebibliography}{AHPZ96}
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{CDGL{\etalchar{+}}11}
 
-\bibitem[AHPZ96]{AHL:1996}
-Eric Andonoff, Gilles Hubert, Annig~Le Parc, and Gilles Zurfluh.
-\newblock Integrating versions in the omt models.
-\newblock In {\em ER '96: Proceedings of the 15th International Conference on
-  Conceptual Modeling}, pages 472--487, London, UK, 1996. Springer-Verlag.
+\bibitem[ACPT06]{atzeni2006basi}
+Paolo Atzeni, Stefano Ceri, Stefano Paraboschi, and Riccardo Torlone.
+\newblock {\em Basi di dati: modelli e linguaggi di interrogazione (seconda
+  edizione)}.
+\newblock McGraw-Hill, 2006.
 
-\bibitem[Box97]{BOX:1997}
-D.~Box.
-\newblock {\em Essential COM}.
-\newblock Addison Wesley Professional, 1997.
+\bibitem[CDGL{\etalchar{+}}11]{calvanese2011mastro}
+Diego Calvanese, Giuseppe De~Giacomo, Domenico Lembo, Maurizio Lenzerini,
+  Antonella Poggi, Mariano Rodriguez-Muro, Riccardo Rosati, Marco Ruzzi, and
+  Domenico~Fabio Savo.
+\newblock The mastro system for ontology-based data access.
+\newblock {\em Semantic Web}, 2(1):43--53, 2011.
 
-\bibitem[oEE90]{IEEE:1990}
-Institute of~Electrical and Electronics Engineers.
-\newblock Ieee standard computer dictionary: A compilation of ieee standard
-  computer glossaries, 1990.
+\bibitem[CGK13]{cali2013taming}
+Andrea Cal{\i}, Georg Gottlob, and Michael Kifer.
+\newblock Taming the infinite chase: Query answering under expressive
+  relational constraints.
+\newblock {\em J. Artif. Intell. Res}, 48:115--174, 2013.
 
-\bibitem[PA06]{Atzeni:DATALOG}
-Pietro Fraternali Stefano Paraboschi Riccardo~Torlone Paolo~Atzeni,
-  Stefano~Ceri.
-\newblock {\em Basi di dati, Modelli e linguaggi di interrogazione}.
-\newblock McGraw-Hill, 1996-2006.
+\bibitem[CGL{\etalchar{+}}10]{cali2010datalog+}
+Andrea Cali, Georg Gottlob, Thomas Lukasiewicz, Bruno Marnette, and Andreas
+  Pieris.
+\newblock Datalog+/-: A family of logical knowledge representation and query
+  languages for new applications.
+\newblock In {\em Logic in Computer Science (LICS), 2010 25th Annual IEEE
+  Symposium on}, pages 228--242. IEEE, 2010.
 
-\bibitem[Wika]{WIKI:STREAM}
+\bibitem[CGP12]{cali2012towards}
+Andrea Cali, Georg Gottlob, and Andreas Pieris.
+\newblock Towards more expressive ontology languages: The query answering
+  problem.
+\newblock {\em Artificial Intelligence}, 193:87--128, 2012.
+
+\bibitem[CGT12]{ceri2012logic}
+Stefano Ceri, Georg Gottlob, and Letizia Tanca.
+\newblock {\em Logic programming and databases}.
+\newblock Springer Science \& Business Media, 2012.
+
+\bibitem[DEGV01]{dantsin2001complexity}
+Evgeny Dantsin, Thomas Eiter, Georg Gottlob, and Andrei Voronkov.
+\newblock Complexity and expressive power of logic programming.
+\newblock {\em ACM Computing Surveys (CSUR)}, 33(3):374--425, 2001.
+
+\bibitem[HGL11]{huang2011datalog}
+Shan~Shan Huang, Todd~Jeffrey Green, and Boon~Thau Loo.
+\newblock Datalog and emerging applications: an interactive tutorial.
+\newblock In {\em Proceedings of the 2011 ACM SIGMOD International Conference
+  on Management of data}, pages 1213--1216. ACM, 2011.
+
+\bibitem[RSSB00]{roy2000efficient}
+Prasan Roy, Srinivasan Seshadri, S~Sudarshan, and Siddhesh Bhobe.
+\newblock Efficient and extensible algorithms for multi query optimization.
+\newblock In {\em ACM SIGMOD Record}, volume~29, pages 249--260. ACM, 2000.
+
+\bibitem[SYI{\etalchar{+}}16]{shkapsky2016big}
+Alexander Shkapsky, Mohan Yang, Matteo Interlandi, Hsuan Chiu, Tyson Condie,
+  and Carlo Zaniolo.
+\newblock Big data analytics with datalog queries on spark.
+\newblock In {\em Proceedings of the 2016 International Conference on
+  Management of Data}, pages 1135--1149. ACM, 2016.
+
+\bibitem[Wik]{WIKI:STREAM}
 Wikipedia.
 \newblock \url{https://it.wikipedia.org/wiki/Stream_processing}.
-
-\bibitem[Wikb]{WIKI:INTEROP}
-Wikipedia.
-\newblock \url{http://en.wikipedia.org/wiki/Interoperability}.
 
 \end{thebibliography}
