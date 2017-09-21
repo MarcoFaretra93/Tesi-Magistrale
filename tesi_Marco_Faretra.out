@@ -11,10 +11,11 @@
 \BOOKMARK [2][-]{subsection.1.2.2}{Architettura stream-based e tecniche per la gestione della cache}{section.1.2}% 11
 \BOOKMARK [2][-]{subsection.1.2.3}{Interfacce}{section.1.2}% 12
 \BOOKMARK [0][-]{chapter.2}{Il linguaggio Vadalog}{}% 13
-\BOOKMARK [1][-]{section.2.1}{Questa \350 una Sezione}{chapter.2}% 14
-\BOOKMARK [2][-]{subsection.2.1.1}{Questa \350 una Sottosezione}{section.2.1}% 15
-\BOOKMARK [0][-]{chapter.3}{Algoritmi}{}% 16
-\BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 17
-\BOOKMARK [0][-]{chapter.5}{Related Work}{}% 18
-\BOOKMARK [0][-]{chapter*.5}{Conclusioni e sviluppi futuri}{}% 19
-\BOOKMARK [0][-]{section*.7}{Bibliografia}{}% 20
+\BOOKMARK [1][-]{section.2.1}{Il core del linguaggio}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.1.1}{Il core logico dei linguaggi Datalog}{section.2.1}% 15
+\BOOKMARK [2][-]{subsection.2.1.2}{Il core logico di Vadalog}{section.2.1}% 16
+\BOOKMARK [0][-]{chapter.3}{Algoritmi}{}% 17
+\BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 18
+\BOOKMARK [0][-]{chapter.5}{Related Work}{}% 19
+\BOOKMARK [0][-]{chapter*.5}{Conclusioni e sviluppi futuri}{}% 20
+\BOOKMARK [0][-]{section*.7}{Bibliografia}{}% 21

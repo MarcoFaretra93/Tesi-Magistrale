@@ -7,6 +7,12 @@ Paolo Atzeni, Stefano Ceri, Stefano Paraboschi, and Riccardo Torlone.
   edizione)}.
 \newblock McGraw-Hill, 2006.
 
+\bibitem[BLMS11]{baget2011rules}
+Jean-Fran{\c{c}}ois Baget, Michel Lecl{\`e}re, Marie-Laure Mugnier, and Eric
+  Salvat.
+\newblock On rules with existential variables: Walking the decidability line.
+\newblock {\em Artificial Intelligence}, 175(9-10):1620--1654, 2011.
+
 \bibitem[CDGL{\etalchar{+}}11]{calvanese2011mastro}
 Diego Calvanese, Giuseppe De~Giacomo, Domenico Lembo, Maurizio Lenzerini,
   Antonella Poggi, Mariano Rodriguez-Muro, Riccardo Rosati, Marco Ruzzi, and
@@ -44,6 +50,11 @@ Evgeny Dantsin, Thomas Eiter, Georg Gottlob, and Andrei Voronkov.
 \newblock Complexity and expressive power of logic programming.
 \newblock {\em ACM Computing Surveys (CSUR)}, 33(3):374--425, 2001.
 
+\bibitem[GP15]{gottlob2015beyond}
+Georg Gottlob and Andreas Pieris.
+\newblock Beyond sparql under owl 2 ql entailment regime: Rules to the rescue.
+\newblock In {\em IJCAI}, pages 2999--3007, 2015.
+
 \bibitem[HGL11]{huang2011datalog}
 Shan~Shan Huang, Todd~Jeffrey Green, and Boon~Thau Loo.
 \newblock Datalog and emerging applications: an interactive tutorial.
@@ -61,6 +72,18 @@ Alexander Shkapsky, Mohan Yang, Matteo Interlandi, Hsuan Chiu, Tyson Condie,
 \newblock Big data analytics with datalog queries on spark.
 \newblock In {\em Proceedings of the 2016 International Conference on
   Management of Data}, pages 1135--1149. ACM, 2016.
+
+\bibitem[W3Ca]{OWL2QL}
+W3C.
+\newblock https://www.w3.org/TR/owl2-profiles/.
+
+\bibitem[W3Cb]{RDFW3C}
+W3C.
+\newblock https://www.w3.org/TR/rdf-schema/.
+
+\bibitem[W3Cc]{SPARQLW3C}
+W3C.
+\newblock https://www.w3.org/TR/rdf-sparql-query/.
 
 \bibitem[Wik]{WIKI:STREAM}
 Wikipedia.

@@ -1,20 +1,62 @@
-\section{Questa \`e una Sezione}\label{se:prima-sezione}
+Vadalog è un linguaggio che raggiunge un attento equilibrio tra espressività e complessità, e può essere utilizzato come reasoning core di un KGMS. \newline 
 
-Prova di testo di capitolo. Vorrei citare qui tutta l'opera omnia di~\cite{IEEE:1990,WIKI:INTEROP,BOX:1997,AHL:1996}.
+\section{Il core del linguaggio}
 
-\subsection{Questa \`e una Sottosezione}
+Il core logico di Vadalog fa parte della famiglia Warded Datalog$\pm $. Che a sua volta è un'estensione della famiglia dei linguaggi Datalog$\pm$, nei seguenti sottocapitoli descriveremo in dettaglio tali famiglie di linguaggi.
 
-Ancora del testo
+\subsection{Il core logico dei linguaggi Datalog$\pm$}
 
-\begin{figure}[tbp] 
-\begin{center}
-\begin{tabular}{c @{\hspace{1em}} c}
-\includegraphics[width=8cm]{figure/esempio-figura-1.eps} &
-\includegraphics[width=5.5cm]{figure/esempio-figura-2.eps} \\
- (a) & (b)
-\end{tabular}
-\end{center}
-\caption{SPQR-tree di un grafo. (a) L'albero di allocazione della faccia esterna. (b) Il cammino notevole di cui si parla tanto nella Sezione~\ref{se:prima-sezione}.} \label{fig:figura-doppia}
-\end{figure}
+L'obiettivo principale dei linguaggi Datalog$\pm$ è quello di estendere il noto linguaggio Datalog con funzionalità di modellazione utili come quantificatori esistenziali nelle teste delle regole (il + nel simbolo $\pm $), e contemporaneamente limitare la sintassi della regola, in modo tale che sia garantita la decidibilità e la tracciabilità dei dati del reasoning (il - nel simbolo $\pm $). \newline
+Il core dei linguaggi Datalog$\pm $ è costituito da regole note come regole esistenziali, che generalizzano le regole Datalog con quantificatori esistenziali nelle teste delle regole, un esempio di regola esistenziale: \[Person(x) \rightarrow \exists y ~HasFather(x,y), Person(y)\]
+che esprime che ogni persona, ha un padre che anch'esso a sua volta è una persona. \newline
+In generale, una regola esistenziale è una frase di primo ordine: \[\forall \bar{x} \forall \bar{y} (\phi(\bar{x}, \bar{y}) \rightarrow \exists \bar{z} \psi (\bar{x}, \bar{z})\]
+dove $\phi$  ()il corpo) e $\psi$  (la testa) sono congiunzioni di atomi con costanti e variabili. \newline
+La semantica di un insieme di regole esistenziali $\Sigma$ sopra un database D, chiamata $\Sigma$(D), è definita mediante una procedura. Durante questa procedura vengono aggiunti nuovi atomi a D (coinvolgendo anche valori nulli per soddisfare le variabili esistenziali), finché il risultato finale $\Sigma$(D) non soddisfa tutte le regole esistenziali, solitamente $\Sigma$(D) è infinito. \newline
+Vediamo un esempio di tale procedura: \newline
+Consideriamo un Database D = {Person(Bob)}, e la regola esistenziale: \[Person(x) \rightarrow \exists y ~HasFather(x,y), Person(y)\]
+L'atomo del database D innesca la regola esistenziale e vengono aggiunti i seguenti atomi: \[HasFather(Bob, \nu_{1}) ~e~ Person(\nu_{1})\]
+$\nu_{1}$ è un labeled null che rappresenta un valore sconosciuto.\newline
+Il nuovo atomo Person($\nu_{1}$) innesca nuovamente la regola esistenziale, e vengono aggiunti altri atomi a D: \[HasFather(\nu_{1}, \nu_{2}) ~e~ Person(\nu_{2})\]
+Dove $\nu_{2}$ è un nuovo nullo. Il risultato è l'istanza: \[\{Person(Bob), HasFather(Bob, \nu_{1})\} \cup \underset{i>0}{\bigcup} ~\{Person(\nu_{i}), HasFather(\nu_{i}, \nu_{i+1})\}\]
+$\nu_{1}$, $\nu_{2}$, ..., $\nu_{i}$, $\nu_{i+1}$ sono labeled nulls. \newline \newline
+Data una coppia Q = ($\Sigma$, Ans), dove $\Sigma$ è un insieme di variabili esistenziali e Ans un predicato n-ario, la valutazione di Q su un database D, indicata Q(D), è definita come set di tuple sopra sopra l'insieme $C_{d}$ di valori costanti che occorrono nel database D. \newline
+Il compito principale del reasoning è l'inferenza di tuple: dato un database D, una coppia Q = ($\Sigma$, Ans), ed una tupla di costanti $\bar{t}$, bisogna decidere se $\bar{t}$ appartiene a Q. Questo problema è molto difficile, infatti è indecidibile, anche quando Q è fisso e solo D è dato come input~\cite{cali2013taming}. \newline
+Ciò ha portato all'attività di identificare restrizioni sulle regole esistenziali che rendono tale problema decidibile. Ciascuna di queste restrizioni genera un nuovo linguaggio Datalog$\pm$. \newline
 
-Come si evince dalle Figure~\ref{fig:figura-doppia}.a e~\ref{fig:figura-doppia}.b non si capisce molto.
+\subsection{Il core logico di Vadalog}
+
+Il core logico di Vadalog si basa sulla nozione di \textit{wardedness}, che genera Warded Datalog$\pm$ ~\cite{gottlob2015beyond}. \newline
+In altri termini Vadalog è ottenuta estendo Warded Datalog$\pm$ con ulteriori funzionalità pratiche che sono descritte nella sezione successive. \newline
+Nei linguaggi Warded Datalog$\pm$, ci sono tre tipologie di variabili che sono contraddistinte:
+
+\begin{enumerate}
+	\item Harmless: Variabili standard presenti nel corpo di una regola, che hanno un valore noto.
+	\item Harmful: Rappresentano dei labeled null presenti nel corpo di una regola, e che sono a loro volta un esiste nella testa di un'altra regola.
+	\item Dangerous: Sono le variabili che rappresentano gli esiste nelle teste delle regole.
+\end{enumerate}
+
+La wardedness applica una restrizione su come vengono utilizzate le variabili "\textit{dangerous}" (pericolose) di un insieme di regole esistenziali. Intuitivamente una variabile dangerous è una variabile del corpo che può essere unificata con un valore nullo quando viene applicato l'algoritmo di ricerca e viene propagato anche alla testa della regola.\newline
+Per esempio dato l'insieme $\Sigma$ di regole esistenziali \[P(x) \rightarrow \exists z~R(x,z)~e~R(x,y) \rightarrow P(y)\]
+La variabile y nel corpo della seconda regola è dangerous. Ad esempio dato un database D = \{P(a)\}, l'algoritmo applica la prima regola e genera R(a, $\nu$), dove $\nu$ è un nullo che funge da testimone della variabile esistenziale \textit{z}, e poi la seconda regola verrà applicata con la variabile \textit{y} che è unificata con $\nu$ che viene propagata all'atomo ottenuto P($\nu$). \newline
+L'obiettivo della wardedness è quello di verificare il modo in cui i valori nulli vengono propagati ponendo le seguenti condizioni: 
+
+\begin{enumerate}
+	\item  Tutte le variabili dangerous devono coesistere in un singolo corpo di un atomo A, chiamato il ward, e 
+	\item Il ward può condividere solo variabili \textit{harmless} con il resto del corpo.
+\end{enumerate}
+
+Warded Datalog$\pm$ è composto da insiemi (finiti) di regole esistenziali warded, esso rappresenta una raffinatezza di \textit{Weakly-Frontier-Guarded Datalog$\pm$}, che è una famiglia di linguaggi definita allo stesso modo ma senza la condizione 2 sopra citata~\cite{baget2011rules}.
+Weakly-Frontier-Guarded Datalog$\pm$ è intrattabile nella complessità dei dati, infatti è EXPTIME-completo. \newline 
+
+Warded Datalog$\pm$ gode di diverse proprietà che lo rendono robusto, verso linguaggi più pratici:
+
+\begin{itemize}
+	\item L'inferenza di tuple è trattabile; infatti essa è PTIME-completa quando l'insieme di regole è fisso.
+	\item Cattura Datalog, senza incrementare la complessità. Infatti un insieme $\Sigma$ di regole Datalog è implicitamente Warded poiché non ci sono variabili dangerous per definizione.
+	\item Generalizza linguaggi di ontologia principali come OWL 2 QL (linguaggio ontologico per la semantica del web~\cite{OWL2QL})
+	\item È adatto per la ricerca di grafi RDF (Resource Description Framework, strumento base proposto da W3C per la codifica, scambio e riutilizzo di metadati~\cite{RDFW3C}). In realtà aggiungendo una negazione stratificata, si ottiene un linguaggio chiamato TriQ-Lite1.0~\cite{gottlob2015beyond}, che può esprimere ogni query SPARQL (linguaggio di query per gli RDF~\cite{SPARQLW3C}) nell'ambito del regime di OWL 2 QL.
+\end{itemize}
+
+
+
+

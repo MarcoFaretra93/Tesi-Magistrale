@@ -13,10 +13,11 @@
 \contentsline {subsection}{\numberline {1.2.2}Architettura stream-based e tecniche per la gestione della cache}{5}{subsection.1.2.2}
 \contentsline {subsection}{\numberline {1.2.3}Interfacce}{8}{subsection.1.2.3}
 \contentsline {chapter}{\chapternumberline {2}Il linguaggio Vadalog}{10}{chapter.2}
-\contentsline {section}{\numberline {2.1}Questa \`e una Sezione}{10}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Questa \`e una Sottosezione}{10}{subsection.2.1.1}
-\contentsline {chapter}{\chapternumberline {3}Algoritmi}{12}{chapter.3}
-\contentsline {chapter}{\chapternumberline {4}Prove sperimentali}{13}{chapter.4}
-\contentsline {chapter}{\chapternumberline {5}Related Work}{14}{chapter.5}
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{15}{chapter*.5}
-\contentsline {chapter}{Bibliografia}{16}{section*.7}
+\contentsline {section}{\numberline {2.1}Il core del linguaggio}{10}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Il core logico dei linguaggi Datalog$\pm $}{10}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Il core logico di Vadalog}{12}{subsection.2.1.2}
+\contentsline {chapter}{\chapternumberline {3}Algoritmi}{14}{chapter.3}
+\contentsline {chapter}{\chapternumberline {4}Prove sperimentali}{15}{chapter.4}
+\contentsline {chapter}{\chapternumberline {5}Related Work}{16}{chapter.5}
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{17}{chapter*.5}
+\contentsline {chapter}{Bibliografia}{18}{section*.7}
