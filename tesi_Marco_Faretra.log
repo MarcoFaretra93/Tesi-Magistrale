@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  21 SEP 2017 14:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  24 SEP 2017 21:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1002,26 +1002,70 @@ e/uniroma3-logo.pdf>] [2]
 (./ringraziamenti.tex) [3
 
 ] (./introduzione.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--14
+
+LaTeX Warning: Citation `ecokn' on page iv undefined on input line 6.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--35
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1--14
+Underfull \hbox (badness 10000) in paragraph at lines 1--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--35
 
  []
 
 [4
 
-]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 14.
+] [5] [6] [7]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 35.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 14.
- [5]) [6]
-(./tesi_Marco_Faretra.toc [7]) [8] (./tesi_Marco_Faretra.lof) [9
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 35.
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 40--41
+
+ []
+
+)
+Underfull \hbox (badness 10000) in paragraph at lines 42--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--32
+
+ []
+
+[9] [10] (./tesi_Marco_Faretra.toc
+Overfull \hbox (0.15294pt too wide) detected at line 5
+ \T1/cmr/bx/n/10.95 xiii
+ []
+
+[11]) [12] (./tesi_Marco_Faretra.lof) [13
 
 ] (./engine.tex [1
 
@@ -1038,7 +1082,7 @@ nverted-to.pdf figure/architettura.eps>
 (epstopdf)             \includegraphics on input line 45.
 Package epstopdf Info: Output file is already uptodate.
 
-<figure/architettura-eps-converted-to.pdf, id=215, 523.9575pt x 435.6275pt>
+<figure/architettura-eps-converted-to.pdf, id=242, 523.9575pt x 435.6275pt>
 File: figure/architettura-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figure/architettura-eps-converted-to.pdf>
@@ -1053,14 +1097,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--63
 [4
 
  <./figure/architettura-eps-converted-to.pdf>]
-<figure/query-plan-ex1.png, id=225, 655.44875pt x 346.29375pt>
+<figure/query-plan-ex1.png, id=251, 655.44875pt x 346.29375pt>
 File: figure/query-plan-ex1.png Graphic file (type png)
 
 <use figure/query-plan-ex1.png>
 Package pdftex.def Info: figure/query-plan-ex1.png used on input line 75.
 (pdftex.def)             Requested size: 330.05322pt x 174.37761pt.
  [5] [6 <./figure/query-plan-ex1.png>] [7]
-<figure/architettura-1.png, id=243, 617.30624pt x 336.25626pt>
+<figure/architettura-1.png, id=270, 617.30624pt x 336.25626pt>
 File: figure/architettura-1.png Graphic file (type png)
 
 <use figure/architettura-1.png>
@@ -1074,7 +1118,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 113--114
 [8
 
  <./figure/architettura-1.png>]
-<figure/architettura-2.png, id=250, 745.78625pt x 466.74374pt>
+<figure/architettura-2.png, id=277, 745.78625pt x 466.74374pt>
 File: figure/architettura-2.png Graphic file (type png)
 
 <use figure/architettura-2.png>
@@ -1137,10 +1181,12 @@ bibitemlist
 [18
 
 ]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 90.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 105.
+
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)) [19]
+) [19])
+[20]
 \tf@toc=\write5
 \openout5 = `tesi_Marco_Faretra.toc'.
 
@@ -1149,21 +1195,24 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 54.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 54.
-
-(./tesi_Marco_Faretra.aux)
+ (./tesi_Marco_Faretra.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 54.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 54.
 Package rerunfilecheck Info: File `tesi_Marco_Faretra.out' has not changed.
 (rerunfilecheck)             Checksum: B85D206F57C245162D65DFEABAD04A38;1400.
+
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 10815 strings out of 492995
- 149612 string characters out of 6132704
- 284507 words of memory out of 5000000
- 14126 multiletter control sequences out of 15000+600000
+ 10827 strings out of 492995
+ 149753 string characters out of 6132704
+ 296623 words of memory out of 5000000
+ 14130 multiletter control sequences out of 15000+600000
  17991 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,45p,809b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,45p,1384b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
@@ -1171,22 +1220,23 @@ usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
 r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
 local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loc
 al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/
-texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/te
-xlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texliv
-e/2017/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/
-2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/20
-17/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2017
-/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2017/t
-exmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2017/tex
-mf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2017/texmf
--dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-d
-ist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on tesi_Marco_Faretra.pdf (28 pages, 641158 bytes).
+l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/
+texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texl
+ive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texliv
+e/2017/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/
+2017/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/20
+17/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2017
+/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2017/t
+exmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2017/tex
+mf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2017/texmf
+-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2017/texmf-d
+ist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dis
+t/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on tesi_Marco_Faretra.pdf (33 pages, 659139 bytes).
 PDF statistics:
- 401 PDF objects out of 1000 (max. 8388607)
- 338 compressed objects within 4 object streams
- 77 named destinations out of 1000 (max. 500000)
+ 437 PDF objects out of 1000 (max. 8388607)
+ 368 compressed objects within 4 object streams
+ 85 named destinations out of 1000 (max. 500000)
  194 words of extra memory for PDF output out of 10000 (max. 10000000)
 

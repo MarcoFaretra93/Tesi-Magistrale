@@ -1,8 +1,8 @@
 \select@language {italian}
 \select@language {italian}
 \contentsline {chapter}{Introduzione}{iv}{chapter*.2}
-\contentsline {chapter}{Indice}{vii}{section*.3}
-\contentsline {chapter}{Elenco delle figure}{ix}{section*.4}
+\contentsline {chapter}{Indice}{xi}{section*.3}
+\contentsline {chapter}{Elenco delle figure}{xiii}{section*.4}
 \contentsline {chapter}{\chapternumberline {1}Vadalog Engine}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Propriet\IeC {\`a} di un KGMS}{1}{section.1.1}
 \contentsline {subsection}{\numberline {1.1.1}Linguaggio e sistema per il reasoning}{1}{subsection.1.1.1}

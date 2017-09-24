@@ -7,6 +7,11 @@ Paolo Atzeni, Stefano Ceri, Stefano Paraboschi, and Riccardo Torlone.
   edizione)}.
 \newblock McGraw-Hill, 2006.
 
+\bibitem[BGPS17]{bellomarini2017swift}
+Luigi Bellomarini, Georg Gottlob, Andreas Pieris, and Emanuel Sallinger.
+\newblock Swift logic for big data and knowledge graphs.
+\newblock 2017.
+
 \bibitem[BLMS11]{baget2011rules}
 Jean-Fran{\c{c}}ois Baget, Michel Lecl{\`e}re, Marie-Laure Mugnier, and Eric
   Salvat.
@@ -50,6 +55,12 @@ Evgeny Dantsin, Thomas Eiter, Georg Gottlob, and Andrei Voronkov.
 \newblock Complexity and expressive power of logic programming.
 \newblock {\em ACM Computing Surveys (CSUR)}, 33(3):374--425, 2001.
 
+\bibitem[FGNS16]{furche2016data}
+Tim Furche, Georg Gottlob, Bernd Neumayr, and Emanuel Sallinger.
+\newblock Data wrangling for big data: Towards a lingua franca for data
+  wrangling.
+\newblock 2016.
+
 \bibitem[GP15]{gottlob2015beyond}
 Georg Gottlob and Andreas Pieris.
 \newblock Beyond sparql under owl 2 ql entailment regime: Rules to the rescue.
@@ -72,6 +83,10 @@ Alexander Shkapsky, Mohan Yang, Matteo Interlandi, Hsuan Chiu, Tyson Condie,
 \newblock Big data analytics with datalog queries on spark.
 \newblock In {\em Proceedings of the 2016 International Conference on
   Management of Data}, pages 1135--1149. ACM, 2016.
+
+\bibitem[VAD]{VADA}
+VADA.
+\newblock http://vada.org.uk/.
 
 \bibitem[W3Ca]{OWL2QL}
 W3C.
