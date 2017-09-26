@@ -50,6 +50,12 @@ Stefano Ceri, Georg Gottlob, and Letizia Tanca.
 \newblock {\em Logic programming and databases}.
 \newblock Springer Science \& Business Media, 2012.
 
+\bibitem[CV85]{chandra1985implication}
+Ashok~K Chandra and Moshe~Y Vardi.
+\newblock The implication problem for functional and inclusion dependencies is
+  undecidable.
+\newblock {\em SIAM Journal on Computing}, 14(3):671--677, 1985.
+
 \bibitem[DEGV01]{dantsin2001complexity}
 Evgeny Dantsin, Thomas Eiter, Georg Gottlob, and Andrei Voronkov.
 \newblock Complexity and expressive power of logic programming.

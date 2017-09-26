@@ -3,49 +3,48 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tesi_Marco_Faretra.aux
 The style file: alpha.bst
 Database file #1: bibliografia.bib
-Warning--I didn't find a database entry for "ecokn"
 Warning--empty journal in bellomarini2017swift
 Warning--empty journal in furche2016data
 Warning--can't use both volume and number fields in roy2000efficient
-You've used 19 entries,
+You've used 20 entries,
             2543 wiz_defined-function locations,
-            659 strings with 7484 characters,
-and the built_in function-call counts, 8592 in all, are:
-= -- 846
-> -- 475
+            665 strings with 7634 characters,
+and the built_in function-call counts, 9008 in all, are:
+= -- 890
+> -- 494
 < -- 11
-+ -- 176
-- -- 173
-* -- 612
-:= -- 1400
-add.period$ -- 56
-call.type$ -- 19
-change.case$ -- 132
-chr.to.int$ -- 17
-cite$ -- 22
-duplicate$ -- 317
-empty$ -- 592
-format.name$ -- 194
-if$ -- 1762
++ -- 183
+- -- 179
+* -- 645
+:= -- 1468
+add.period$ -- 59
+call.type$ -- 20
+change.case$ -- 138
+chr.to.int$ -- 18
+cite$ -- 23
+duplicate$ -- 331
+empty$ -- 622
+format.name$ -- 201
+if$ -- 1845
 int.to.chr$ -- 3
 int.to.str$ -- 0
-missing$ -- 16
-newline$ -- 94
-num.names$ -- 57
-pop$ -- 175
+missing$ -- 17
+newline$ -- 99
+num.names$ -- 60
+pop$ -- 178
 preamble$ -- 1
-purify$ -- 158
+purify$ -- 165
 quote$ -- 0
-skip$ -- 273
+skip$ -- 286
 stack$ -- 0
-substring$ -- 440
-swap$ -- 75
+substring$ -- 473
+swap$ -- 76
 text.length$ -- 11
 text.prefix$ -- 5
 top$ -- 0
-type$ -- 144
+type$ -- 152
 warning$ -- 3
-while$ -- 77
-width$ -- 27
-write$ -- 229
-(There were 4 warnings)
+while$ -- 82
+width$ -- 28
+write$ -- 242
+(There were 3 warnings)
