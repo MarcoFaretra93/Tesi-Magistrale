@@ -5,18 +5,19 @@
 \BOOKMARK [2][-]{subsection.1.1.1}{Il core logico dei linguaggi Datalog}{section.1.1}% 5
 \BOOKMARK [2][-]{subsection.1.1.2}{Il core logico di Vadalog}{section.1.1}% 6
 \BOOKMARK [2][-]{subsection.1.1.3}{Complessit\340}{section.1.1}% 7
-\BOOKMARK [1][-]{section.1.2}{Esempi di programmi Vadalog e loro utilizzo}{chapter.1}% 8
-\BOOKMARK [0][-]{chapter.2}{Vadalog Engine}{}% 9
-\BOOKMARK [1][-]{section.2.1}{Propriet\340 di un KGMS}{chapter.2}% 10
-\BOOKMARK [2][-]{subsection.2.1.1}{Linguaggio e sistema per il reasoning}{section.2.1}% 11
-\BOOKMARK [2][-]{subsection.2.1.2}{Accesso e gestione dei Big Data}{section.2.1}% 12
-\BOOKMARK [2][-]{subsection.2.1.3}{Inserimento di codice procedurale e di terze parti}{section.2.1}% 13
-\BOOKMARK [1][-]{section.2.2}{Architettura}{chapter.2}% 14
-\BOOKMARK [2][-]{subsection.2.2.1}{Reasoning}{section.2.2}% 15
-\BOOKMARK [2][-]{subsection.2.2.2}{Architettura stream-based e gestione della cache}{section.2.2}% 16
-\BOOKMARK [2][-]{subsection.2.2.3}{Interfacce}{section.2.2}% 17
-\BOOKMARK [0][-]{chapter.3}{Algoritmi}{}% 18
-\BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 19
-\BOOKMARK [0][-]{chapter.5}{Related Work}{}% 20
-\BOOKMARK [0][-]{chapter*.4}{Conclusioni e sviluppi futuri}{}% 21
-\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 22
+\BOOKMARK [2][-]{subsection.1.1.4}{Estensioni di Vadalog}{section.1.1}% 8
+\BOOKMARK [1][-]{section.1.2}{Esempi di programmi Vadalog e loro utilizzo}{chapter.1}% 9
+\BOOKMARK [0][-]{chapter.2}{Vadalog Engine}{}% 10
+\BOOKMARK [1][-]{section.2.1}{Propriet\340 di un KGMS}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.1.1}{Linguaggio e sistema per il reasoning}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.2}{Accesso e gestione dei Big Data}{section.2.1}% 13
+\BOOKMARK [2][-]{subsection.2.1.3}{Inserimento di codice procedurale e di terze parti}{section.2.1}% 14
+\BOOKMARK [1][-]{section.2.2}{Architettura}{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.1}{Reasoning}{section.2.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.2}{Architettura stream-based e gestione della cache}{section.2.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.3}{Interfacce}{section.2.2}% 18
+\BOOKMARK [0][-]{chapter.3}{Algoritmi}{}% 19
+\BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 20
+\BOOKMARK [0][-]{chapter.5}{Related Work}{}% 21
+\BOOKMARK [0][-]{chapter*.4}{Conclusioni e sviluppi futuri}{}% 22
+\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 23

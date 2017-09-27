@@ -1,6 +1,6 @@
 In questo capitolo parleremo in maniera più approfondita del linguaggio Vadalog e di tutte le sue particolarità. \newline
 Vadalog è un linguaggio che raggiunge un attento equilibrio tra espressività e complessità, e può essere utilizzato come reasoning core di un KGMS. Fa parte della famiglia Warded Datalog$^\pm$ un frammento della famiglia Datalog$^\pm$ descritta in precedenza. \newline 
-Il capitolo è organizzato come segue, nella sezione 1.1 verrà descritto in maniera approfondita il core del linguaggio, che a sua volta è diviso in due sottosezione, la sezione 1.1.1 che descrive il core logico dei linguaggi Datalog$^\pm$, tutte le proprietà e i vincoli che esso induce, arricchito con degli esempi, la sezione 1.1.2 che descrive il core logico di Vadalog,: le proprietà della famiglia Warded Datalog$^\pm$, infine la sezione 1.1.3 descrive la complessità e le caratteristiche del linguaggio Vadalog.\newline
+Il capitolo è organizzato come segue, nella sezione 1.1 verrà descritto in maniera approfondita il core del linguaggio, che a sua volta è diviso in due sottosezione, la sezione 1.1.1 che descrive il core logico dei linguaggi Datalog$^\pm$, tutte le proprietà e i vincoli che esso induce, arricchito con degli esempi, la sezione 1.1.2 che descrive il core logico di Vadalog,: le proprietà della famiglia Warded Datalog$^\pm$, la sezione 1.1.3 descrive la complessità e le caratteristiche del linguaggio Vadalog, infine nella sezione 1.1.4 vengono descritte le estensioni adottate dal linguaggio Vadalog che permettono funzionalità aggiuntive al linguaggio base.\newline
 Nella sezione 1.2 è possibile trovare dei programmi Vadalog di esempio per permettere una maggiore comprensione del linguaggio.
 Questo capitolo prende spunto da diversi articoli pubblicati dal gruppo VADA, sia per alcune nozioni teoriche che per esempi pratici descritti~\cite{bellomarini2017swift, gottlob2015beyond}.
 
@@ -90,5 +90,48 @@ Come detto in precedenza, la complessità dei dati NLOGSPACE esclude immediatame
 Per ottenere il core logico di Vadalog, i linguaggi appena discussi, ovvero Warded, Strongly-Warded e Linear Datalog$^\pm$, sono arricchite di utili funzionalità senza pagarne un prezzo in complessità. \newline
 Infatti si considerano i vincoli negativi della forma $\forall \bar{x}(\phi(\bar{x}) \rightarrow \bot)$, dove $\phi$ è una congiunzione di atomi e $\bot$ denota la costante false. Vengono presi in considerazione anche i vincoli di uguaglianza (come condizioni) della forma $\forall \bar{x}(\phi(\bar{x}) \rightarrow x_{i} = x_{j})$, dove $\phi$ è una congiunzione di atomi e $x_{i}$ e $x_{j}$ sono variabili di $\bar{x}$, che non interagiscono con le regole esistenziali. Questa classe di vincoli di uguaglianza è conosciuta come non conflittuale~\cite{cali2012towards}, ovvero non avrò mai dei conflitti con variabili esistenziali. \newline
 Si noti che se consideriamo vincoli arbitrari di uguaglianza, senza restrizioni, allora il nostro compito di reasoning diventa indecidibile~\cite{chandra1985implication}.
+
+\subsection{Estensioni di Vadalog}
+
+Al fine di essere efficace per applicazioni nel mondo reale, abbiamo esteso il core logico di Vadalog descritto in precedenza con un insieme di funzionalità aggiuntive di utilità pratica. Risultano essenziali per permettere un'analisi più dettagliata sui dati. Nel seguito della sezione elencheremo tutte le estensioni che sono state applicate in Vadalog. \newline \newline
+\emph{Tipi di dato}: È possibile definire costanti e variabili. Il linguaggio supporta i tipi di dato più comuni: Integer, Float, String, Boolean, Date, ma esiste anche il supporto per tipi di dato compositi, come i Set. \newline \newline
+\emph{Espressioni}: Le variabili e le costanti possono essere combinate in espressioni, definite ricorsivamente come variabili, costanti o combinazioni di esse, per le quali sosteniamo molteplici operazioni per diversi tipi di dato: somma, moltiplicazione, divisione, per Integer e Float; contenimento, aggiunta, cancellazione degli elementi per i Set; operazioni su stringhe (contains, starts-with, ends-with, index-of, substring, ecc.), operazioni sui booleani (and, or, not, ecc.). \newline
+Le espressioni possono essere usate nei corpi di regola come lato sinistro (LHS) di una condizione, cioè il confronto (<,>,=,<=,>=,<>) di una variabile del corpo con l'espressione stessa o come LHS di un'assegnazione, cioè la definizione di un valore calcolato specificatamente, spesso utilizzata come variabile di testa quantificata esistenzialmente. \newline \newline
+\emph{Funzioni di Skolem}: I valori dei nulli possono essere calcolati con funzioni. Si presume che siano deterministici (restituendo un nullo univoco) e avere range disgiunti. Alle funzioni di Skolem è possibile applicare delle implementazioni procedurali, che possono essere definite in diversi linguaggi, definendo il calcolo che effettuerà la funzione. \newline \newline
+\emph{Aggregazioni monotoniche}: Vadalog supporta l'aggregazione (min, max, somma, prodotto, conteggio), mediante un'estensione alla nozione di aggregazioni monotoniche~\cite{shkapsky2015optimizing}, che consente di adottare l'aggregazione anche in presenza di ricorsioni conservando monotonicità. Le recenti applicazioni di Vadalog in casi di utilizzi industriali impegnativi hanno dimostrato che tali aggregazioni sono molto efficienti in molte impostazioni Big Data del mondo reale. \newline \newline
+\emph{Annotazioni}: Gli atomi nelle regole sono decorati con annotazioni, in modo che un passo nel processo di reasoning innesca il componente esterno. Le fonti di dati e gli obiettivi possono essere dichiarati adottando annotazioni di input/output. Le annotazioni sono fatti particolari che aumentano le serie di regole esistenti con comportamenti specifici. Ad esempio una semplice annotazione che può essere di input/output, può prendere/persistere i dati da un sistema esterno, come un database relazionale. I fatti possono essere quindi derivati, per esempio da un database relazione o un graph db, che vengono acceduti con le due annotazioni di esempio, rispettivamente: \[@bind("Own", "rdbms", "companies.ownerships").\] 
+\begin{flalign*}
+@qbind("Own", "graphDB", \nonumber \\
+"MATCH (a) - [o:Owns] -> (b) \nonumber \\
+RETURN a, b, o.weight"). \nonumber
+\end{flalign*}
+Dove la prima annotazione effettua una proiezione di tutta la tabella "ownerships", mentre nella seconda viene effettuata una vera e propria query al graphDB in Cypher (linguaggio per interrogazione di graphDB). \newline
+Un approccio simile viene utilizzato anche per colmare le piattaforme di machine learning esterne e di estrazione dati nel sistema. Facciamo un esempio, utilizzando il framework di estrazione dati OXPath~\cite{furche2013oxpath}, un'estensione di XPath (linguaggio che permette di individuare nodi all'interno di un documento XML) che interagisce con le applicazioni web per estrarre le informazioni ottenute durante la navigazione web. \newline
+Supponiamo che le nostre informazioni sulla proprietà di un'azienda siano parziali, mentre le altre informazioni possono essere reperite dal web. In particolare, supponiamo che un registro aziendale agisca come motore di ricerca web, prendendo come input un nome di un'azienda e restituendo come pagine separate le società di proprietà. Queste informazioni possono essere ottenute come segue:
+\begin{align}
+	@qbind("Own", "oxpath", \nonumber \\
+	"doc('http://company_register.com/ownerships') \nonumber \\
+	/descendant::field()[1]/\{\$1\} \nonumber \\
+	/following::a[.\#='Search']/\{click/\} \nonumber \\
+	/(//a[.\#='Next']/\{click/\})* \nonumber \\
+	//div[@class='c']:<comp> \nonumber \\
+	[./span[1]:<name=string(.)>] \nonumber \\
+	[./span[3]:<percent=string(.)>]"). \nonumber
+\end{align}
+Interazioni interessanti si possono osservare in scenari più sofisticati, in cui il processo di reasoning e l'elaborazione dei componenti esterni sono più intrecciati. \newline
+Inoltre è possibile definire delle annotazioni di mapping, che hanno lo scopo di definire diverse informazioni sui dati di output, ad esempio i tipi, il nome della colonna, la posizione, ecc., ma possono essere anche evitati, poiché il sistema è in grado di inferire il tipo di dato. \newline \newline
+\emph{Reasoning probabilistico}: Vadalog offre il supporto per i casi di base in cui è possibile garantire il calcolo scalabile. I fatti sono considerati probabilisticamente indipendenti ed una forma minimalistica di inferenza probabilistica è offerta come risposta alla query. I fatti possono essere adornati con misure di probabilità. \newline
+Quindi se l'insieme delle regole esistenziali rispetta specifiche proprietà sintattiche che garantisco il calcolo probabilistico, i fatti risultanti della query sono arricchiti dalla loro probabilità marginale. \newline
+Nell'esempio utilizziamo il probabilistic reasoning per tenere conto delle proprietà incerte (ad esempio a causa di fonti inaffidabili), stabilendo i fatti con la loro probabilità, per trarre conclusioni sui rapporti di controllo aziendali:
+\begin{align}
+	0.8 :: Own(“ACME”, “COIN”, 0.7) \nonumber \\
+	0.3 :: Own(“COIN”, “SAVERS”, 0.3) \nonumber \\
+	0.4 :: Own(“ACME”, “GYM”, 0.55) \nonumber \\
+	0.6 :: Own(“GYM”, “SAVERS”, 0.4). \nonumber 
+\end{align}
+\emph{Post-processing Annotations}: Poiché spesso sono necessari dopo che il risultato è stato prodotto, Vadalog supporta molti di essi mediante annotazioni (in questo caso annotazioni diverse rispetto a quelle generali, poiché vengono richiamate soltanto alla fine del processo di reasoning): ordinamento dei valori risultanti, ad esempio @orderby("Control", 1) ordina i fatti di control in base al primo campo; rimozione dei duplicati (@distinct), che in condizioni specifiche possono risultare indesiderati; aggregazioni non monotoniche sul risultato finale, senza le limitazioni indotte dalla ricorsione. \newline \newline
+Nel complesso, il linguaggio consente di superare il reasoning basato sulla logica e il machine learning in tre modi. In primo luogo, il linguaggio supporta l'inferenza probabilistica in casi di base come visto in precedenza. \newline
+In secondo luogo, le estensioni del linguaggio di base forniscono tutte le funzionalità necessarie per estrarre e incorporare algoritmi avanzati di inferenza in modo che possano essere eseguiti direttamente dal sistema Vadalog e quindi sfruttare le proprie strategie di ottimizzazione. \newline
+Infine, per le applicazioni di machine learning più sofisticate, le estensioni consentono una semplice interazione con librerie e sistemi specializzati.
 
 \section{Esempi di programmi Vadalog e loro utilizzo}
