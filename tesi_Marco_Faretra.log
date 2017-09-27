@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  27 SEP 2017 12:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  27 SEP 2017 17:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -916,38 +916,94 @@ Now handling font encoding PD1 ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
-(./tesi_Marco_Faretra.aux)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count167
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\algocf@hangindent=\skip262
+
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+********************************************************
+Package `algorithm2e' Release 5.1 -- october 19 2015 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (christophe.fiorio@umontpellier.fr)
+********************************************************
+\skiptotal=\skip263
+\skiplinenumber=\skip264
+\skiprule=\skip265
+\skiphlne=\skip266
+\skiptext=\skip267
+\skiplength=\skip268
+\algomargin=\skip269
+\skipalgocfslide=\skip270
+\algowidth=\dimen163
+\inoutsize=\dimen164
+\inoutindent=\dimen165
+\interspacetitleruled=\dimen166
+\interspacealgoruled=\dimen167
+\interspacetitleboxruled=\dimen168
+\algocf@ruledwidth=\skip271
+\algocf@inoutbox=\box31
+\algocf@inputbox=\box32
+\AlCapSkip=\skip272
+\AlCapHSkip=\skip273
+\algoskipindent=\skip274
+\algocf@nlbox=\box33
+\algocf@hangingbox=\box34
+\algocf@untilbox=\box35
+\algocf@skipuntil=\skip275
+\algocf@capbox=\box36
+\algoheightruledefault=\skip276
+\algoheightrule=\skip277
+\algotitleheightruledefault=\skip278
+\algotitleheightrule=\skip279
+\c@algocfline=\count168
+\c@algocfproc=\count169
+\c@algocf=\count170
+\algocf@algoframe=\box37
+\algocf@algobox=\box38
+) (./tesi_Marco_Faretra.aux)
 \openout1 = `tesi_Marco_Faretra.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Info: Redefining \it@ocap on input line 25.
-LaTeX Info: Redefining \it@ccap on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Info: Redefining \it@ocap on input line 26.
+LaTeX Info: Redefining \it@ccap on input line 26.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count167
-\scratchdimen=\dimen163
-\scratchbox=\box31
-\nofMPsegments=\count168
-\nofMParguments=\count169
+\scratchcounter=\count171
+\scratchdimen=\dimen169
+\scratchbox=\box39
+\nofMPsegments=\count172
+\nofMParguments=\count173
 \everyMPshowfont=\toks36
-\MPscratchCnt=\count170
-\MPscratchDim=\dimen164
-\MPnumerator=\count171
-\makeMPintoPDFobject=\count172
+\MPscratchCnt=\count174
+\MPscratchDim=\dimen170
+\MPnumerator=\count175
+\makeMPintoPDFobject=\count176
 \everyMPtoPDFconversion=\toks37
 ) (/usr/local/texlive/2017/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -966,8 +1022,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box32
-Package hyperref Info: Link coloring OFF on input line 25.
+\AtBeginShipoutBox=\box40
+Package hyperref Info: Link coloring OFF on input line 26.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -975,24 +1031,24 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2017/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count173
+\c@section@level=\count177
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 25.
-LaTeX Info: Redefining \ref on input line 25.
-LaTeX Info: Redefining \pageref on input line 25.
-LaTeX Info: Redefining \nameref on input line 25.
+LaTeX Info: Redefining \nameref on input line 26.
+LaTeX Info: Redefining \ref on input line 26.
+LaTeX Info: Redefining \pageref on input line 26.
+LaTeX Info: Redefining \nameref on input line 26.
 (./tesi_Marco_Faretra.out) (./tesi_Marco_Faretra.out)
 \@outlinefile=\write4
 \openout4 = `tesi_Marco_Faretra.out'.
 
 
-<figure/uniroma3-logo.pdf, id=96, 196.735pt x 109.40875pt>
+<figure/uniroma3-logo.pdf, id=116, 196.735pt x 109.40875pt>
 File: figure/uniroma3-logo.pdf Graphic file (type pdf)
 
 <use figure/uniroma3-logo.pdf>
-Package pdftex.def Info: figure/uniroma3-logo.pdf used on input line 28.
+Package pdftex.def Info: figure/uniroma3-logo.pdf used on input line 29.
 (pdftex.def)             Requested size: 165.02347pt x 91.77249pt.
  [1
 
@@ -1032,32 +1088,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--41
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 42--32
+Underfull \hbox (badness 10000) in paragraph at lines 42--33
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--32
+Underfull \hbox (badness 10000) in paragraph at lines 42--33
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--32
+Underfull \hbox (badness 10000) in paragraph at lines 42--33
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--32
+Underfull \hbox (badness 10000) in paragraph at lines 42--33
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--32
+Underfull \hbox (badness 10000) in paragraph at lines 42--33
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 42--32
+Underfull \hbox (badness 10000) in paragraph at lines 42--33
 
  []
 
@@ -1093,7 +1149,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--51
 
  []
 
-[4] <figure/wardedness.png, id=244, 557.08125pt x 257.96375pt>
+[4] <figure/wardedness.png, id=269, 557.08125pt x 257.96375pt>
 File: figure/wardedness.png Graphic file (type png)
 
 <use figure/wardedness.png>
@@ -1145,134 +1201,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 120--126
 
  []
 
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
-
-LaTeX Warning: Command \textquotedblleft invalid in math mode on input line 131
-.
-
-
-LaTeX Warning: Command \textquotedblright invalid in math mode on input line 13
-1.
-
 [10]
 Underfull \hbox (badness 10000) in paragraph at lines 131--136
 
@@ -1292,7 +1220,7 @@ nverted-to.pdf figure/architettura.eps>
 (epstopdf)             \includegraphics on input line 51.
 Package epstopdf Info: Output file is already uptodate.
 
-<figure/architettura-eps-converted-to.pdf, id=326, 523.9575pt x 435.6275pt>
+<figure/architettura-eps-converted-to.pdf, id=351, 523.9575pt x 435.6275pt>
 File: figure/architettura-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figure/architettura-eps-converted-to.pdf>
@@ -1305,14 +1233,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--68
  []
 
 [15 <./figure/architettura-eps-converted-to.pdf>]
-<figure/query-plan-ex1.png, id=338, 655.44875pt x 346.29375pt>
+<figure/query-plan-ex1.png, id=363, 655.44875pt x 346.29375pt>
 File: figure/query-plan-ex1.png Graphic file (type png)
 
 <use figure/query-plan-ex1.png>
 Package pdftex.def Info: figure/query-plan-ex1.png used on input line 80.
 (pdftex.def)             Requested size: 330.05322pt x 174.37761pt.
  [16]
-<figure/architettura-1.png, id=345, 617.30624pt x 336.25626pt>
+<figure/architettura-1.png, id=370, 617.30624pt x 336.25626pt>
 File: figure/architettura-1.png Graphic file (type png)
 
 <use figure/architettura-1.png>
@@ -1324,77 +1252,105 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--118
 
  []
 
-<figure/architettura-2.png, id=365, 745.78625pt x 466.74374pt>
+<figure/architettura-2.png, id=390, 745.78625pt x 466.74374pt>
 File: figure/architettura-2.png Graphic file (type png)
 
 <use figure/architettura-2.png>
 Package pdftex.def Info: figure/architettura-2.png used on input line 121.
 (pdftex.def)             Requested size: 330.05322pt x 206.55724pt.
 ) [20 <./figure/architettura-2.png>]
-(./algoritmi.tex) [21
+(./algoritmi.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--22
 
-] (./prove_sperimentali.tex) [22
+ []
 
-] (./related_work.tex)
-[23
+[21
 
-] (./conclusioni.tex) [24
+]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22]
+Underfull \hbox (badness 10000) in paragraph at lines 78--80
+
+ []
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+
+ []
+
+[24]) [25] (./prove_sperimentali.tex) [26
+
+] (./related_work.tex) [27
+
+]
+(./conclusioni.tex) [28
 
 
 ] (./tesi_Marco_Faretra.bbl
 bibitemlist
-[25
+[29
 
-] [26]
+] [30]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 124.
 
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 ))
-[27]
+[31]
 \tf@toc=\write5
 \openout5 = `tesi_Marco_Faretra.toc'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 53.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 53.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 54.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 54.
  (./tesi_Marco_Faretra.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 53.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 53.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 54.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 54.
 Package rerunfilecheck Info: File `tesi_Marco_Faretra.out' has not changed.
-(rerunfilecheck)             Checksum: C3E92256980FA57635D5E57E3814EE17;1561.
- ) 
+(rerunfilecheck)             Checksum: 48370809B1E7D78D14A9CC262141F97C;1962.
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 1061 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 10846 strings out of 492995
- 150090 string characters out of 6132704
- 296946 words of memory out of 5000000
- 14139 multiletter control sequences out of 15000+600000
+ 11836 strings out of 492995
+ 165887 string characters out of 6132704
+ 325106 words of memory out of 5000000
+ 15097 multiletter control sequences out of 15000+600000
  17991 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,45p,1385b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/
-texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/te
-xlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texliv
-e/2017/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/
-2017/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/20
-17/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2017
-/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2017/t
-exmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2017/tex
-mf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2017/texmf
--dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2017/texmf-d
-ist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dis
-t/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on tesi_Marco_Faretra.pdf (39 pages, 741587 bytes).
+ 38i,11n,45p,1385b,2359s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm
+-super-t1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
+.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
+b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb>
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></us
+r/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/lo
+cal/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/loca
+l/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/
+texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texl
+ive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texliv
+e/2017/texmf-dist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/
+2017/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on tesi_Marco_Faretra.pdf (43 pages, 753295 bytes).
 PDF statistics:
- 492 PDF objects out of 1000 (max. 8388607)
- 412 compressed objects within 5 object streams
- 97 named destinations out of 1000 (max. 500000)
- 215 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 548 PDF objects out of 1000 (max. 8388607)
+ 464 compressed objects within 5 object streams
+ 116 named destinations out of 1000 (max. 500000)
+ 255 words of extra memory for PDF output out of 10000 (max. 10000000)
 

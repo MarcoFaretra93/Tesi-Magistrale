@@ -1,0 +1,132 @@
+In questo capitolo verranno descritte nel dettaglio le implementazioni di feature core del Vadalog Reasoner per l'esecuzione di programmi Vadalog. \newline
+Il capitolo è organizzato come segue, nella sezione 3.1 
+
+\section{Tecniche di ottimizzazione}
+
+Inizialmente il Vadalog Reasoner, effettuava ben poche ottimizzazioni, ad esempio non veniva ottimizzata efficientemente la ricorsione, non venivano applicate delle ottimizzazioni note come \emph{Push Selections e Projections Down}. Non erano presenti ottimizzazioni che permettevano un guadagno sull'esecuzione di programmi, ciò portava ad un limite del Vadalog Reasoner anche in ambito Big Data.
+
+\subsection{Push selections e projections down}
+
+In questa sezione verranno descritte come sono state gestite le operazioni di push selections e projections down all'interno del Vadalog Reasoner. \newline
+Queste operazioni rappresentano delle ottimizzazioni note nel settore basi di dati da diversi anni, il loro obiettivo è la trasformazione di una query in un'altra equivalente (stesso risultato), ma anticipando selezioni e proiezioni, in modo da avere dei benefici sui costi temporali e computazionali. \newline
+Nel nostro caso, poiché ci troviamo di fronte ad un linguaggio della famiglia Datalog$^\pm$, tali operazioni creano molte problematiche in più rispetto a linguaggi base di interrogazione per database, come SQL. \newline
+Questo perché Datalog ha molti più casi da gestire rispetto al linguaggio SQL, ad esempio, vanno gestite le ricorsioni, le variabili esistenziali, regole che possono avere in testa l'atomo A, sul corpo l'atomo B ed un'altra regola che può avere in testa l'atomo B e sul corpo l'atomo A (un ciclo) e quant'altro. \newline \newline
+Nella fase di push selections down, l'obiettivo è quello di anticipare le selezioni il prima possibile, ovvero cercare di anticipare le selezioni il più vicino possibile alle regole che coinvolgono nodi di input. Come possiamo vedere nell'esempio (un caso base): 
+\begin{algorithm}[h]
+	b(1). \\
+	b(2). \\
+	a(X) :- b(X). \\
+	d(X) :- a(X), X>10. \\
+	@output("d").
+\end{algorithm} 
+
+Dopo la trasformazione diventa: 
+
+\begin{algorithm}[h]
+	b(1). \\
+	b(2). \\
+	a(X) :- b(X), X>10. \\
+	d(X) :- a(X). \\
+	@output("d"). 
+\end{algorithm}
+Dove la proiezione con la variabile X è stata anticipata alla regola più vicina al nodo di input. \newline
+Spesso è necessario che una variabile va anticipata in N regole che coinvolgono (selezionano) tutte la stessa variabile che viene selezionata, come possiamo vedere nell'esempio: 
+
+\begin{algorithm}[h]
+	b(1). \\
+	c(30,33). \\
+	a1(X) :- b(X). \\
+	a2(X,Y) :- c(X,Y). \\
+	d(X) :- a1(X), a2(X,Y), X>1. \\
+	@output("d").
+\end{algorithm}
+
+Dopo la trasformazione diventa: 
+
+\begin{algorithm}[h]
+	b(1). \\
+	c(30,33). \\
+	a1(X) :- b(X), X>1. \\
+	a2(X,Y) :- c(X,Y), X>1. \\
+	d(X) :- a1(X), a2(X,Y). \\
+	@output("d").
+\end{algorithm} 
+
+In questo caso la variabile X viene utilizzata in due regole, quindi la selezione viene anticipata in entrambe le regole che coinvolgono tale variabile. \newline
+In entrambe le fasi di push selections e projections down, si tiene conto della posizione della variabile nell'atomo anziché del nome della variabile, questo perché in altre regole i nomi delle variabili possono essere in ordine inverso, possiamo vedere un esempio pratico:
+
+\begin{algorithm}[h]
+	b1(10,25). \\
+	c1(25,10). \\
+	b(Y,X) :- b1(X,Y). \\
+	c(X,Y) :- c1(X,Y). \\
+	a(X) :- b(X,Y),c(Y,X),X>20. \\
+	@output("a").
+\end{algorithm}
+
+Viene trasformato in:
+
+\begin{algorithm}[h]
+	b1(10,25). \\
+	c1(25,10). \\
+	b(Y,X) :- b1(X,Y), Y>20. \\
+	c(X,Y) :- c1(X,Y), Y>20. \\
+	a(X) :- b(X,Y),c(Y,X). \\
+	@output("a").
+\end{algorithm}
+
+Come possiamo vedere la variabile su cui viene effettuata la selezione 'X', che corrisponde alla prima posizione dell'atomo b ed alla seconda posizione dell'atomo c, quando viene anticipata viene opportunamente cambiata di nome in base alla determinata regola. \newline \newline
+La fase di push projections down si occupa di anticipare le selezioni il più vicino possibile ai nodi di input ed inoltre di rimuovere le proiezioni inutilizzate, ad esempio se in una regola proietto due variabili, in cui una non è coinvolta con l'output o con un'interazione per produrre l'output. Un esempio di rimozione di variabile inutilizzata è il seguente:
+
+\begin{algorithm}[h]
+	a(2). \\
+	b(1,1). \\
+	q(X,Y) :- b(X,Y). \\
+	c(X) :- a(X), q(X,Y). \\
+	d(X) :- c(X). \\
+	@output("d").
+\end{algorithm}
+
+Che viene trasformato in:
+
+\begin{algorithm}[h]
+	a(2). \\
+	b(1,1). \\
+	q(X,Y) :- b(X,Y). \\
+	c(X) :- a(X), q(X). \\
+	d(X) :- c(X). \\
+	@output("d").
+\end{algorithm}
+
+Come possiamo vedere nella regola c(X) :- a(X), q(X,Y) viene eliminata la variabile 'Y' poiché inutilizzata. \newline
+Un esempio di proiezione anticipata è il seguente: 
+
+\begin{algorithm}[h]
+	b(1). \\
+	c(2,5). \\
+	a1(X) :- b(X). \\
+	a2(X,Y) :- c(X,Y). \\
+	d(X) :- a1(X), a2(X,5). \\
+	@output("d").
+\end{algorithm}
+
+Che viene trasformato in:
+
+\begin{algorithm}[h]
+	b(1). \\
+	c(2,5). \\
+	a1(X) :- b(X). \\
+	a2(X) :- c(X,5). \\
+	d(X) :- a1(X), a2(X). \\
+	@output("d").
+\end{algorithm}
+
+Nel quale viene anticipata la proiezione dell'atomo 'c', e viene rimossa la variabile 'Y' dall'atomo 'a2', poiché inutilizzata. \newline \newline
+
+
+
+\section{Supporto a nuovi tipi di dato, sorgenti e funzionalità}
+
+\section{Benchmark}
+
+\section{Vadalog console}

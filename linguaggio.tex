@@ -124,10 +124,10 @@ Inoltre è possibile definire delle annotazioni di mapping, che hanno lo scopo d
 Quindi se l'insieme delle regole esistenziali rispetta specifiche proprietà sintattiche che garantisco il calcolo probabilistico, i fatti risultanti della query sono arricchiti dalla loro probabilità marginale. \newline
 Nell'esempio utilizziamo il probabilistic reasoning per tenere conto delle proprietà incerte (ad esempio a causa di fonti inaffidabili), stabilendo i fatti con la loro probabilità, per trarre conclusioni sui rapporti di controllo aziendali:
 \begin{align}
-	0.8 :: Own(“ACME”, “COIN”, 0.7) \nonumber \\
-	0.3 :: Own(“COIN”, “SAVERS”, 0.3) \nonumber \\
-	0.4 :: Own(“ACME”, “GYM”, 0.55) \nonumber \\
-	0.6 :: Own(“GYM”, “SAVERS”, 0.4). \nonumber 
+	0.8 :: Own("ACME", "COIN", 0.7) \nonumber \\
+	0.3 :: Own("COIN", "SAVERS", 0.3) \nonumber \\
+	0.4 :: Own("ACME", "GYM", 0.55) \nonumber \\
+	0.6 :: Own("GYM", "SAVERS", 0.4). \nonumber 
 \end{align}
 \emph{Post-processing Annotations}: Poiché spesso sono necessari dopo che il risultato è stato prodotto, Vadalog supporta molti di essi mediante annotazioni (in questo caso annotazioni diverse rispetto a quelle generali, poiché vengono richiamate soltanto alla fine del processo di reasoning): ordinamento dei valori risultanti, ad esempio @orderby("Control", 1) ordina i fatti di control in base al primo campo; rimozione dei duplicati (@distinct), che in condizioni specifiche possono risultare indesiderati; aggregazioni non monotoniche sul risultato finale, senza le limitazioni indotte dalla ricorsione. \newline \newline
 Nel complesso, il linguaggio consente di superare il reasoning basato sulla logica e il machine learning in tre modi. In primo luogo, il linguaggio supporta l'inferenza probabilistica in casi di base come visto in precedenza. \newline
