@@ -119,7 +119,11 @@ W3C.
 W3C.
 \newblock https://www.w3.org/TR/rdf-sparql-query/.
 
-\bibitem[Wik]{WIKI:STREAM}
+\bibitem[Wika]{WIKI:CONOSCENZA}
+Wikipedia.
+\newblock \url{https://en.wikipedia.org/wiki/Knowledge_economy}.
+
+\bibitem[Wikb]{WIKI:STREAM}
 Wikipedia.
 \newblock \url{https://it.wikipedia.org/wiki/Stream_processing}.
 

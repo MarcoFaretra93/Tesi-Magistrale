@@ -135,3 +135,105 @@ In secondo luogo, le estensioni del linguaggio di base forniscono tutte le funzi
 Infine, per le applicazioni di machine learning più sofisticate, le estensioni consentono una semplice interazione con librerie e sistemi specializzati.
 
 \section{Esempi di programmi Vadalog e loro utilizzo}
+
+In questa sezione verranno presentati diversi programmi Vadalog di esempio, utilizzati per effettuare calcoli particolari ed utilizzare alcune delle estensioni descritte sopra, e spiegati nel dettaglio. \newline
+Partiremo da esempi molto semplici, dove interagiscono pochi elementi (join tra due elementi), fino ad arrivare ad esempi più complessi che utilizzano ricorsione, espressioni, funzioni di skolem, integrazione di database, post processing annotations e così via. \newline
+Un primo esempio di un programma Vadalog molto semplice:
+
+\begin{algorithm}[h]
+	a(1,0). \\
+	b(1,2). \\
+	c(X,Y,Z) :- a(X,Y), b(X,Z). \\
+	@output("c").
+\end{algorithm}
+
+In questo esempio viene effettuato il join tra gli atomi 'a' e 'b', sulla prima variabile e vengono proiettate tutte le variabili. In questo caso, i fatti di input vengono aggiunti manualmente a(1,0) e b(1,2), quindi il risultato sarà c(1,0,2). \newline
+I join possono coinvolgere anche più atomi tra di loro, e possono essere abbinati anche alla ricorsione, nel seguente esempio ne vediamo un'applicazione: 
+
+\begin{algorithm}[h]
+	a(1.0,"string"). \\
+	b(1.0,2). \\
+	c(1.0,4,2017-09-28 12:29:00). \\
+	c(X,Y,W) :- a(X,Y), b(X,Z), c(X,V,W). \\
+	@post("unique", "c"). \\
+	@output("c").
+\end{algorithm}
+
+In questo esempio, viene effettuato il join tra tre atomi, di cui uno ricorsivo, vengono dati i fatti di input (anche un input per 'c'), e viene eseguita anche un'operazione di post-processing 'unique' che ha l'obiettivo di rimuovere i duplicati. \newline
+I fatti di input in questo caso sono vari: double, interi, stringhe e date. Come detto in precedenza, oltre ad essere dichiarati esplicitamente come fatti possono rappresentare tabelle su un database, relazionale e non, o anche le righe di un file csv, ecc. \newline
+Attraverso questa integrazione è possibile effettuare delle statistiche incrociando dati provenienti da storage distinti, combinando dati, e producendo dati di output che possono rappresentare nuova conoscenza, alla base del processo di reasoning. \newline
+Infatti è anche possibile direzionare gli output verso una determinata fonte, oltre la stampa a schermo. È possibile salvare un output ad esempio in un database, in un file csv e quant'altro. Questo risulta molto importante poiché uno degli obiettivi del processo reasoning è produrre nuova conoscenza, analizzando ed incrociando dati già acquisiti. \newline 
+Nel prossimo esempio vedremo un'interazione che può avvenire tra diverse sorgenti dati all'interno di un programma Vadalog con persistenza del risultato: 
+
+\begin{algorithm}[h]
+	@input("a"). \\
+	//a composto da due colonne \\
+	@bind("a", "postgres", "vadaschema", "Table"). \\
+	@input("b"). \\
+	//b composto da due colonne \\
+	@bind("b", "csv", "absolute/path/to/folder", "filename.csv"). \\
+	c(X,Y,Z) :- a(X,Y), b(X,Z). \\
+	@output("c"). \\
+	@bind("c", "csv", "absolute/path/to/folder", "result.csv").
+\end{algorithm}
+
+In questo esempio i fatti di input vengono presi da un database postgres (con schema "vadaschema" e tabella "Table") contenente due colonne e da un file csv (che è nella directory "absolute/path/to/folder" chiamato "filename.csv") contenente anch'esso due elementi per riga. Viene poi effettuato il join tra i due input in base al primo elemento, ed il risultato viene salvato in un nuovo file csv, che viene appositamente creato nella directory "absolute/path/to/folder". \newline 
+C'è anche la possibilità di effettuare delle preselezioni dal database, con un'annotazione chiamata \emph{qbind}, che permette di effettuare una vera e propria query in SQL, di seguito vediamo un esempio sulla base del precedente:
+
+\begin{algorithm}[h]
+	@input("a"). \\
+	//a composto da due colonne \\
+	@qbind("a", "postgres", "vadaschema", \\
+	"select name1, name2\\
+	from Table\\
+	where name1 = 'teststring'"). \\
+	@input("b"). \\
+	//b composto da due colonne \\
+	@bind("b", "csv", "absolute/path/to/folder", "filename.csv"). \\
+	c(X,Y,Z) :- a(X,Y), b(X,Z). \\
+	@output("c"). \\
+	@bind("c", "csv", "absolute/path/to/folder", "result.csv").
+\end{algorithm}
+
+È anche possibile inserire delle espressioni all'interno dei programmi Vadalog, esse possono essere utilizzate, come condizioni o assegnazioni di una variabile esistenziale. Per entrare più nel dettaglio vediamo qualche esempio: 
+
+\begin{algorithm}[h]
+	a(1,5). \\
+	b(2,7). \\
+	c(X,V) :- a(X,Y), b(V,W), Y >= 5, W >= 5. \\
+	@output("c"). 
+\end{algorithm}
+
+In questo esempio sono presenti due condizioni Y >= 5 e W >= 5, quindi la proiezione in 'c' viene fatta soltanto se entrambe sono verificate, poiché Y e W, con i fatti specificati valgono 5 e 7, le condizioni sono verificate e quindi l'output sarà c(1,2). \newline
+
+\begin{algorithm}[h]
+	a(1,5). \\
+	b(2,7). \\
+	c(X,V,J) :- a(X,Y), b(V,W), J = X+V. \\
+	@output("c").
+\end{algorithm}
+
+In quest'altro esempio invece le espressioni vengono utilizzate per assegnare un valore ad una variabile esistenziale, in questo caso J=X+V, quindi l'output sarà c(1,2,3). \newline
+È possibile integrare skolem function (che vengono considerate come espressioni), al quale è possibile applicare delle funzioni esterne con cui possono essere definite, o altrimenti generano un nullo. Vediamone alcuni esempi:
+
+\begin{algorithm}[h]
+	b(1,2). \\
+	a(X,Y,Z) :- b(X,Y),Z=\#f(X,Y). \\
+	c(K) :- b(X,Y),K=\#f(X,Y). \\
+	d(K) :- b(X,Y),K=\#g(X,Y). \\
+	@output("a"). \\
+	@output("c"). \\
+	@output("d"). \\
+\end{algorithm}
+
+\begin{algorithm}[h]
+	b(1,2). \\
+	c(3,2). \\
+	a(Y,Z) :- b(X1,Z),c(X2,Z),Y=\#f(X1,X2). \\
+	@output("a"). \\
+	@implement("\#f","java","com.package1.package2.myClass","staticmethodName").
+\end{algorithm}
+
+Nel primo esempio non vengono definite le implementazioni delle funzioni, quindi ritorneranno un valore nullo, \#f(X,Y) rappresenta una funzione in questo esempio. La particolarità delle funzioni è che se in due regole la stessa funzione prende come input gli stessi valori, allora quest'ultima produrrà lo stesso nullo. In questo esempio il risultato prodotto sarà a(1,2,$z_{1}$), c($z_{1}$) e d($z_{2}$), dove $z_{1}$ e $z_{2}$ rappresentano i nulli. 
+Nel secondo esempio invece, la funzione 'f' viene implementata attraverso una procedura esterna (in questo caso un metodo Java) del quale non entriamo nel dettaglio implementativo, ma il risultato della funzione Java sarà lo stesso risultato di 'f'.
+ 
