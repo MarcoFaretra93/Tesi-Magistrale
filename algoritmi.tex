@@ -4,7 +4,7 @@ Il capitolo è organizzato come segue, nella sezione 3.1 verranno descritte nel 
 \section{Tecniche di ottimizzazione}
 
 Inizialmente il Vadalog Reasoner, effettuava ben poche ottimizzazioni, ad esempio non veniva ottimizzata efficientemente la ricorsione, non venivano applicate delle ottimizzazioni note come \emph{Push Selections e Projections Down}. Non erano presenti ottimizzazioni che permettevano un guadagno sull'esecuzione di programmi, ciò portava ad un limite del Vadalog Reasoner anche in ambito Big Data. \newline
-Le tecniche di ottimizzazione sono basate sulla riscrittura, ovvero quando viene lanciato un programma esso viene riscritto applicando le ottimizzazioni ed infine dato in pasto al reasoner.
+Le tecniche di ottimizzazione sono basate sulla riscrittura, ovvero quando viene lanciato un programma esso viene riscritto applicando le ottimizzazioni ed infine dato in pasto al \emph{Vadalog Reasoner}.
 
 \subsection{Push selections e projections down}
 
@@ -30,7 +30,8 @@ Dopo la trasformazione diventa:
 	d(X) :- a(X). \\
 	@output("d"). 
 \end{algorithm}
-Dove la proiezione con la variabile X è stata anticipata alla regola più vicina al nodo di input. \newline
+
+In questo caso la selezione è stata anticipata alla regola più vicina al nodo input. \newline
 Spesso è necessario che una variabile va anticipata in N regole che coinvolgono (selezionano) tutte la stessa variabile che viene selezionata, come possiamo vedere nell'esempio: 
 
 \begin{algorithm}[h]
@@ -54,7 +55,7 @@ Dopo la trasformazione diventa:
 \end{algorithm} 
 
 In questo caso la variabile X viene utilizzata in due regole, quindi la selezione viene anticipata in entrambe le regole che coinvolgono tale variabile. \newline
-In entrambe le fasi di push selections e projections down, si tiene conto della posizione della variabile nell'atomo anziché del nome della variabile, questo perché in altre regole i nomi delle variabili possono essere in ordine inverso, possiamo vedere un esempio pratico:
+In entrambe le fasi di push selections e projections down, si tiene conto della posizione della variabile nell'atomo anziché del nome della variabile, questo perché in altre regole i nomi delle variabili possono essere in ordine inverso, possiamo vedere un esempio:
 
 \begin{algorithm}[h]
 	b1(10,25). \\
@@ -76,7 +77,7 @@ Viene trasformato in:
 	@output("a").
 \end{algorithm}
 
-Come possiamo vedere la variabile su cui viene effettuata la selezione 'X', che corrisponde alla prima posizione dell'atomo b ed alla seconda posizione dell'atomo c, quando viene anticipata viene opportunamente cambiata di nome in base alla determinata regola. \newline \newline
+Come possiamo vedere la variabile su cui viene effettuata la selezione 'X', che corrisponde alla prima posizione dell'atomo b ed alla seconda posizione dell'atomo c, quando viene anticipata viene opportunamente cambiata di nome in base alla regola. \newline \newline
 La fase di push projections down si occupa di anticipare le selezioni il più vicino possibile ai nodi di input ed inoltre di rimuovere le proiezioni inutilizzate, ad esempio se in una regola proietto due variabili, in cui una non è coinvolta con l'output o con un'interazione per produrre l'output. Un esempio di rimozione di variabile inutilizzata è il seguente:
 
 \begin{algorithm}[h]
@@ -142,7 +143,7 @@ Tuttavia, vogliamo gestire diverse funzionalità che permettono un'espressività
 \end{algorithm}
 
 Dove gli atomi h1, h2, h3 condividono lo stesso corpo. \newline
-In questo caso viene riscritto, prima di essere dato in pasto al reasoner nel seguente programma: 
+In questo caso viene riscritto, prima di essere dato in pasto al Vadalog Reasoner nel seguente programma: 
 
 \begin{algorithm}
 	h\_tmp(X,Y,Z,M) :- a(X,Y,Z),b(Z,M). \\
@@ -152,7 +153,7 @@ In questo caso viene riscritto, prima di essere dato in pasto al reasoner nel se
 \end{algorithm}
 
 Viene quindi definita una regola standard che contiene il corpo condiviso con le N teste, e aggiunta una regola lineare (uno ed un solo atomo nel corpo) per ogni testa. \newline \newline
-Spesso sono presenti regole, che nel corpo hanno più di 2 atomi che sono vincolati tramite join, l'uno con l'altro (ad esempio join tra tre elementi o join incrociati tra tre atomi). \newline
+Spesso sono presenti regole, che nel corpo hanno più di 2 atomi che sono vincolati tramite l'operazione di join, l'uno con l'altro (ad esempio join tra tre elementi o join incrociati tra tre atomi). \newline
 Quando sono presenti join tra tre o più atomi, l'aumento del tempo di computazione è proporzionale alla crescita del numero di atomi interessati. Ad esempio data una regola di questo tipo:
 
 \begin{algorithm}
@@ -174,7 +175,7 @@ Il join viene quindi splittato in due regole, dando il medesimo risultato di out
 
 Un altro collo di bottiglia per il tempo di computazione e l'efficienza è la ricorsione, in particolare le ricorsioni destre (atomo che ricorre si trova alla fine del corpo della regola) risultano meno efficienti delle ricorsioni sinistre (atomo che ricorre si trova all'inizio del corpo della regola). \newline
 Tale perdita di efficienza si ha sopratutto in presenza di join. Ricordiamo che Vadalog utilizza un algoritmo di join simile al nested loop (ogni ennupla della prima relazione viene paragonata ad ogni ennupla della seconda relazione). \newline
-Supponiamo che ci sia una regola Vadalog del tipo head :- A,B, dove A è un'atomo non ricorsivo e B ricorsivo, quindi una ricorsione destra, e che A abbia N ennuple, e B abbia M ennuple. \newline
+Supponiamo che ci sia una regola Vadalog del tipo head :- A,B, dove A è un atomo non ricorsivo e B un atomo ricorsivo, quindi una ricorsione destra, e che A abbia N ennuple, e B abbia M ennuple. \newline
 Quando andiamo ad effettuare il nested loop join, ogni ennupla di A effettua una chiamata ricorsiva su B (per paragonarla) per tutte le ennuple di B, vengono quindi fatte NxM chiamate ricorsive circa. \newline
 Nel caso in cui la regola abbia una ricorsione sinistra (quindi dopo la riscrittura), ovvero head :- B,A, in  questo caso è B che viene paragonata ad A, quindi vengono prima fatte le chiamate ricorsive e poi il risultato delle chiamate paragonato alle ennuple di B, quindi vengono fatte M chiamate ricorsive circa. Quindi la riscrittura porta un guadagno notevole sulla base del numero di chiamate ricorsive. \newline
 Vediamo un'esempio pratico di come avviene la riscrittura: 
