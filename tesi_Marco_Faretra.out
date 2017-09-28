@@ -19,10 +19,12 @@
 \BOOKMARK [0][-]{chapter.3}{Supporto per nuove features}{}% 19
 \BOOKMARK [1][-]{section.3.1}{Tecniche di ottimizzazione}{chapter.3}% 20
 \BOOKMARK [2][-]{subsection.3.1.1}{Push selections e projections down}{section.3.1}% 21
-\BOOKMARK [1][-]{section.3.2}{Supporto a nuovi tipi di dato, sorgenti e funzionalit\340}{chapter.3}% 22
-\BOOKMARK [1][-]{section.3.3}{Benchmark}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.4}{Vadalog console}{chapter.3}% 24
-\BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 25
-\BOOKMARK [0][-]{chapter.5}{Related work}{}% 26
-\BOOKMARK [0][-]{chapter*.4}{Conclusioni e sviluppi futuri}{}% 27
-\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 28
+\BOOKMARK [2][-]{subsection.3.1.2}{Gestione di teste multiple e join multipli}{section.3.1}% 22
+\BOOKMARK [2][-]{subsection.3.1.3}{Individuazione e inversione delle ricorsioni destre}{section.3.1}% 23
+\BOOKMARK [1][-]{section.3.2}{Supporto a nuovi tipi di dato, sorgenti e funzionalit\340}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.3}{Benchmark}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.4}{Vadalog console}{chapter.3}% 26
+\BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 27
+\BOOKMARK [0][-]{chapter.5}{Related work}{}% 28
+\BOOKMARK [0][-]{chapter*.4}{Conclusioni e sviluppi futuri}{}% 29
+\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 30

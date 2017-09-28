@@ -1,9 +1,10 @@
-In questo capitolo verranno descritte nel dettaglio le implementazioni di feature core del Vadalog Reasoner per l'esecuzione di programmi Vadalog. \newline
-Il capitolo è organizzato come segue, nella sezione 3.1 
+In questo capitolo verranno descritte nel dettaglio le implementazioni di feature core del Vadalog Reasoner, di cui mi sono occupato durante il mio periodo di Tesi, per l'esecuzione di programmi Vadalog. \newline
+Il capitolo è organizzato come segue, nella sezione 3.1 verranno descritte nel dettaglio le tecniche di ottimizzazione e le loro implementazioni, in particolare le ottimizzazioni di push selections e projections down (sezione 3.1.1), la gestione di teste e join multipli (sezione 3.1.2) e l'individuazione e inversione delle ricorsioni destre (sezione 3.1.3). \newline
 
 \section{Tecniche di ottimizzazione}
 
-Inizialmente il Vadalog Reasoner, effettuava ben poche ottimizzazioni, ad esempio non veniva ottimizzata efficientemente la ricorsione, non venivano applicate delle ottimizzazioni note come \emph{Push Selections e Projections Down}. Non erano presenti ottimizzazioni che permettevano un guadagno sull'esecuzione di programmi, ciò portava ad un limite del Vadalog Reasoner anche in ambito Big Data.
+Inizialmente il Vadalog Reasoner, effettuava ben poche ottimizzazioni, ad esempio non veniva ottimizzata efficientemente la ricorsione, non venivano applicate delle ottimizzazioni note come \emph{Push Selections e Projections Down}. Non erano presenti ottimizzazioni che permettevano un guadagno sull'esecuzione di programmi, ciò portava ad un limite del Vadalog Reasoner anche in ambito Big Data. \newline
+Le tecniche di ottimizzazione sono basate sulla riscrittura, ovvero quando viene lanciato un programma esso viene riscritto applicando le ottimizzazioni ed infine dato in pasto al reasoner.
 
 \subsection{Push selections e projections down}
 
@@ -122,8 +123,73 @@ Che viene trasformato in:
 \end{algorithm}
 
 Nel quale viene anticipata la proiezione dell'atomo 'c', e viene rimossa la variabile 'Y' dall'atomo 'a2', poiché inutilizzata. \newline \newline
+L'implementazione delle procedure di push selections e projections down è stata effettuata come una riscrittura del programma, ovvero prima di mandare il codice in pasto al reasoner, esso viene opportunamente trasformato seguendo le tipologie di ottimizzazioni sopra descritte. \newline
+Nella fase di push selections down, si visita il grafo d'esecuzione partendo dai nodi di output, durante la quale vengono controllate tutte le variabili delle condizioni della regola corrente, e si fa un match con le variabili degli atomi nel corpo della regola, a questo punto ci sono due possibili strade da percorrere: 
+\begin{itemize}
+	\item La variabile occorre in N atomi nel corpo e tutti gli atomi sono di input. In questo caso la condizione viene lasciata nella regola corrente, poiché non è possibile anticipare la selezione, si continua poi la visita del grafo per vedere se ci sono altre selezioni che è possibile anticipare.
+	\item La variabile occorre in atomi che sono di input e in atomi che non sono di input. In questo caso, viene lasciata la condizione alla regola corrente, ma si tiene conto degli altri atomi (che non sono di input) coinvolti, proseguendo la visita del grafo, quando arriveremo alle regole che hanno tali atomi in testa, vengono nuovamente verificati gli atomi nel corpo, nel caso in cui siano tutti di input allora viene aggiunta la selezione anche a queste regole, altrimenti si prosegue finché non arriviamo alla regola contenente soltanto atomi di input.
+\end{itemize}
+La fase di push projections down è molto simile, ma anziché controllare le condizioni, in ogni regola si verifica la presenza di costanti, in caso positivo si procede con lo stesso criterio del push selections down. Inoltre si verifica anche la presenza di variabili inutili, ad esempio nella testa ho le variabili [X,Y] e nel corpo [X,Y,J], in questa caso, J viene rimossa dall'atomo nel corpo della regola e conseguentemente dalla testa della regola contenente l'atomo coinvolto.
 
+\subsection{Gestione di teste multiple e join multipli}
 
+In questa sezione verranno descritte le ottimizzazioni in presenza di teste e join multipli. \newline
+Vadalog è un linguaggio che permette regole standard da poter utilizzare nella forma head :- body, dove head è rappresentato da un singolo atomo e body da una lista di atomi e una lista di condizioni. \newline
+Tuttavia, vogliamo gestire diverse funzionalità che permettono un'espressività maggiore, una di queste è la possibilità di definire una regola con più teste, ad esempio se ho diversi atomi che sono composti dallo stesso corpo anziché far scrivere al programmatore un numero di regole pari al numero di atomi, viene effettuata una riscrittura che permette di scrivere una regola con più teste. Un esempio è il seguente: 
+
+\begin{algorithm}
+	h1(X,Y),h2(Y,Z),h3(Z,W) :- a(X,Y,Z),b(Z,M).
+\end{algorithm}
+
+Dove gli atomi h1, h2, h3 condividono lo stesso corpo. \newline
+In questo caso viene riscritto, prima di essere dato in pasto al reasoner nel seguente programma: 
+
+\begin{algorithm}
+	h\_tmp(X,Y,Z,M) :- a(X,Y,Z),b(Z,M). \\
+	h1(X,Y) :- h\_tmp(X,Y,Z,M). \\
+	h2(Y,Z) :- h\_tmp(X,Y,Z,M). \\
+	h3(Z,W) :- h\_tmp(X,Y,Z,M). 
+\end{algorithm}
+
+Viene quindi definita una regola standard che contiene il corpo condiviso con le N teste, e aggiunta una regola lineare (uno ed un solo atomo nel corpo) per ogni testa. \newline \newline
+Spesso sono presenti regole, che nel corpo hanno più di 2 atomi che sono vincolati tramite join, l'uno con l'altro (ad esempio join tra tre elementi o join incrociati tra tre atomi). \newline
+Quando sono presenti join tra tre o più atomi, l'aumento del tempo di computazione è proporzionale alla crescita del numero di atomi interessati. Ad esempio data una regola di questo tipo:
+
+\begin{algorithm}
+	c(Z,X,M) :- a(X,Y),b(Y,K),c(K,M).
+\end{algorithm}
+
+In questo esempio gli atomi 'a', 'b' e 'c' sono coinvolti in un join incrociato, ovvero l'atomo 'a' è in join con 'b' e quest'ultimo con 'c'. \newline
+Nella riscrittura la regola generalizzata composta da N atomi, di cui M (>=3) sono in join tra loro, viene splittata in M regole in cui vengono definiti join tra due elementi soltanto, e gli atomi non coinvolti nel join, vengono inseriti nella regola finale. \newline
+Quindi nel nostro esempio il programma dopo la riscrittura diventa: 
+
+\begin{algorithm}
+	v\_atom1(X,K) :- a(X,Y),b(Y,K). \\
+	c(Z,X,M) :- v\_atom1(X,K),c(K,M).
+\end{algorithm}
+
+Il join viene quindi splittato in due regole, dando il medesimo risultato di output.
+
+\subsection{Individuazione e inversione delle ricorsioni destre}
+
+Un altro collo di bottiglia per il tempo di computazione e l'efficienza è la ricorsione, in particolare le ricorsioni destre (atomo che ricorre si trova alla fine del corpo della regola) risultano meno efficienti delle ricorsioni sinistre (atomo che ricorre si trova all'inizio del corpo della regola). \newline
+Tale perdita di efficienza si ha sopratutto in presenza di join. Ricordiamo che Vadalog utilizza un algoritmo di join simile al nested loop (ogni ennupla della prima relazione viene paragonata ad ogni ennupla della seconda relazione). \newline
+Supponiamo che ci sia una regola Vadalog del tipo head :- A,B, dove A è un'atomo non ricorsivo e B ricorsivo, quindi una ricorsione destra, e che A abbia N ennuple, e B abbia M ennuple. \newline
+Quando andiamo ad effettuare il nested loop join, ogni ennupla di A effettua una chiamata ricorsiva su B (per paragonarla) per tutte le ennuple di B, vengono quindi fatte NxM chiamate ricorsive circa. \newline
+Nel caso in cui la regola abbia una ricorsione sinistra (quindi dopo la riscrittura), ovvero head :- B,A, in  questo caso è B che viene paragonata ad A, quindi vengono prima fatte le chiamate ricorsive e poi il risultato delle chiamate paragonato alle ennuple di B, quindi vengono fatte M chiamate ricorsive circa. Quindi la riscrittura porta un guadagno notevole sulla base del numero di chiamate ricorsive. \newline
+Vediamo un'esempio pratico di come avviene la riscrittura: 
+
+\begin{algorithm}
+	a(Y) :- b(X,Y), a(X).
+\end{algorithm}
+
+Viene trasformato in:
+
+\begin{algorithm}
+	a(Y) :- a(X), b(X,Y).
+\end{algorithm}
+
+L'algoritmo di riscrittura ha lo scopo di portare l'atomo ricorsivo come primo atomo del corpo, il resto della regola rimane invariato, come il risultato finale.
 
 \section{Supporto a nuovi tipi di dato, sorgenti e funzionalità}
 
