@@ -20,7 +20,8 @@
 \usepackage{amsthm}	% per definizioni e teoremi
 \usepackage{amsmath}	% per ``cases'' environment
 \usepackage[utf8]{inputenc}
-\usepackage{algorithm2e}
+\usepackage{listings}
+\newtheorem{example}{Esempio}
 % --- FINE riachiamo di pacchetti di utilità
 
 \begin{document}
@@ -29,8 +30,8 @@
 \generaFrontespizio
 \generaDedica
 \ringraziamenti{ringraziamenti}	% inserisce i ringraziamenti e li prende in questo caso da ringraziamenti.tex
-\introduzione{introduzione}		% inserisce l'introduzione e la prende in questo caso da introduzione.tex
 \generaIndice
+\introduzione{introduzione}		% inserisce l'introduzione e la prende in questo caso da introduzione.tex
 
 % ----- Pagine di tesi, numerate in arabo (1,2,3,4,...) (obbligatorio)
 \mainmatter
@@ -38,7 +39,7 @@
 % 1) il titolo del capitolo
 % 2) il nome del file tex (senza estensione) che contiene il capitolo. Tale nome \`e usato anche come label del capitolo
 \capitolo{Il linguaggio Vadalog}{linguaggio}
-\capitolo{Vadalog Engine}{engine}
+\capitolo{Vadalog Reasoner}{engine}
 \capitolo{Supporto per nuove features}{algoritmi}
 \capitolo{Prove sperimentali}{prove_sperimentali}
 \capitolo{Related work}{related_work}

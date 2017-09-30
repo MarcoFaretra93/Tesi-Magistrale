@@ -1,5 +1,5 @@
 In questo capitolo verranno descritte nel dettaglio le implementazioni di feature core del Vadalog Reasoner, di cui mi sono occupato durante il mio periodo di Tesi, per l'esecuzione di programmi Vadalog. \newline
-Il capitolo è organizzato come segue, nella sezione 3.1 verranno descritte nel dettaglio le tecniche di ottimizzazione e le loro implementazioni, in particolare le ottimizzazioni di push selections e projections down (sezione 3.1.1), la gestione di teste e join multipli (sezione 3.1.2) e l'individuazione e inversione delle ricorsioni destre (sezione 3.1.3). \newline
+Il capitolo è organizzato come segue. Nella sezione 3.1 verranno descritte nel dettaglio le tecniche di ottimizzazione e le loro implementazioni, in particolare le ottimizzazioni di push selections e projections down (sezione 3.1.1), la gestione di teste e join multipli (sezione 3.1.2) e l'individuazione e inversione delle ricorsioni destre (sezione 3.1.3). \newline
 
 \section{Tecniche di ottimizzazione}
 
@@ -12,118 +12,129 @@ In questa sezione verranno descritte come sono state gestite le operazioni di pu
 Queste operazioni rappresentano delle ottimizzazioni note nel settore basi di dati da diversi anni, il loro obiettivo è la trasformazione di una query in un'altra equivalente (stesso risultato), ma anticipando selezioni e proiezioni, in modo da avere dei benefici sui costi temporali e computazionali. \newline
 Nel nostro caso, poiché ci troviamo di fronte ad un linguaggio della famiglia Datalog$^\pm$, tali operazioni creano molte problematiche in più rispetto a linguaggi base di interrogazione per database, come SQL. \newline
 Questo perché Datalog ha molti più casi da gestire rispetto al linguaggio SQL, ad esempio, vanno gestite le ricorsioni, le variabili esistenziali, regole che possono avere in testa l'atomo A, sul corpo l'atomo B ed un'altra regola che può avere in testa l'atomo B e sul corpo l'atomo A (un ciclo) e quant'altro. \newline \newline
-Nella fase di push selections down, l'obiettivo è quello di anticipare le selezioni il prima possibile, ovvero cercare di anticipare le selezioni il più vicino possibile alle regole che coinvolgono nodi di input. Come possiamo vedere nell'esempio (un caso base): 
-\begin{algorithm}[h]
-	b(1). \\
-	b(2). \\
-	a(X) :- b(X). \\
-	d(X) :- a(X), X>10. \\
+Nella fase di push selections down, l'obiettivo è quello di anticipare le selezioni il prima possibile, ovvero cercare di anticipare le selezioni il più vicino possibile alle regole che coinvolgono nodi di input. Come possiamo vedere nell'esempio~\ref{ex1} (un caso base): 
+\begin{example}\label{ex1}
+\begin{lstlisting}
+	
+	b(1). 
+	b(2). 
+	a(X) :- b(X). 
+	d(X) :- a(X), X>10. 
 	@output("d").
-\end{algorithm} 
-
+\end{lstlisting}
+\end{example}
 Dopo la trasformazione diventa: 
-
-\begin{algorithm}[h]
-	b(1). \\
-	b(2). \\
-	a(X) :- b(X), X>10. \\
-	d(X) :- a(X). \\
-	@output("d"). 
-\end{algorithm}
-
-In questo caso la selezione è stata anticipata alla regola più vicina al nodo input. \newline
-Spesso è necessario che una variabile va anticipata in N regole che coinvolgono (selezionano) tutte la stessa variabile che viene selezionata, come possiamo vedere nell'esempio: 
-
-\begin{algorithm}[h]
-	b(1). \\
-	c(30,33). \\
-	a1(X) :- b(X). \\
-	a2(X,Y) :- c(X,Y). \\
-	d(X) :- a1(X), a2(X,Y), X>1. \\
+\begin{example}\label{ex2}
+	\begin{lstlisting}
+	
+	b(1). 
+	b(2). 
+	a(X) :- b(X), X>10. 
+	d(X) :- a(X). 
 	@output("d").
-\end{algorithm}
-
+	\end{lstlisting}
+\end{example}
+Nell'esempio~\ref{ex2} la selezione è stata anticipata alla regola più vicina al nodo input. \newline
+Spesso è necessario che una variabile va anticipata in N regole che coinvolgono (selezionano) tutte la stessa variabile che viene selezionata, come possiamo vedere nell'esempio~\ref{ex3}: 
+\begin{example}\label{ex3}
+	\begin{lstlisting}
+	
+	b(1). 
+	c(30,33). 
+	a1(X) :- b(X). 
+	a2(X,Y) :- c(X,Y). 
+	d(X) :- a1(X), a2(X,Y), X>1. 
+	@output("d").
+	\end{lstlisting}
+\end{example}
 Dopo la trasformazione diventa: 
-
-\begin{algorithm}[h]
-	b(1). \\
-	c(30,33). \\
-	a1(X) :- b(X), X>1. \\
-	a2(X,Y) :- c(X,Y), X>1. \\
-	d(X) :- a1(X), a2(X,Y). \\
+\begin{example}\label{ex4}
+	\begin{lstlisting}
+	
+	b(1). 
+	c(30,33). 
+	a1(X) :- b(X), X>1. 
+	a2(X,Y) :- c(X,Y), X>1. 
+	d(X) :- a1(X), a2(X,Y). 
 	@output("d").
-\end{algorithm} 
-
-In questo caso la variabile X viene utilizzata in due regole, quindi la selezione viene anticipata in entrambe le regole che coinvolgono tale variabile. \newline
-In entrambe le fasi di push selections e projections down, si tiene conto della posizione della variabile nell'atomo anziché del nome della variabile, questo perché in altre regole i nomi delle variabili possono essere in ordine inverso, possiamo vedere un esempio:
-
-\begin{algorithm}[h]
-	b1(10,25). \\
-	c1(25,10). \\
-	b(Y,X) :- b1(X,Y). \\
-	c(X,Y) :- c1(X,Y). \\
-	a(X) :- b(X,Y),c(Y,X),X>20. \\
+	\end{lstlisting}
+\end{example}
+Nell'esempio~\ref{ex4} la variabile X viene utilizzata in due regole, quindi la selezione viene anticipata in entrambe le regole che coinvolgono tale variabile. \newline
+In entrambe le fasi di push selections e projections down, si tiene conto della posizione della variabile nell'atomo anziché del nome della variabile, questo perché in altre regole i nomi delle variabili possono essere in ordine inverso, ne vediamo un'applicazione negli esempi~\ref{ex5} e \ref{ex6}:
+\begin{example}\label{ex5}
+	\begin{lstlisting}
+	
+	b1(10,25). 
+	c1(25,10). 
+	b(Y,X) :- b1(X,Y). 
+	c(X,Y) :- c1(X,Y). 
+	a(X) :- b(X,Y),c(Y,X),X>20. 
 	@output("a").
-\end{algorithm}
-
+	\end{lstlisting}
+\end{example}
 Viene trasformato in:
-
-\begin{algorithm}[h]
-	b1(10,25). \\
-	c1(25,10). \\
-	b(Y,X) :- b1(X,Y), Y>20. \\
-	c(X,Y) :- c1(X,Y), Y>20. \\
-	a(X) :- b(X,Y),c(Y,X). \\
+\begin{example}\label{ex6}
+	\begin{lstlisting}
+	
+	b1(10,25). 
+	c1(25,10). 
+	b(Y,X) :- b1(X,Y), Y>20. 
+	c(X,Y) :- c1(X,Y), Y>20. 
+	a(X) :- b(X,Y),c(Y,X). 
 	@output("a").
-\end{algorithm}
-
-Come possiamo vedere la variabile su cui viene effettuata la selezione 'X', che corrisponde alla prima posizione dell'atomo b ed alla seconda posizione dell'atomo c, quando viene anticipata viene opportunamente cambiata di nome in base alla regola. \newline \newline
-La fase di push projections down si occupa di anticipare le selezioni il più vicino possibile ai nodi di input ed inoltre di rimuovere le proiezioni inutilizzate, ad esempio se in una regola proietto due variabili, in cui una non è coinvolta con l'output o con un'interazione per produrre l'output. Un esempio di rimozione di variabile inutilizzata è il seguente:
-
-\begin{algorithm}[h]
-	a(2). \\
-	b(1,1). \\
-	q(X,Y) :- b(X,Y). \\
-	c(X) :- a(X), q(X,Y). \\
-	d(X) :- c(X). \\
+	\end{lstlisting}
+\end{example}
+Come possiamo vedere nell'esempio~\ref{ex6} la variabile su cui viene effettuata la selezione 'X', che corrisponde alla prima posizione dell'atomo b ed alla seconda posizione dell'atomo c, quando viene anticipata viene opportunamente cambiata di nome in base alla regola. \newline \newline
+La fase di push projections down si occupa di anticipare le selezioni il più vicino possibile ai nodi di input ed inoltre di rimuovere le proiezioni inutilizzate, ad esempio se in una regola proietto due variabili, in cui una non è coinvolta con l'output o con un'interazione per produrre l'output. Possiamo vederne un'applicazione nell'esempio~\ref{ex7} e \ref{ex8}:
+\begin{example}\label{ex7}
+	\begin{lstlisting}
+	
+	a(2). 
+	b(1,1). 
+	q(X,Y) :- b(X,Y). 
+	c(X) :- a(X), q(X,Y). 
+	d(X) :- c(X). 
 	@output("d").
-\end{algorithm}
-
+	\end{lstlisting}
+\end{example}
 Che viene trasformato in:
-
-\begin{algorithm}[h]
-	a(2). \\
-	b(1,1). \\
-	q(X,Y) :- b(X,Y). \\
-	c(X) :- a(X), q(X). \\
-	d(X) :- c(X). \\
+\begin{example}\label{ex8}
+	\begin{lstlisting}
+	
+	a(2). 
+	b(1,1). 
+	q(X,Y) :- b(X,Y). 
+	c(X) :- a(X), q(X). 
+	d(X) :- c(X). 
 	@output("d").
-\end{algorithm}
-
-Come possiamo vedere nella regola c(X) :- a(X), q(X,Y) viene eliminata la variabile 'Y' poiché inutilizzata. \newline
-Un esempio di proiezione anticipata è il seguente: 
-
-\begin{algorithm}[h]
-	b(1). \\
-	c(2,5). \\
-	a1(X) :- b(X). \\
-	a2(X,Y) :- c(X,Y). \\
-	d(X) :- a1(X), a2(X,5). \\
+	\end{lstlisting}
+\end{example}
+Come possiamo vedere nell'esempio~\ref{ex8}, nella regola c(X) :- a(X), q(X,Y) viene eliminata la variabile 'Y' poiché inutilizzata. \newline
+Mentre l'applicazione della proiezione anticipata, possiamo vederla nell'esempio~\ref{ex9} e \ref{ex10}:
+\begin{example}\label{ex9}
+	\begin{lstlisting}
+	
+	b(1). 
+	c(2,5). 
+	a1(X) :- b(X). 
+	a2(X,Y) :- c(X,Y). 
+	d(X) :- a1(X), a2(X,5). 
 	@output("d").
-\end{algorithm}
-
+	\end{lstlisting}
+\end{example}
 Che viene trasformato in:
-
-\begin{algorithm}[h]
-	b(1). \\
-	c(2,5). \\
-	a1(X) :- b(X). \\
-	a2(X) :- c(X,5). \\
-	d(X) :- a1(X), a2(X). \\
+\begin{example}\label{ex10}
+	\begin{lstlisting}
+	
+	b(1). 
+	c(2,5). 
+	a1(X) :- b(X). 
+	a2(X) :- c(X,5). 
+	d(X) :- a1(X), a2(X). 
 	@output("d").
-\end{algorithm}
-
-Nel quale viene anticipata la proiezione dell'atomo 'c', e viene rimossa la variabile 'Y' dall'atomo 'a2', poiché inutilizzata. \newline \newline
+	\end{lstlisting}
+\end{example}
+Nell'esempio~\ref{ex10} viene anticipata la proiezione dell'atomo 'c', e viene rimossa la variabile 'Y' dall'atomo 'a2', poiché inutilizzata. \newline \newline
 L'implementazione delle procedure di push selections e projections down è stata effettuata come una riscrittura del programma, ovvero prima di mandare il codice in pasto al reasoner, esso viene opportunamente trasformato seguendo le tipologie di ottimizzazioni sopra descritte. \newline
 Nella fase di push selections down, si visita il grafo d'esecuzione partendo dai nodi di output, durante la quale vengono controllate tutte le variabili delle condizioni della regola corrente, e si fa un match con le variabili degli atomi nel corpo della regola, a questo punto ci sono due possibili strade da percorrere: 
 \begin{itemize}
@@ -136,39 +147,43 @@ La fase di push projections down è molto simile, ma anziché controllare le con
 
 In questa sezione verranno descritte le ottimizzazioni in presenza di teste e join multipli. \newline
 Vadalog è un linguaggio che permette regole standard da poter utilizzare nella forma head :- body, dove head è rappresentato da un singolo atomo e body da una lista di atomi e una lista di condizioni. \newline
-Tuttavia, vogliamo gestire diverse funzionalità che permettono un'espressività maggiore, una di queste è la possibilità di definire una regola con più teste, ad esempio se ho diversi atomi che sono composti dallo stesso corpo anziché far scrivere al programmatore un numero di regole pari al numero di atomi, viene effettuata una riscrittura che permette di scrivere una regola con più teste. Un esempio è il seguente: 
-
-\begin{algorithm}
+Tuttavia, vogliamo gestire diverse funzionalità che permettono un'espressività maggiore, una di queste è la possibilità di definire una regola con più teste, ad esempio se ho diversi atomi che sono composti dallo stesso corpo anziché far scrivere al programmatore un numero di regole pari al numero di atomi, viene effettuata una riscrittura che permette di scrivere una regola con più teste, possiamo vederne un'applicazione nell'esempio~\ref{ex11}. 
+\begin{example}\label{ex11}
+	\begin{lstlisting}
+	
 	h1(X,Y),h2(Y,Z),h3(Z,W) :- a(X,Y,Z),b(Z,M).
-\end{algorithm}
-
+	\end{lstlisting}
+\end{example}
 Dove gli atomi h1, h2, h3 condividono lo stesso corpo. \newline
-In questo caso viene riscritto, prima di essere dato in pasto al Vadalog Reasoner nel seguente programma: 
-
-\begin{algorithm}
-	h\_tmp(X,Y,Z,M) :- a(X,Y,Z),b(Z,M). \\
-	h1(X,Y) :- h\_tmp(X,Y,Z,M). \\
-	h2(Y,Z) :- h\_tmp(X,Y,Z,M). \\
-	h3(Z,W) :- h\_tmp(X,Y,Z,M). 
-\end{algorithm}
-
+In questo caso viene riscritto, prima di essere dato in pasto al Vadalog Reasoner come nell'esempio~\ref{ex12}: 
+\begin{example}\label{ex12}
+	\begin{lstlisting}
+	
+	h_tmp(X,Y,Z,M) :- a(X,Y,Z),b(Z,M). 
+	h1(X,Y) :- h_tmp(X,Y,Z,M). 
+	h2(Y,Z) :- h_tmp(X,Y,Z,M). 
+	h3(Z,W) :- h_tmp(X,Y,Z,M). 
+	\end{lstlisting}
+\end{example}
 Viene quindi definita una regola standard che contiene il corpo condiviso con le N teste, e aggiunta una regola lineare (uno ed un solo atomo nel corpo) per ogni testa. \newline \newline
 Spesso sono presenti regole, che nel corpo hanno più di 2 atomi che sono vincolati tramite l'operazione di join, l'uno con l'altro (ad esempio join tra tre elementi o join incrociati tra tre atomi). \newline
-Quando sono presenti join tra tre o più atomi, l'aumento del tempo di computazione è proporzionale alla crescita del numero di atomi interessati. Ad esempio data una regola di questo tipo:
-
-\begin{algorithm}
+Quando sono presenti join tra tre o più atomi, l'aumento del tempo di computazione è proporzionale alla crescita del numero di atomi interessati. Vediamo un'applicazione pratica nell'esempio~\ref{ex13}:
+\begin{example}\label{ex13}
+	\begin{lstlisting}
+	
 	c(Z,X,M) :- a(X,Y),b(Y,K),c(K,M).
-\end{algorithm}
-
-In questo esempio gli atomi 'a', 'b' e 'c' sono coinvolti in un join incrociato, ovvero l'atomo 'a' è in join con 'b' e quest'ultimo con 'c'. \newline
+	\end{lstlisting}
+\end{example}
+Nell'esempio\ref{ex13} gli atomi a, b e c sono coinvolti in un join incrociato, ovvero l'atomo a è in join con b e quest'ultimo con c. \newline
 Nella riscrittura la regola generalizzata composta da N atomi, di cui M (>=3) sono in join tra loro, viene splittata in M regole in cui vengono definiti join tra due elementi soltanto, e gli atomi non coinvolti nel join, vengono inseriti nella regola finale. \newline
-Quindi nel nostro esempio il programma dopo la riscrittura diventa: 
-
-\begin{algorithm}
-	v\_atom1(X,K) :- a(X,Y),b(Y,K). \\
-	c(Z,X,M) :- v\_atom1(X,K),c(K,M).
-\end{algorithm}
-
+Nell'esempio~\ref{ex14} è possibile vedere il programma dopo il processo di riscrittura: 
+\begin{example}\label{ex14}
+	\begin{lstlisting}
+	
+	v_atom1(X,K) :- a(X,Y),b(Y,K). 
+	c(Z,X,M) :- v_atom1(X,K),c(K,M).
+	\end{lstlisting}
+\end{example}
 Il join viene quindi splittato in due regole, dando il medesimo risultato di output.
 
 \subsection{Individuazione e inversione delle ricorsioni destre}
@@ -178,18 +193,20 @@ Tale perdita di efficienza si ha sopratutto in presenza di join. Ricordiamo che 
 Supponiamo che ci sia una regola Vadalog del tipo head :- A,B, dove A è un atomo non ricorsivo e B un atomo ricorsivo, quindi una ricorsione destra, e che A abbia N ennuple, e B abbia M ennuple. \newline
 Quando andiamo ad effettuare il nested loop join, ogni ennupla di A effettua una chiamata ricorsiva su B (per paragonarla) per tutte le ennuple di B, vengono quindi fatte NxM chiamate ricorsive circa. \newline
 Nel caso in cui la regola abbia una ricorsione sinistra (quindi dopo la riscrittura), ovvero head :- B,A, in  questo caso è B che viene paragonata ad A, quindi vengono prima fatte le chiamate ricorsive e poi il risultato delle chiamate paragonato alle ennuple di B, quindi vengono fatte M chiamate ricorsive circa. Quindi la riscrittura porta un guadagno notevole sulla base del numero di chiamate ricorsive. \newline
-Vediamo un'esempio pratico di come avviene la riscrittura: 
-
-\begin{algorithm}
+Vediamo un'applicazione pratica di come avviene la riscrittura negli esempi~\ref{ex15} e \ref{ex16}: 
+\begin{example}\label{ex15}
+	\begin{lstlisting}
+	
 	a(Y) :- b(X,Y), a(X).
-\end{algorithm}
-
+	\end{lstlisting}
+\end{example}
 Viene trasformato in:
-
-\begin{algorithm}
+\begin{example}\label{ex16}
+	\begin{lstlisting}
+	
 	a(Y) :- a(X), b(X,Y).
-\end{algorithm}
-
+	\end{lstlisting}
+\end{example}
 L'algoritmo di riscrittura ha lo scopo di portare l'atomo ricorsivo come primo atomo del corpo, il resto della regola rimane invariato, come il risultato finale.
 
 \section{Supporto a nuovi tipi di dato, sorgenti e funzionalità}

@@ -1,5 +1,5 @@
-In questo capitolo parleremo un maniera più approfondita del Vadalog Engine. \newline
-Il capitolo è organizzato come segue, nella sezione 2.1 verranno definiti in maniera più approfondita i requisiti che si devono soddisfare per avere un KGMS efficiente e performante, in particolare descriveremo tre categorie principali su cui sono basati tali requisiti. Una prima categoria (sezione 2.1.1) che descrive le proprietà che l'engine deve mettere a disposizione del linguaggio, un'altra categoria (sezione 2.1.2) che descrive l'accesso e gestione dei Big Data con le relative proprietà che l'engine deve supportare, ed infine una categoria (sezione 2.1.3) che descrive le necessità di un supporto per codice procedurale da terze parti. \newline
+In questo capitolo parleremo un maniera più approfondita del Vadalog Reasoner. \newline
+Il capitolo è organizzato come segue. Nella sezione 2.1 verranno definiti in maniera più approfondita i requisiti che si devono soddisfare per avere un KGMS efficiente e performante, in particolare descriveremo tre categorie principali su cui sono basati tali requisiti. Una prima categoria (sezione 2.1.1) che descrive le proprietà che il Vadalog Reasoner deve mettere a disposizione del linguaggio, un'altra categoria (sezione 2.1.2) che descrive l'accesso e gestione dei Big Data con le relative proprietà che il Vadalog Reasoner deve supportare, ed infine una categoria (sezione 2.1.3) che descrive le necessità di un supporto per codice procedurale da terze parti. \newline
 Infine nella sezione 2.2 verrà descritta l'architettura del Vadalog Reasoner, in maniera approfondita tutto il processo di reasoning (sezione 2.2.1), nel quale verrà spiegata la strategia di terminazione e la gestione della ricorsione. Inoltre descriveremo come il Vadalog Reasoner gestisce i stream e tecniche per la gestione e ottimizzazione della cache (sezione 2.2.2), e le modalità con cui è possibile interfacciarsi con esso (sezione 2.2.3).
 Questo capitolo prende spunto su diverse nozioni da~\cite{bellomarini2017swift}
 
@@ -49,7 +49,7 @@ Come indicato in Figura~\ref{fig:architettura}, che rappresenta la nostra archit
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figure/architettura}
-	\caption{Schema dell'architettura dell'Engine di Vadalog~\cite{bellomarini2017swift}.}
+	\caption{Schema dell'architettura del Vadalog Reasoner~\cite{bellomarini2017swift}.}
 	\label{fig:architettura}
 \end{figure}
 
@@ -60,7 +60,7 @@ In particolare tale famiglia garantisce la \textit{wardedness}, ovvero limita l'
 In questa sezione viene mostrato il processo di reasoning, ovvero come il Vadalog Reasoner sfrutta le proprietà chiave di Warded Datalog$\pm$. \newline
 Il Vadalog Reasoner fa un uso piuttosto alto di ricorsione, quindi è probabile che ci si ritrovi in un ciclo infinito all'interno del grafo di esecuzione (grafo contenente tutti i nodi per la ricerca della soluzione, partendo dai nodi di output ai nodi di input), si utilizza quindi una strategia di \textit{Termination Control}. \newline
 Tale strategia, rileva ridondanza, ovvero la ripetizione di un nodo più volte, il prima possibile combinando il tempo di compilazione e tecniche a runtime. \newline
-A tempo di compilazione, grazie alla wardedness, che limita l'interazione tra i labeled null, l'engine riscrive il programma in modo che i joins con specifici valori di labeled null non si verificheranno mai (Harmful Join elimination). \newline
+A tempo di compilazione, grazie alla wardedness, che limita l'interazione tra i labeled null, il Vadalog Reasoner riscrive il programma in modo che i joins con specifici valori di labeled null non si verificheranno mai (Harmful Join elimination). \newline
 A runtime, il Vadalog Reasoner adotta una tecnica di potatura ottimale di ridondanza e rami che non terminano mai, questa tecnica è strutturata in due parti \emph{detection} e \emph{pruning}. \newline
 Nella fase di detection, ogni volta che una regola genera un fatto che è simile ad uno dei precedenti, viene memorizzata la sequenza delle regole applicate, ovvero la provenienza. \newline
 Nella fase di pruning, ogni volta che un fatto presenta la stessa provenienza di un altro e sono simili, il fatto non viene generato. \newline
@@ -106,20 +106,20 @@ Tuttavia per garantire buone prestazioni, le cache locali sono migliorate dall'i
 
 \subsection{Interfacce}
 
-L'utente ha due possibilità per interfacciarsi con l'engine Vadalog, o attraverso delle API Rest, o attraverso Java, integrando il progetto. \newline
-Le principali operazioni che si possono effettuare sull'engine sono: 
+L'utente ha due possibilità per interfacciarsi con il Vadalog Reasoner, o attraverso delle API Rest, o attraverso Java, integrando il progetto. \newline
+Le principali operazioni che si possono effettuare sono: 
 \begin{itemize}
 	\item Evaluate: Permette di eseguire codice Vadalog.
 	\item EvaluateAndStore: Permette di eseguire codice Vadalog, con il salvataggio dell'output all'interno di un database definito dall'utente.
 	\item getExecutionPlan: Che ritorna il query plan del programma dato in input.
-	\item transformProgram: Restituisce il codice Vadalog dopo aver effettuato le ottimizzazioni (riscritture) definite dall'engine.
+	\item transformProgram: Restituisce il codice Vadalog dopo aver effettuato le ottimizzazioni (riscritture).
 \end{itemize}
 Come descritto in Figura~\ref{fig:architettura_2} sono presenti due controller, uno per la gestione delle chiamate rest (VadaRestController), ed uno per la gestione delle chiamate Java (LibraryController), che si interfacciano con un unico controller che gestisce le chiamate pervenute da entrambi. \newline
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figure/architettura-2}
-	\caption{Sistemi per interfacciarsi con Vadalog Engine.}
+	\caption{Sistemi per interfacciarsi con il Vadalog Reasoner.}
 	\label{fig:architettura_2}
 \end{figure}
 

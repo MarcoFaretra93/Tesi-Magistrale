@@ -74,6 +74,11 @@ Tim Furche, Georg Gottlob, Bernd Neumayr, and Emanuel Sallinger.
   wrangling.
 \newblock 2016.
 
+\bibitem[FKMP05]{fagin2005data}
+Ronald Fagin, Phokion~G Kolaitis, Ren{\'e}e~J Miller, and Lucian Popa.
+\newblock Data exchange: semantics and query answering.
+\newblock {\em Theoretical Computer Science}, 336(1):89--124, 2005.
+
 \bibitem[GP15]{gottlob2015beyond}
 Georg Gottlob and Andreas Pieris.
 \newblock Beyond sparql under owl 2 ql entailment regime: Rules to the rescue.
