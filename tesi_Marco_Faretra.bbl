@@ -50,6 +50,10 @@ Stefano Ceri, Georg Gottlob, and Letizia Tanca.
 \newblock {\em Logic programming and databases}.
 \newblock Springer Science \& Business Media, 2012.
 
+\bibitem[Cod]{CODEMIRROR}
+CodeMirror.
+\newblock \url{https://codemirror.net/}.
+
 \bibitem[CV85]{chandra1985implication}
 Ashok~K Chandra and Moshe~Y Vardi.
 \newblock The implication problem for functional and inclusion dependencies is
@@ -79,6 +83,11 @@ Ronald Fagin, Phokion~G Kolaitis, Ren{\'e}e~J Miller, and Lucian Popa.
 \newblock Data exchange: semantics and query answering.
 \newblock {\em Theoretical Computer Science}, 336(1):89--124, 2005.
 
+\bibitem[Gam95]{gamma1995design}
+Erich Gamma.
+\newblock {\em Design patterns: elements of reusable object-oriented software}.
+\newblock Pearson Education India, 1995.
+
 \bibitem[GP15]{gottlob2015beyond}
 Georg Gottlob and Andreas Pieris.
 \newblock Beyond sparql under owl 2 ql entailment regime: Rules to the rescue.
@@ -94,6 +103,10 @@ Shan~Shan Huang, Todd~Jeffrey Green, and Boon~Thau Loo.
 Prasan Roy, Srinivasan Seshadri, S~Sudarshan, and Siddhesh Bhobe.
 \newblock Efficient and extensible algorithms for multi query optimization.
 \newblock In {\em ACM SIGMOD Record}, volume~29, pages 249--260. ACM, 2000.
+
+\bibitem[sig]{SIGMAJS}
+sigmajs.
+\newblock \url{http://sigmajs.org/}.
 
 \bibitem[SYI{\etalchar{+}}16]{shkapsky2016big}
 Alexander Shkapsky, Mohan Yang, Matteo Interlandi, Hsuan Chiu, Tyson Condie,

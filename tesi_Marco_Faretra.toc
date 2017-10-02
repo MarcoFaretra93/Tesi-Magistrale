@@ -22,11 +22,15 @@
 \contentsline {section}{\numberline {3.1}Tecniche di ottimizzazione}{25}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}Push selections e projections down}{26}{subsection.3.1.1}
 \contentsline {subsection}{\numberline {3.1.2}Gestione di teste multiple e join multipli}{31}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Individuazione e inversione delle ricorsioni destre}{32}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Supporto a nuovi tipi di dato, sorgenti e funzionalit\IeC {\`a}}{33}{section.3.2}
-\contentsline {section}{\numberline {3.3}Benchmark}{33}{section.3.3}
-\contentsline {section}{\numberline {3.4}Vadalog console}{33}{section.3.4}
-\contentsline {chapter}{\chapternumberline {4}Prove sperimentali}{34}{chapter.4}
-\contentsline {chapter}{\chapternumberline {5}Related work}{35}{chapter.5}
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{36}{chapter*.4}
-\contentsline {chapter}{Bibliografia}{37}{section*.6}
+\contentsline {subsection}{\numberline {3.1.3}Individuazione e inversione delle ricorsioni destre}{33}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Supporto a nuovi tipi di dato, sorgenti e funzionalit\IeC {\`a}}{34}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Post-processing annotations}{34}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Tipi di dato e sorgenti dati}{36}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Funzioni e query parametriche}{38}{subsection.3.2.3}
+\contentsline {section}{\numberline {3.3}Vadalog console}{42}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Editor}{43}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Visualizzazione del grafo di accesso e dei dati}{43}{subsection.3.3.2}
+\contentsline {chapter}{\chapternumberline {4}Prove sperimentali}{44}{chapter.4}
+\contentsline {chapter}{\chapternumberline {5}Related work}{45}{chapter.5}
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{46}{chapter*.4}
+\contentsline {chapter}{Bibliografia}{47}{section*.6}

@@ -22,9 +22,13 @@
 \BOOKMARK [2][-]{subsection.3.1.2}{Gestione di teste multiple e join multipli}{section.3.1}% 22
 \BOOKMARK [2][-]{subsection.3.1.3}{Individuazione e inversione delle ricorsioni destre}{section.3.1}% 23
 \BOOKMARK [1][-]{section.3.2}{Supporto a nuovi tipi di dato, sorgenti e funzionalit\340}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.3}{Benchmark}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.4}{Vadalog console}{chapter.3}% 26
-\BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 27
-\BOOKMARK [0][-]{chapter.5}{Related work}{}% 28
-\BOOKMARK [0][-]{chapter*.4}{Conclusioni e sviluppi futuri}{}% 29
-\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 30
+\BOOKMARK [2][-]{subsection.3.2.1}{Post-processing annotations}{section.3.2}% 25
+\BOOKMARK [2][-]{subsection.3.2.2}{Tipi di dato e sorgenti dati}{section.3.2}% 26
+\BOOKMARK [2][-]{subsection.3.2.3}{Funzioni e query parametriche}{section.3.2}% 27
+\BOOKMARK [1][-]{section.3.3}{Vadalog console}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.1}{Editor}{section.3.3}% 29
+\BOOKMARK [2][-]{subsection.3.3.2}{Visualizzazione del grafo di accesso e dei dati}{section.3.3}% 30
+\BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 31
+\BOOKMARK [0][-]{chapter.5}{Related work}{}% 32
+\BOOKMARK [0][-]{chapter*.4}{Conclusioni e sviluppi futuri}{}% 33
+\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 34
