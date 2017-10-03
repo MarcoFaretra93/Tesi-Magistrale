@@ -7,16 +7,33 @@ Paolo Atzeni, Stefano Ceri, Stefano Paraboschi, and Riccardo Torlone.
   edizione)}.
 \newblock McGraw-Hill, 2006.
 
+\bibitem[AGCM15]{arocena2015ibench}
+Patricia~C Arocena, Boris Glavic, Radu Ciucanu, and Ren{\'e}e~J Miller.
+\newblock The ibench integration metadata generator.
+\newblock {\em Proceedings of the VLDB Endowment}, 9(3):108--119, 2015.
+
 \bibitem[BGPS17]{bellomarini2017swift}
 Luigi Bellomarini, Georg Gottlob, Andreas Pieris, and Emanuel Sallinger.
 \newblock Swift logic for big data and knowledge graphs.
 \newblock 2017.
+
+\bibitem[BLM{\etalchar{+}}15]{baget2015graal}
+Jean-Fran{\c{c}}ois Baget, Michel Lecl{\`e}re, Marie-Laure Mugnier, Swan
+  Rocher, and Cl{\'e}ment Sipieter.
+\newblock Graal: A toolkit for query answering with existential rules.
+\newblock In {\em International Symposium on Rules and Rule Markup Languages
+  for the Semantic Web}, pages 328--344. Springer, 2015.
 
 \bibitem[BLMS11]{baget2011rules}
 Jean-Fran{\c{c}}ois Baget, Michel Lecl{\`e}re, Marie-Laure Mugnier, and Eric
   Salvat.
 \newblock On rules with existential variables: Walking the decidability line.
 \newblock {\em Artificial Intelligence}, 175(9-10):1620--1654, 2011.
+
+\bibitem[BLT15]{benedikt2015querying}
+Michael Benedikt, Julien Leblay, and Efthymia Tsamoura.
+\newblock Querying with access patterns and integrity constraints.
+\newblock {\em Proceedings of the VLDB Endowment}, 8(6):690--701, 2015.
 
 \bibitem[CDGL{\etalchar{+}}11]{calvanese2011mastro}
 Diego Calvanese, Giuseppe De~Giacomo, Domenico Lembo, Maurizio Lenzerini,
@@ -88,6 +105,11 @@ Erich Gamma.
 \newblock {\em Design patterns: elements of reusable object-oriented software}.
 \newblock Pearson Education India, 1995.
 
+\bibitem[GMPS14]{geerts2014s}
+Floris Geerts, Giansalvatore Mecca, Paolo Papotti, and Donatello Santoro.
+\newblock That's all folks!: llunatic goes open source.
+\newblock {\em Proceedings of the VLDB Endowment}, 7(13):1565--1568, 2014.
+
 \bibitem[GP15]{gottlob2015beyond}
 Georg Gottlob and Andreas Pieris.
 \newblock Beyond sparql under owl 2 ql entailment regime: Rules to the rescue.
@@ -98,6 +120,19 @@ Shan~Shan Huang, Todd~Jeffrey Green, and Boon~Thau Loo.
 \newblock Datalog and emerging applications: an interactive tutorial.
 \newblock In {\em Proceedings of the 2011 ACM SIGMOD International Conference
   on Management of data}, pages 1213--1216. ACM, 2011.
+
+\bibitem[LPF{\etalchar{+}}06]{leone2006dlv}
+Nicola Leone, Gerald Pfeifer, Wolfgang Faber, Thomas Eiter, Georg Gottlob,
+  Simona Perri, and Francesco Scarcello.
+\newblock The dlv system for knowledge representation and reasoning.
+\newblock {\em ACM Transactions on Computational Logic (TOCL)}, 7(3):499--562,
+  2006.
+
+\bibitem[MNP{\etalchar{+}}14]{motik2014parallel}
+Boris Motik, Yavor Nenov, Robert Piro, Ian Horrocks, and Dan Olteanu.
+\newblock Parallel materialisation of datalog programs in centralised,
+  main-memory rdf systems.
+\newblock In {\em AAAI}, pages 129--137, 2014.
 
 \bibitem[RSSB00]{roy2000efficient}
 Prasan Roy, Srinivasan Seshadri, S~Sudarshan, and Siddhesh Bhobe.
