@@ -1,7 +1,7 @@
 In questo capitolo parleremo in maniera approfondita delle prove sperimentali che abbiamo effettuato sul Vadalog Resoner. \newline
 Il capitolo è organizzato come segue. Nella sezione 4.1 descriveremo il tool, che ho implementato durante il mio periodo di Tesi, \emph{iWarded}, delle sue funzionalità e dell'implementazione. \newline
 
-\section{iWarded}
+\section{L'implementazione di iWarded}
 
 In questa sezione descriveremo il tool \emph{iWarded}, che permette la generazione di benchmark con determinate caratteristiche che vengono espresse attraverso l'input. Inoltre gli input vengono presi di default da file csv generato e popolato dallo stesso iWarded. \newline
 iWarded è stato implementato separatamente rispetto al core logico del Vadalog Reasoner e prende in input i seguenti parametri: 
@@ -53,7 +53,7 @@ Nell'esempio~\ref{ex26} possiamo vedere un programma generato da iWarded:
 \end{example}
 Possiamo vedere la presenza di costanti e variabili dangerous, ma in questo caso non sono presenti join. 
 
-\section{Scenari}
+\section{Scenari utilizzati}
 
 In questa sezione descriveremo l'applicazione del Vadalog Reasoner in diversi scenari di utilizzo, sia reali che emulati con l'utilizzo di iWarded ed altri tool simili.\newline
 Per effettuare i test il Reasoner è stato utilizzato come una libreria, come storage abbiamo utilizzato file CSV. \newline
@@ -142,10 +142,16 @@ In particolare i sistemi RDFox, Llunatic e DLV hanno rispettivamente 28, 52 e 48
 
 \subsection{DBpedia}
 
-Abbiamo eseguito quattro task di reasoning basati su dataset reali riguardanti persone e compagnie estratti da DBPedia (progetto open-source per l'estrazione di informazioni strutturate da Wikipedia e fornite come Open Data). \newline
+Abbiamo eseguito dei task di reasoning basati su dataset reali riguardanti persone e compagnie estratti da DBPedia (progetto open-source per l'estrazione di informazioni strutturate da Wikipedia e fornite come Open Data). \newline
 DBPedia è composta da diverse entità, in questa applicazione siamo interessati all'entità \emph{Company}, considerando le proprietà \emph{parentCompany} e \emph{keyPerson}. Per una certa compagnia la proprietà parentCompany contiene tutte le compagnie che controlla e keyPerson contiene tutte le persone che sono rilevanti per la determinata compagnia. \newline
 Noi mappiamo i dati di parentCompany in fatti che hanno la forma Control(x,y), dove la compagnia x controlla la compagnia y, stessa cosa avviene per keyPerson, viene mappato in fatti con una forma KeyPerson(x,p), dove una compagnia x ha una persona p. DBPedia ha pubblicato circa 67 mila compagnie e 1.5 milioni di persone. \newline
+Lo scenario che abbiamo applicato ha l'obiettivo di calcolare l'insieme di persone che hanno un controllo significativo su una compagnia (PSC), ciò avviene quando una persona p è direttamente correlata ad una compagnia y, oppure se una compagnia y è controllata da un'altra compagnia x, e p è correlata ad x. \newline
+Abbiamo eseguito questo scenario su tutte le compagnie disponibili (67 mila) e sequenzialmente su sottoinsiemi di persone, 1000, 10 mila, 100 mila, 1 milione ed 1.5 milioni. Abbiamo eseguito lo stesso scenario di reasoning, oltre che su Vadalog, su PotgreSQL, MySQL, Oracle e il database a grafo Neo4J. 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figure/dbpediaRisultato}
+	\caption{Tempo di reasoning per lo scenario PSC di tutte le tecnologie utilizzate.}
+	\label{fig:dbpediaRisultato}
+\end{figure}
 
-
-\subsection{Compagnie finanziarie}
-
+In Figura~\ref{fig:dbpediaRisultato} possiamo vedere il risultato dello scenario. Il Vadalog Reasoner ha delle prestazioni molto buone, ha una crescita lineare ed anche nel caso peggiore si tiene sotto la soglia dei 100 secondi. I fatti di PSC sono generati ricorsivamente quindi il risultato del benchmark conferma che l'indicizzazione dinamica ed il nostro algoritmo di nested loop join portano molto guadagno al Vadalog Reasoner. Il tempo di reasoning del Vadalog Resoner risulta due volte migliore a Neo4J (il database a grafo più conosciuto e che ha le prestazioni migliori) e sei volte superiore a PostgreSQL, MySQL e Oracle.

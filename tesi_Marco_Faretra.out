@@ -29,12 +29,11 @@
 \BOOKMARK [2][-]{subsection.3.3.1}{Editor}{section.3.3}% 29
 \BOOKMARK [2][-]{subsection.3.3.2}{Visualizzazione del grafo di accesso e dei dati}{section.3.3}% 30
 \BOOKMARK [0][-]{chapter.4}{Prove sperimentali}{}% 31
-\BOOKMARK [1][-]{section.4.1}{iWarded}{chapter.4}% 32
-\BOOKMARK [1][-]{section.4.2}{Scenari}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.1}{L'implementazione di iWarded}{chapter.4}% 32
+\BOOKMARK [1][-]{section.4.2}{Scenari utilizzati}{chapter.4}% 33
 \BOOKMARK [2][-]{subsection.4.2.1}{iWarded}{section.4.2}% 34
 \BOOKMARK [2][-]{subsection.4.2.2}{iBench}{section.4.2}% 35
 \BOOKMARK [2][-]{subsection.4.2.3}{DBpedia}{section.4.2}% 36
-\BOOKMARK [2][-]{subsection.4.2.4}{Compagnie finanziarie}{section.4.2}% 37
-\BOOKMARK [0][-]{chapter.5}{Related work}{}% 38
-\BOOKMARK [0][-]{chapter*.4}{Conclusioni e sviluppi futuri}{}% 39
-\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 40
+\BOOKMARK [0][-]{chapter.5}{Related work}{}% 37
+\BOOKMARK [0][-]{chapter*.4}{Conclusioni e sviluppi futuri}{}% 38
+\BOOKMARK [0][-]{section*.6}{Bibliografia}{}% 39
