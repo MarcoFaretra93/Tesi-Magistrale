@@ -121,6 +121,11 @@ Shan~Shan Huang, Todd~Jeffrey Green, and Boon~Thau Loo.
 \newblock In {\em Proceedings of the 2011 ACM SIGMOD International Conference
   on Management of data}, pages 1213--1216. ACM, 2011.
 
+\bibitem[LMTV12]{leone2012efficiently}
+Nicola Leone, Marco Manna, Giorgio Terracina, and Pierfrancesco Veltri.
+\newblock Efficiently computable datalog$\exists$ programs.
+\newblock {\em KR}, 12:13--23, 2012.
+
 \bibitem[LPF{\etalchar{+}}06]{leone2006dlv}
 Nicola Leone, Gerald Pfeifer, Wolfgang Faber, Thomas Eiter, Georg Gottlob,
   Simona Perri, and Francesco Scarcello.

@@ -6,45 +6,45 @@ Database file #1: bibliografia.bib
 Warning--empty journal in bellomarini2017swift
 Warning--empty journal in furche2016data
 Warning--can't use both volume and number fields in roy2000efficient
-You've used 33 entries,
+You've used 34 entries,
             2543 wiz_defined-function locations,
-            733 strings with 9747 characters,
-and the built_in function-call counts, 14920 in all, are:
-= -- 1475
-> -- 819
+            739 strings with 9905 characters,
+and the built_in function-call counts, 15391 in all, are:
+= -- 1523
+> -- 850
 < -- 18
-+ -- 304
-- -- 297
-* -- 1093
-:= -- 2425
-add.period$ -- 97
-call.type$ -- 33
-change.case$ -- 230
-chr.to.int$ -- 30
-cite$ -- 36
-duplicate$ -- 542
-empty$ -- 1033
-format.name$ -- 332
-if$ -- 3049
++ -- 316
+- -- 309
+* -- 1132
+:= -- 2507
+add.period$ -- 100
+call.type$ -- 34
+change.case$ -- 238
+chr.to.int$ -- 31
+cite$ -- 37
+duplicate$ -- 556
+empty$ -- 1060
+format.name$ -- 345
+if$ -- 3139
 int.to.chr$ -- 4
 int.to.str$ -- 0
-missing$ -- 28
-newline$ -- 161
-num.names$ -- 99
-pop$ -- 287
+missing$ -- 29
+newline$ -- 166
+num.names$ -- 102
+pop$ -- 292
 preamble$ -- 1
-purify$ -- 274
+purify$ -- 283
 quote$ -- 0
-skip$ -- 464
+skip$ -- 476
 stack$ -- 0
-substring$ -- 809
-swap$ -- 119
+substring$ -- 835
+swap$ -- 120
 text.length$ -- 18
 text.prefix$ -- 9
 top$ -- 0
-type$ -- 252
+type$ -- 260
 warning$ -- 3
-while$ -- 138
-width$ -- 41
-write$ -- 400
+while$ -- 143
+width$ -- 42
+write$ -- 413
 (There were 3 warnings)

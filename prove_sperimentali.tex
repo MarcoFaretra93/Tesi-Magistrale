@@ -1,6 +1,6 @@
 In questo capitolo parleremo in maniera approfondita delle prove sperimentali che abbiamo effettuato sul Vadalog Resoner. \newline
 Il capitolo è organizzato come segue. Nella sezione 4.1 descriveremo il tool, che ho implementato durante il mio periodo di Tesi, \emph{iWarded}, che permette la generazione di benchmark Vadalog, vedendone le funzionalità e l'implementazione. \newline
-Infine nella sezione 4.2 descriveremo diversi scenari applicativi utilizzando benchmark reali su dati forniti da terze parti e benchmark generati con tool (ad esempio iWarded), generandone anche i dati, per testare situazioni ben precise, ad esempio la presenza di ricorsione, di propagazione dei nulli, di join tra variabili harmful, ecc.
+Infine nella sezione 4.2 descriveremo diversi scenari applicativi utilizzando benchmark generati con tool (ad esempio iWarded), generandone anche i dati, per testare situazioni ben precise, ad esempio la presenza di ricorsione, di propagazione dei nulli, di join tra variabili harmful, ecc.
 
 \section{L'implementazione di iWarded}
 
@@ -56,7 +56,7 @@ Possiamo vedere la presenza di costanti e variabili dangerous, ma in questo caso
 
 \section{Scenari utilizzati}
 
-In questa sezione descriveremo l'applicazione del Vadalog Reasoner in diversi scenari di utilizzo, sia reali che emulati con l'utilizzo di iWarded ed altri tool simili.\newline
+In questa sezione descriveremo l'applicazione del Vadalog Reasoner in diversi scenari.\newline
 Per effettuare i test il Reasoner è stato utilizzato come una libreria, come storage abbiamo utilizzato file CSV. \newline
 La configurazione hardware per l'esecuzione dei test è la seguente:
 \begin{itemize}
@@ -66,7 +66,6 @@ La configurazione hardware per l'esecuzione dei test è la seguente:
 \end{itemize}
 Nella sezione 4.2.1 descriveremo il comportamento del Vadalog Reasoner utilizzando degli scenari generati da \emph{iWarded}. \newline
 Nella sezione 4.2.2 utilizzeremo degli scenari generati da un altro tool simile, chiamato \emph{iBench}, descrivendo il comportamento del Vadalog Reasoner rispetto ai suoi competitor. \newline
-Infine nella sezione 4.2.3 utilizzeremo dati reali per testare le prestazioni del Vadalog Reasoner rispetto a dei database conosciuti (relazionali e non relazionali).
 
 \subsection{iWarded}
 
@@ -143,20 +142,3 @@ In particolare i sistemi RDFox, Llunatic e DLV hanno rispettivamente 28, 52 e 48
 	\caption{Tempo di reasoning per gli scenari STB-128 e ONT-256 su tutte le piattaforme.}
 	\label{fig:ibenchgrafico}
 \end{figure}
-
-\subsection{DBpedia}
-
-Abbiamo eseguito dei task di reasoning basati su dataset reali riguardanti persone e compagnie estratti da DBPedia (progetto open-source per l'estrazione di informazioni strutturate da Wikipedia e fornite come Open Data). \newline
-DBPedia è composta da diverse entità, in questa applicazione siamo interessati all'entità \emph{Company}, considerando le proprietà \emph{parentCompany} e \emph{keyPerson}. Per una certa compagnia la proprietà parentCompany contiene tutte le compagnie che controlla e keyPerson contiene tutte le persone che sono rilevanti per la determinata compagnia. \newline
-Noi mappiamo i dati di parentCompany in fatti che hanno la forma Control(x,y), dove la compagnia x controlla la compagnia y, stessa cosa avviene per keyPerson, viene mappato in fatti con una forma KeyPerson(x,p), dove una compagnia x ha una persona p. DBPedia ha pubblicato circa 67 mila compagnie e 1.5 milioni di persone. \newline
-Lo scenario che abbiamo applicato ha l'obiettivo di calcolare l'insieme di persone che hanno un controllo significativo su una compagnia (PSC), ciò avviene quando una persona p è direttamente correlata ad una compagnia y, oppure se una compagnia y è controllata da un'altra compagnia x, e p è correlata ad x. \newline
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\linewidth]{figure/dbpediaRisultato}
-	\caption{Tempo di reasoning per lo scenario PSC di tutte le tecnologie utilizzate.}
-	\label{fig:dbpediaRisultato}
-\end{figure}
-
-Abbiamo eseguito questo scenario su tutte le compagnie disponibili (67 mila) e sequenzialmente su sottoinsiemi di persone, 1000, 10 mila, 100 mila, 1 milione ed 1.5 milioni. Abbiamo eseguito lo stesso scenario di reasoning, oltre che su Vadalog, su PotgreSQL, MySQL, Oracle e il database a grafo Neo4J. \newline
-In Figura~\ref{fig:dbpediaRisultato} possiamo vedere il risultato dello scenario. Il Vadalog Reasoner ha delle prestazioni molto buone, ha una crescita lineare ed anche nel caso peggiore si tiene sotto la soglia dei 100 secondi. I fatti di PSC sono generati ricorsivamente quindi il risultato del benchmark conferma che l'indicizzazione dinamica ed il nostro algoritmo di nested loop join portano molto guadagno al Vadalog Reasoner. \newline
-Il tempo di reasoning del Vadalog Resoner risulta due volte migliore a Neo4J (il database a grafo più conosciuto e che ha le prestazioni migliori) e sei volte superiore a PostgreSQL, MySQL e Oracle.

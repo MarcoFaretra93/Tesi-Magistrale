@@ -1,0 +1,14 @@
+In questa sezione andremo ad analizzare i sistemi simili (competitor) al Vadalog Reasoner, analizzandoli e paragonandoli al nostro sistema. \newline
+Il capitolo è composto da una sola sezione (5.1) che descrive i confronti fatti tra il Vadalog Reasoner e i suoi competitor e le analisi fatte su questi ultimi. \newline
+
+\section{Analisi e confronti}
+
+Sono presenti molti sistemi esistenti simili al Vadalog Reasoner. I principali sono Graal~\cite{baget2015graal}, Llunatic~\cite{geerts2014s}, PDQ~\cite{benedikt2015querying} e DLV$^E$~\cite{leone2012efficiently} che condividono molto ma non tutto il potere espressivo del nostro sistema. \newline
+La differenza principale di tutti questi sistemi è che nessuno da un grosso peso alla scalabilità, e quindi alla gestione dei Big Data, al contrario il Vadalog Reasoner ne fa un vero e proprio punto di forza. Inoltre il Vadalog Reasoner è l'unico tra tutti questi sistemi ad adottare un linguaggio della famiglia Warded Datalog$^\pm$\newline \newline
+il sistema Graal è un toolkit implementato in Java, considera basi di conoscenza composte da dati e ontologie espresse da regole esistenziali. È basato su Datalog$^+$, quindi supporta le regole esistenziali, ma non garantisce decidibilità e tracciabilità dei dati al contrario del Vadalog Reasoner. \newline \newline
+Llunatic offre un linguaggio da poter utilizzare dall'utente finale ed un'interfaccia grafica (applicazione desktop), è focalizzato principalmente sul mapping e il cleaning dei dati, che lo rendono molto limitato rispetto al Vadalog Reasoner. \newline \newline
+PDQ è un sistema che è focalizzato principalmente sul reasoning, ha dei wrapper che permettono soltanto l'integrazione di dati web e provenienti da DBMS relazionali, inoltre l'algoritmo di ottimizzazione e ricerca ha un costo computazionale molto alto, come possiamo anche vedere nei test di cui abbiamo parlato nella sezione 4.2.2, in Figura~\ref{fig:ibenchgrafico} è il sistema con le prestazioni peggiori. \newline \newline
+Infine DLV$^E$ è il sistema che più si avvicina al Vadalog Reasoner, infatti anch'esso utilizza un linguaggio Datalog$^\pm$, dove attraverso delle semplificazioni fornisce la decidibilità P-completa. La differenza sostanziale sta nel fatto che il Vadalog Reasoner è esteso da molte altre funzionalità che ne permettono l'applicazione in diversi scenari. \newline \newline
+Molti di questi sistemi hanno una buona implementazione, tuttavia non posseggono un supporto specifico per le funzionalità richieste in importanti scenari aziendali e tendono a concentrarsi sull'approccio logico, anziché sull'architettura.
+
+

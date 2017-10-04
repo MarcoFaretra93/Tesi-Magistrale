@@ -35,7 +35,7 @@
 \contentsline {section}{\numberline {4.2}Scenari utilizzati}{46}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}iWarded}{47}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}iBench}{50}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}DBpedia}{52}{subsection.4.2.3}
-\contentsline {chapter}{\chapternumberline {5}Related work}{54}{chapter.5}
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{55}{chapter*.4}
+\contentsline {chapter}{\chapternumberline {5}Related work}{52}{chapter.5}
+\contentsline {section}{\numberline {5.1}Analisi e confronti}{52}{section.5.1}
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{54}{chapter*.4}
 \contentsline {chapter}{Bibliografia}{56}{section*.6}
