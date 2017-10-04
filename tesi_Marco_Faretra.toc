@@ -34,8 +34,8 @@
 \contentsline {section}{\numberline {4.1}L'implementazione di iWarded}{44}{section.4.1}
 \contentsline {section}{\numberline {4.2}Scenari utilizzati}{46}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}iWarded}{47}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}iBench}{49}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}DBpedia}{51}{subsection.4.2.3}
-\contentsline {chapter}{\chapternumberline {5}Related work}{53}{chapter.5}
-\contentsline {chapter}{Conclusioni e sviluppi futuri}{54}{chapter*.4}
-\contentsline {chapter}{Bibliografia}{55}{section*.6}
+\contentsline {subsection}{\numberline {4.2.2}iBench}{50}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}DBpedia}{52}{subsection.4.2.3}
+\contentsline {chapter}{\chapternumberline {5}Related work}{54}{chapter.5}
+\contentsline {chapter}{Conclusioni e sviluppi futuri}{55}{chapter*.4}
+\contentsline {chapter}{Bibliografia}{56}{section*.6}

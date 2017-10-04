@@ -87,7 +87,7 @@ Viene trasformato in:
 	@output("a").
 	\end{lstlisting}
 \end{example}
-Come possiamo vedere nell'esempio~\ref{ex6} la variabile su cui viene effettuata la selezione 'X', che corrisponde alla prima posizione dell'atomo b ed alla seconda posizione dell'atomo c, quando viene anticipata viene opportunamente cambiata di nome in base alla regola. \newline \newline
+Come possiamo vedere nell'esempio~\ref{ex6} la variabile su cui viene effettuata la selezione 'X', che corrisponde alla prima posizione dell'atomo b ed alla seconda posizione dell'atomo c, quando viene anticipata viene opportunamente cambiata di nome in base alla regola nella quale viene applicata. \newline \newline
 La fase di push projections down si occupa di anticipare le selezioni il più vicino possibile ai nodi di input ed inoltre di rimuovere le proiezioni inutilizzate, ad esempio se in una regola proietto due variabili, in cui una non è coinvolta con l'output o con un'interazione per produrre l'output. Possiamo vederne un'applicazione nell'esempio~\ref{ex7} e \ref{ex8}:
 \begin{example}\label{ex7}
 	\begin{lstlisting}
@@ -274,7 +274,7 @@ Nell'implementazione vengono prima effettuati i raggruppamenti per le posizioni 
 \subsection{Tipi di dato e sorgenti dati}
 
 Vadalog supporta molti tipi di dato semplici e strutturati, di conseguenza supporta le operazioni che possono essere effettuate su questi tipi di dato. Sono presenti diversi tipi di dato in Vadalog: \emph{integer}, \emph{double}, \emph{string}, \emph{boolean}, \emph{date}, \emph{set} e \emph{Marked Null}. \newline
-Nel Vadalog Reasoner la gestione dei tipi di dato e le eventuali operazioni viene effettuata utilizzando il pattern architetturale \emph{Visitor}, che permette di separare un algoritmo dalla struttura di oggetti composti a cui è applicato, in modo da poter aggiungere nuove operazioni e comportamenti senza dover modificare la struttura stessa~\cite{gamma1995design}. È presente una classe che si occupa di eseguire le operazioni che è chiamata \emph{Visitor} e diverse classi chiamate \emph{ConcreteElement} che estendono la classe \emph{Element}. Il Visitor implementa un metodo "visit" per ogni classe concreta (riconoscerà quale invocare basandosi sulla classe del chiamante) e le varie classi concrete implementano un metodo "accept" che invoca "visit" passando se stesso come parametro per permettere di accedere al proprio stato. \newline
+Nel Vadalog Reasoner la gestione dei tipi di dato e le eventuali operazioni viene effettuata utilizzando il pattern architetturale \emph{Visitor}, che permette di separare un algoritmo dalla struttura di oggetti composti a cui è applicato, in modo da poter aggiungere nuove operazioni e comportamenti senza dover modificare la struttura stessa~\cite{gamma1995design}. È presente una classe che si occupa di eseguire le operazioni che è chiamata \emph{Visitor} e diverse classi chiamate \emph{ConcreteElement} che estendono la classe \emph{Element}. Il Visitor implementa un metodo "visit" per ogni classe concreta (riconoscerà quale invocare basandosi sulla classe del chiamante) e le varie classi concrete implementano un metodo "accept" che invoca "visit" passando se stesso come parametro per permettere di accedere al proprio stato ed effettuare le operazioni offerte dall'oggetto chiamante. \newline
 Nel Vadalog Reasoner il \emph{Visitor} è chiamato \emph{ExpressionVisitor}, e le \emph{ConcreteElement}, rappresentano tutte le espressioni che possono essere applicate ai tipi di dato. Nella Figura~\ref{fig:visitoruml} possiamo vedere una porzione del diagramma delle classi riguardante l'applicazione del pattern architetturale. 
 \begin{figure}[h]
 	\centering
@@ -342,7 +342,7 @@ Le funzioni vengono gestite attraverso il Visitor, che ha diversi compiti:
 	\item se è stato implementato con una procedura Python, attraverso un tool di Java interpreta ed esegue il codice Python con i parametri passati alla funzione Vadalog.
 	\item Infine salva il risultato nella pila di output, ed aggiunge il risultato della funzione in cache.
 \end{itemize}
-Questa procedura viene eseguita ogni volta che viene utilizzata una funzione nel programma Vadalog. \newline \newline
+Questa procedura viene eseguita ogni volta che viene utilizzata una funzione. \newline \newline
 Mi sono anche occupato dell'implementazione di query parametriche in Vadalog, come già detto è possibile avere diverse sorgenti, in particolare su database relazionali è possibile fare anche delle query per prenderne i risultati con l'annotazione di qbind, come mostrato nell'esempio~\ref{ex23}.
 \begin{example}\label{ex23}
 	\begin{lstlisting}
@@ -393,11 +393,11 @@ Spesso invece i valori da sostituire possono essere presi direttamente dai fatti
 	@qbind("own","postgres","vada",
 	"select name1, name2, weight 
 	from ownerships2
-	where name1=\${1}
+	where name1=${1}
 	").
 	\end{lstlisting}
 \end{example}
-In questo caso vengono effettuate due query, una con name1 uguale a "marco" ed una "luigi". \newline
+Nell'esempio~\ref{ex25} vengono effettuate due query al database postgres, una con name1 uguale a "marco" ed una "luigi". \newline
 Per applicare le query parametriche è necessario però garantire la proprietà di \emph{safety}, ovvero che l'atomo p deve avere il parametro che è coinvolto nella qbind in una posizione che non sia dangerous, cioè non deve avere nulli, anche negli altri atomi del corpo. \newline
 L'implementazione delle query parametriche è svolta a runtime, in particolare durante il processo di reasoning. L'atomo coinvolto nel qbind viene sempre spostato come ultimo atomo del corpo della regola. Per l'esecuzione di una query parametrica si svolgono le seguenti operazioni: 
 \begin{itemize}
@@ -416,9 +416,9 @@ In seguito descriveremo brevemente l'implementazione attraverso librerie di un e
 \subsection{Editor}
 
 Mi sono occupato dell'integrazione di un editor grafico per la scrittura di codice Vadalog. \newline
-Ho utilizzato un text editor chiamato \emph{CodeMirror}, che rappresenta un progetto open-source, è implementato in JavaScript, integrabile nella propria pagina html, supporta tutti i browser e permette molte funzionalità da poter personalizzare, a partire dalla colorazione del codice, all'autocompletamento ed il supporto ad una varietà di linguaggi~\cite{CODEMIRROR}.
+Ho utilizzato un text editor chiamato \emph{CodeMirror}, che rappresenta un progetto open-source, è implementato in JavaScript, integrabile nella propria pagina html, supporta tutti i browser e permette molte funzionalità da poter personalizzare, a partire dalla colorazione del codice all'autocompletamento~\cite{CODEMIRROR}.
 
 \subsection{Visualizzazione del grafo di accesso e dei dati}
 
 Il Vadalog Reasoner offre un'operazione che restituisce il grafo d'accesso del reasoning. Io mi sono occupato della visualizzazione di tale grafo, per farlo ho utilizzato una libreria JavaScript chiamata \emph{SigmaJS} (integrabile nella propria pagina html). Questa libreria prende in input un file JSON, nel quale vengono specificati nodi ed archi, ogni nodo è composto da un identificativo, un'etichetta, il valore della x e della y e la grandezza, ogni arco è invece composto da un identificativo, la sorgente (identificativo del nodo) e la destinazione (identificativo del nodo)~\cite{SIGMAJS}. È possibile utilizzare anche funzionalità aggiuntive per nodi ed archi da aggiungere al file JSON, ad esempio il colore, sia per i nodi che per gli archi. \newline
-Inoltre ho implementato una funzionalità che permette di visualizzare i dati sia sotto forma di fatti (ad esempio a(1,0), ecc.) che sotto forma di tabella (simile ad un database relazionale).
+Inoltre ho implementato una funzionalità che permette di visualizzare i dati sia sotto forma di fatti (ad esempio a(1,0), ecc.) che sotto forma di tabella (simile all'output di un database relazionale).

@@ -1,5 +1,6 @@
 In questo capitolo parleremo in maniera approfondita delle prove sperimentali che abbiamo effettuato sul Vadalog Resoner. \newline
-Il capitolo è organizzato come segue. Nella sezione 4.1 descriveremo il tool, che ho implementato durante il mio periodo di Tesi, \emph{iWarded}, delle sue funzionalità e dell'implementazione. \newline
+Il capitolo è organizzato come segue. Nella sezione 4.1 descriveremo il tool, che ho implementato durante il mio periodo di Tesi, \emph{iWarded}, che permette la generazione di benchmark Vadalog, vedendone le funzionalità e l'implementazione. \newline
+Infine nella sezione 4.2 descriveremo diversi scenari applicativi utilizzando benchmark reali su dati forniti da terze parti e benchmark generati con tool (ad esempio iWarded), generandone anche i dati, per testare situazioni ben precise, ad esempio la presenza di ricorsione, di propagazione dei nulli, di join tra variabili harmful, ecc.
 
 \section{L'implementazione di iWarded}
 
@@ -14,8 +15,8 @@ iWarded è stato implementato separatamente rispetto al core logico del Vadalog 
 	\item Numero di tuple nei file di input. 
 	\item Path di destinazione per il salvataggio dei file CSV e del programma.
 \end{itemize}
-Con l'utilizzo di questi parametri vengono svolti dei passaggi per la creazione del programma Vadalog. \newline
-Si parte dal numero di regole, queste bisogna suddividerle in regole di input, intermedie e output, definendo un numero preciso. In particolare il numero di regole di input è definito nel range [1, n. regole totali/2], quindi ho almeno 1 regola di input ed al massimo la metà delle regole totali di input; stesso ragionamento per le regole di output definite nel range [1, n. regole totali/3]; ed infine il numero di regole intermedie definite come la sottrazione tra le regole totali con quelle di input ed output. \newline
+Attraverso questi parametri presi come input, vengono svolti dei passaggi per la creazione del programma Vadalog. \newline
+Si parte dal numero di regole, queste bisogna suddividerle in regole di input, intermedie e output, definendo un numero preciso. In particolare il numero di regole di input è definito nel range [1, n.regole totali/2], quindi ho almeno 1 regola di input ed al massimo la metà delle regole totali di input; stesso ragionamento per le regole di output definite nel range [1, n.regole totali/3]; ed infine il numero di regole intermedie definite come la sottrazione tra le regole totali con quelle di input ed output. \newline
 Successivamente si passa alla creazione delle regole, per quelle di input è presente un modulo che si occupa:
 \begin{itemize}
 	\item Creazione e popolazione del file CSV nel path definito.
@@ -34,7 +35,7 @@ Vengono poi create le regole di output:
 	\item Viene creato il corpo utilizzando atomi sia di input che intermedi.
 	\item Viene creata la testa proiettando variabili casuali dal corpo della regola, evitando variabili dangerous che potrebbero portare ad un programma non warded.
 \end{itemize}
-Infine l'intero modello contenente le regole create viene salvato su disco, nel path specificato. \newline
+Infine l'intero modello contenente le regole create viene salvato su disco. \newline
 Nell'esempio~\ref{ex26} possiamo vedere un programma generato da iWarded:
 \begin{example}\label{ex26}
 	\scriptsize \begin{lstlisting}
@@ -63,6 +64,9 @@ La configurazione hardware per l'esecuzione dei test è la seguente:
 	\item Processore: Intel Xeon v3 con 8 cores, frequenza a 2.4GHz.
 	\item RAM: 16GB.
 \end{itemize}
+Nella sezione 4.2.1 descriveremo il comportamento del Vadalog Reasoner utilizzando degli scenari generati da \emph{iWarded}. \newline
+Nella sezione 4.2.2 utilizzeremo degli scenari generati da un altro tool simile, chiamato \emph{iBench}, descrivendo il comportamento del Vadalog Reasoner rispetto ai suoi competitor. \newline
+Infine nella sezione 4.2.3 utilizzeremo dati reali per testare le prestazioni del Vadalog Reasoner rispetto a dei database conosciuti (relazionali e non relazionali).
 
 \subsection{iWarded}
 
@@ -146,7 +150,6 @@ Abbiamo eseguito dei task di reasoning basati su dataset reali riguardanti perso
 DBPedia è composta da diverse entità, in questa applicazione siamo interessati all'entità \emph{Company}, considerando le proprietà \emph{parentCompany} e \emph{keyPerson}. Per una certa compagnia la proprietà parentCompany contiene tutte le compagnie che controlla e keyPerson contiene tutte le persone che sono rilevanti per la determinata compagnia. \newline
 Noi mappiamo i dati di parentCompany in fatti che hanno la forma Control(x,y), dove la compagnia x controlla la compagnia y, stessa cosa avviene per keyPerson, viene mappato in fatti con una forma KeyPerson(x,p), dove una compagnia x ha una persona p. DBPedia ha pubblicato circa 67 mila compagnie e 1.5 milioni di persone. \newline
 Lo scenario che abbiamo applicato ha l'obiettivo di calcolare l'insieme di persone che hanno un controllo significativo su una compagnia (PSC), ciò avviene quando una persona p è direttamente correlata ad una compagnia y, oppure se una compagnia y è controllata da un'altra compagnia x, e p è correlata ad x. \newline
-Abbiamo eseguito questo scenario su tutte le compagnie disponibili (67 mila) e sequenzialmente su sottoinsiemi di persone, 1000, 10 mila, 100 mila, 1 milione ed 1.5 milioni. Abbiamo eseguito lo stesso scenario di reasoning, oltre che su Vadalog, su PotgreSQL, MySQL, Oracle e il database a grafo Neo4J. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figure/dbpediaRisultato}
@@ -154,4 +157,6 @@ Abbiamo eseguito questo scenario su tutte le compagnie disponibili (67 mila) e s
 	\label{fig:dbpediaRisultato}
 \end{figure}
 
-In Figura~\ref{fig:dbpediaRisultato} possiamo vedere il risultato dello scenario. Il Vadalog Reasoner ha delle prestazioni molto buone, ha una crescita lineare ed anche nel caso peggiore si tiene sotto la soglia dei 100 secondi. I fatti di PSC sono generati ricorsivamente quindi il risultato del benchmark conferma che l'indicizzazione dinamica ed il nostro algoritmo di nested loop join portano molto guadagno al Vadalog Reasoner. Il tempo di reasoning del Vadalog Resoner risulta due volte migliore a Neo4J (il database a grafo più conosciuto e che ha le prestazioni migliori) e sei volte superiore a PostgreSQL, MySQL e Oracle.
+Abbiamo eseguito questo scenario su tutte le compagnie disponibili (67 mila) e sequenzialmente su sottoinsiemi di persone, 1000, 10 mila, 100 mila, 1 milione ed 1.5 milioni. Abbiamo eseguito lo stesso scenario di reasoning, oltre che su Vadalog, su PotgreSQL, MySQL, Oracle e il database a grafo Neo4J. \newline
+In Figura~\ref{fig:dbpediaRisultato} possiamo vedere il risultato dello scenario. Il Vadalog Reasoner ha delle prestazioni molto buone, ha una crescita lineare ed anche nel caso peggiore si tiene sotto la soglia dei 100 secondi. I fatti di PSC sono generati ricorsivamente quindi il risultato del benchmark conferma che l'indicizzazione dinamica ed il nostro algoritmo di nested loop join portano molto guadagno al Vadalog Reasoner. \newline
+Il tempo di reasoning del Vadalog Resoner risulta due volte migliore a Neo4J (il database a grafo più conosciuto e che ha le prestazioni migliori) e sei volte superiore a PostgreSQL, MySQL e Oracle.

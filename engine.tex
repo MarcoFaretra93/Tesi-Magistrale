@@ -61,7 +61,7 @@ In questa sezione viene mostrato il processo di reasoning, ovvero come il Vadalo
 Il Vadalog Reasoner fa un uso piuttosto alto di ricorsione, quindi è probabile che ci si ritrovi in un ciclo infinito all'interno del grafo di esecuzione (grafo contenente tutti i nodi per la ricerca della soluzione, partendo dai nodi di output ai nodi di input), si utilizza quindi una strategia di \textit{Termination Control}. \newline
 Tale strategia, rileva ridondanza, ovvero la ripetizione di un nodo più volte, il prima possibile combinando il tempo di compilazione e tecniche a runtime. \newline
 A tempo di compilazione, grazie alla wardedness, che limita l'interazione tra i labeled null, il Vadalog Reasoner riscrive il programma in modo che i joins con specifici valori di labeled null non si verificheranno mai (Harmful Join elimination). \newline
-A runtime, il Vadalog Reasoner adotta una tecnica di potatura ottimale di ridondanza e rami che non terminano mai, questa tecnica è strutturata in due parti \emph{detection} e \emph{pruning}. \newline
+A runtime, il Vadalog Reasoner adotta una tecnica di potatura ottimale di ridondanza e rami che non terminano mai, strutturata in due fasi \emph{detection} e \emph{pruning}. \newline
 Nella fase di detection, ogni volta che una regola genera un fatto che è simile ad uno dei precedenti, viene memorizzata la sequenza delle regole applicate, ovvero la provenienza. \newline
 Nella fase di pruning, ogni volta che un fatto presenta la stessa provenienza di un altro e sono simili, il fatto non viene generato. \newline
 Tale tecnica sfrutta a pieno le simmetrie strutturali all'interno del grafo, per scopi di terminazione i fatti sono considerati equivalenti, se hanno la stessa provenienza e sono originati da fatti simili tra loro. 
