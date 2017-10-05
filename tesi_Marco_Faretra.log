@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  4 OCT 2017 18:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  5 OCT 2017 11:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1415,7 +1415,7 @@ Package rerunfilecheck Info: File `tesi_Marco_Faretra.out' has not changed.
 Here is how much of TeX's memory you used:
  12915 strings out of 492995
  177775 string characters out of 6132704
- 317309 words of memory out of 5000000
+ 317307 words of memory out of 5000000
  15814 multiletter control sequences out of 15000+600000
  18904 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1441,7 +1441,7 @@ mf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2017/texmf
 ist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2017/texmf-dis
 t/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/
 fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on tesi_Marco_Faretra.pdf (71 pages, 1107589 bytes).
+Output written on tesi_Marco_Faretra.pdf (71 pages, 1106968 bytes).
 PDF statistics:
  1196 PDF objects out of 1200 (max. 8388607)
  1067 compressed objects within 11 object streams
