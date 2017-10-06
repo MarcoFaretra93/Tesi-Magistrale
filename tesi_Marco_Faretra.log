@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  5 OCT 2017 11:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  6 OCT 2017 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1151,47 +1151,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 66--71
  []
 
 [5 <./figure/wardedness.png>] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 95--102
+Underfull \hbox (badness 10000) in paragraph at lines 94--101
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--102
+Underfull \hbox (badness 10000) in paragraph at lines 94--101
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--102
+Underfull \hbox (badness 10000) in paragraph at lines 94--101
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--102
+Underfull \hbox (badness 10000) in paragraph at lines 94--101
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--102
+Underfull \hbox (badness 10000) in paragraph at lines 94--101
 
  []
 
 [7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 127--132
+Underfull \hbox (badness 10000) in paragraph at lines 126--131
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--143
+Underfull \hbox (badness 10000) in paragraph at lines 137--142
 
  []
 
 [10] [11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 220--221
+Underfull \hbox (badness 10000) in paragraph at lines 219--220
 
  []
 
 [14]
-Overfull \hbox (93.83188pt too wide) in paragraph at lines 251--252
+Overfull \hbox (93.83188pt too wide) in paragraph at lines 250--251
 [][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -1391,16 +1391,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--50
 [54
 
 
-] [55] (./tesi_Marco_Faretra.bbl
+] (./tesi_Marco_Faretra.bbl
 bibitemlist
-[56
+[55
 
 ]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 72.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [57]
-[58]) [59]
+) [56]
+[57]) [58]
 \tf@toc=\write5
 \openout5 = `tesi_Marco_Faretra.toc'.
 
@@ -1413,8 +1413,8 @@ Package rerunfilecheck Info: File `tesi_Marco_Faretra.out' has not changed.
 (rerunfilecheck)             Checksum: F31007DF5F4A331806693F1D817990E3;2843.
  ) 
 Here is how much of TeX's memory you used:
- 12915 strings out of 492995
- 177775 string characters out of 6132704
+ 12914 strings out of 492995
+ 177768 string characters out of 6132704
  317307 words of memory out of 5000000
  15814 multiletter control sequences out of 15000+600000
  18904 words of font info for 46 fonts, out of 8000000 for 9000
@@ -1441,10 +1441,10 @@ mf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2017/texmf
 ist/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2017/texmf-dis
 t/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/
 fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on tesi_Marco_Faretra.pdf (71 pages, 1106968 bytes).
+Output written on tesi_Marco_Faretra.pdf (70 pages, 1106649 bytes).
 PDF statistics:
- 1196 PDF objects out of 1200 (max. 8388607)
- 1067 compressed objects within 11 object streams
- 473 named destinations out of 1000 (max. 500000)
+ 1192 PDF objects out of 1200 (max. 8388607)
+ 1064 compressed objects within 11 object streams
+ 472 named destinations out of 1000 (max. 500000)
  368 words of extra memory for PDF output out of 10000 (max. 10000000)
 
