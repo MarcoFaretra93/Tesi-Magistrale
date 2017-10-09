@@ -1,5 +1,5 @@
-In questo capitolo parleremo in maniera approfondita delle prove sperimentali che abbiamo effettuato sul Vadalog Resoner. \newline
-Il capitolo è organizzato come segue. Nella sezione 4.1 descriveremo il tool, che ho implementato durante il mio periodo di Tesi, \emph{iWarded}, che permette la generazione di benchmark Vadalog, vedendone le funzionalità e l'implementazione. \newline
+In questo capitolo parleremo in maniera approfondita delle prove sperimentali che sono state effettuate sul Vadalog Resoner da Luigi Bellomarini ed Emanuel Sallinger presso il Laboratorio dell'Università di Oxford. \newline
+Il capitolo è organizzato come segue. Nella sezione 4.1 descriveremo il tool, che ho implementato durante il mio periodo di tesi, \emph{iWarded}, che permette la generazione di benchmark Vadalog, vedendone le funzionalità e l'implementazione. \newline
 Infine nella sezione 4.2 descriveremo diversi scenari applicativi utilizzando benchmark generati con tool (ad esempio iWarded), generandone anche i dati, per testare situazioni ben precise, ad esempio la presenza di ricorsione, di propagazione dei nulli, di join tra variabili harmful, ecc.
 
 \section{L'implementazione di iWarded}
@@ -38,6 +38,8 @@ Vengono poi create le regole di output:
 Infine l'intero modello contenente le regole create viene salvato su disco. \newline
 Nell'esempio~\ref{ex26} possiamo vedere un programma generato da iWarded:
 \begin{example}\label{ex26}
+	\normalfont
+	\lstset{emph={HARMLESS\_1, HARMLESS\_2, HARMLESS\_3, HARMLESS\_4, DANGEROUS\_1}, emphstyle=\itshape}
 	\scriptsize \begin{lstlisting}
 	
 	@output("ou_1").
@@ -57,7 +59,7 @@ Possiamo vedere la presenza di costanti e variabili dangerous, ma in questo caso
 \section{Scenari utilizzati}
 
 In questa sezione descriveremo l'applicazione del Vadalog Reasoner in diversi scenari.\newline
-Per effettuare i test il Reasoner è stato utilizzato come una libreria, come storage abbiamo utilizzato file CSV. \newline
+Per effettuare i test il Reasoner è stato utilizzato come una libreria, come storage sono stati utilizzati dei file CSV. \newline
 La configurazione hardware per l'esecuzione dei test è la seguente:
 \begin{itemize}
 	\item Sistema operativo: Linux.
@@ -69,7 +71,7 @@ Nella sezione 4.2.2 utilizzeremo degli scenari generati da un altro tool simile,
 
 \subsection{iWarded}
 
-Per questo scenario abbiamo utilizzato \emph{iWarded} descritto nella sezione 4.1, che permette di generare programmi Vadalog (e quindi Warded Datalog$^\pm$) con regole lineari e non lineari, con presenza di harmful o harmless join, ricorsione, ecc. \newline
+Per questo scenario è stato utilizzato \emph{iWarded} descritto nella sezione 4.1, che permette di generare programmi Vadalog (e quindi Warded Datalog$^\pm$) con regole lineari e non lineari, con presenza di harmful o harmless join, ricorsione, ecc. \newline
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figure/iWardedScenario}
@@ -77,7 +79,7 @@ Per questo scenario abbiamo utilizzato \emph{iWarded} descritto nella sezione 4.
 	\label{fig:iwarded}
 \end{figure}
 
-In Figura~\ref{fig:iwarded} sono rappresentati i dettagli dello scenario, in particolare per ogni set di regole (programma), abbiamo configurato delle caratteristiche:
+In Figura~\ref{fig:iwarded} sono rappresentati i dettagli dello scenario, in particolare per ogni set di regole (programma) è configurato con le seguenti caratteristiche:
 \begin{itemize}
 	\item L rules: è il numero di regole lineari presenti nel programma (regole che hanno un solo atomo nel corpo).
 	\item $\bowtie$ rules: è il numero totale di regole con un join del programma.
@@ -89,7 +91,7 @@ In Figura~\ref{fig:iwarded} sono rappresentati i dettagli dello scenario, in par
 	\item hrml $\bowtie$ hrml w/o ward: è il numero di join harmless-harmless in cui non c'è la propagazione di alcuna dangerous nella testa.
 	\item hrmf $\bowtie$ hrmf: è il numero di join harmful-harmful.
 \end{itemize}
-Abbiamo creato 8 programmi contenenti 100 regole. \newline
+Sono stati creati 8 programmi contenenti 100 regole. \newline
 \emph{SynthA} ha una netta superiorità di regole lineari, il 20\% delle regole totali ha un quantificatore esistenziale, il 30\% delle regole lineari e non lineari ha una ricorsione (sia L rules che $\bowtie$ rules), ed i join sono equamente distribuiti tra harmless-harmful e harmless-harmless, quindi non sono presenti join tra valori nulli. \newline
 \emph{SynthB} ha le stesse caratteristiche di SynthA, soltanto con una netta superiorità di regole non lineari (regole di join). SynthA e SynthB insieme servono a confrontare l'impatto della presenza di regole lineari. \newline
 \emph{SynthC} ha tra il 30\% e il 70\% di regole lineari e non lineari, ed ha una buona presenza di join harmful-harmful sui quali ci focalizziamo. \emph{SynthD} ha lo stesso comportamento di SynthC ma ha prevalenza di join harmful-harmful. \newline
@@ -133,9 +135,8 @@ ONT-256 è un programma che ha le seguenti caratteristiche:
 \end{itemize}
 In questo scenario le regole sono molto più complesse rispetto a STB-128 e contengono join multipli e ricorsione. Abbiamo eseguito 11 query differenti, coinvolte ognuna in circa 5 join. \newline
 L'obiettivo di questo scenario è testare i tempi di esecuzione del Vadalog Reasoner con altri sistemi di reasoning già esistenti, in particolare abbiamo considerato i sistemi: RDFox~\cite{motik2014parallel}, Llunatic~\cite{geerts2014s}, DLV~\cite{leone2006dlv}, Graal~\cite{baget2015graal} e PDQ~\cite{benedikt2015querying}. \newline
-In Figura~\ref{fig:ibenchgrafico} vengono messi a paragone i tempi di reasoning del Vadalog Reasoner e tutti gli altri sistemi menzionati utilizzando la stessa configurazione hardware/software. \newline
-Come possiamo vedere dal grafico il Vadalog Reasoner ha prestazioni migliori su entrambi i scenari, con un tempo di 6.59 secondi per l'esecuzione di STB-128 e 51.579 secondi per ONT-256, ed è in media 3 volte maggiore rispetto a RDFox, 7 volte maggiore rispetto a Llunatic.\newline 
-In particolare i sistemi RDFox, Llunatic e DLV hanno rispettivamente 28, 52 e 48 secondi di esecuzione per STB-128 e 83, 367, 118 secondi di esecuzione per ONT-256.
+In Figura~\ref{fig:ibenchgrafico} vengono messi a paragone i tempi di reasoning del Vadalog Reasoner e tutti gli altri sistemi menzionati utilizzando la stessa configurazione hardware/software, utilizzando nomi generici poiché questi dati devono ancora essere pubblicati. \newline
+Come possiamo vedere dal grafico il Vadalog Reasoner ha prestazioni migliori rispetto a tutti gli altri sistemi, in entrambi gli scenari, con un tempo di 6.59 secondi per l'esecuzione di STB-128 e 51.579 secondi per ONT-256.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figure/ibenchgrafico}

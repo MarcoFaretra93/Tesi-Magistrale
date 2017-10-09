@@ -1,4 +1,4 @@
-In questo capitolo parleremo un maniera più approfondita del Vadalog Reasoner. \newline
+In questo capitolo parleremo in maniera più approfondita del Vadalog Reasoner. Descriveremo principalmente l'architettura del Vadalog Reasoner, il mio contributo in questo capitolo riguarda la gestione della ricorsione, integrazione di DBMS, comunicazione con il Vadalog Reasoner attraverso interfacce. \newline
 Il capitolo è organizzato come segue. Nella sezione 2.1 verranno definiti in maniera più approfondita i requisiti che si devono soddisfare per avere un KGMS efficiente e performante, in particolare descriveremo tre categorie principali su cui sono basati tali requisiti. Una prima categoria (sezione 2.1.1) che descrive le proprietà che il Vadalog Reasoner deve mettere a disposizione del linguaggio, un'altra categoria (sezione 2.1.2) che descrive l'accesso e gestione dei Big Data con le relative proprietà che il Vadalog Reasoner deve supportare, ed infine una categoria (sezione 2.1.3) che descrive le necessità di un supporto per codice procedurale da terze parti. \newline
 Infine nella sezione 2.2 verrà descritta l'architettura del Vadalog Reasoner, in maniera approfondita tutto il processo di reasoning (sezione 2.2.1), nel quale verrà spiegata la strategia di terminazione e la gestione della ricorsione. Inoltre descriveremo come il Vadalog Reasoner gestisce i stream e tecniche per la gestione e ottimizzazione della cache (sezione 2.2.2), e le modalità con cui è possibile interfacciarsi con esso (sezione 2.2.3).
 Questo capitolo prende spunto su diverse nozioni da~\cite{bellomarini2017swift}
@@ -12,31 +12,31 @@ Un KGMS efficiente deve soddisfare diversi requisiti, che vengono suddivisi in t
 Ogni KGMS necessita di avere un formalismo logico (linguaggio) per esprimere fatti e regole ed un engine per il reasoning che utilizza tale linguaggio che dovrebbe fornire le seguenti caratteristiche:
 
 \begin{itemize}
-	\item Sintassi semplice e modulare: Deve essere semplice aggiungere e cancellare fatti e nuove regole. I fatti devono coincidere con le tuple sul database.
-	\item Alta potenza espressiva: Datalog~\cite{ceri2012logic, huang2011datalog} è un buon punto di riferimento per il potere espressivo delle regole. Con una negazione molto lieve cattura PTIME~\cite{dantsin2001complexity}.
-	\item Calcolo numerico e aggregazioni: Il linguaggio deve essere arricchito con funzioni di aggregazione per la gestione di valori numerici.
-	\item Probabilistic Reasoning: Il linguaggio dovrebbe essere adatto ad incorporare metodi di reasoning probabilistico e il sistema dovrebbe propagare probabilità o valori di certezza durante il processo di reasoning.
-	\item Bassa complessità: Il reasoning dovrebbe essere tracciabile nella complessità dei dati. Quando possibile il sistema dovrebbe essere in grado di riconoscere e trarre vantaggio da set di regole che possono essere elaborate in classi di complessità a basso livello di spazio. 
-	\item Rule repository, Rule management and ontology editor: È necessario fornire una libreria per l'archiviazione di regole e definizioni ricorrenti, ed un'interfaccia utente per la gestione delle regole.
-	\item Orchestrazione dinamica: Per applicazioni più grandi, deve essere presente un nodo master per l'orchestrazione di flussi di dati complessi.
+	\item \textbf{Sintassi semplice e modulare}: Deve essere semplice aggiungere e cancellare fatti e nuove regole. I fatti devono coincidere con le tuple sul database.
+	\item \textbf{Alta potenza espressiva}: Datalog~\cite{ceri2012logic, huang2011datalog} è un buon punto di riferimento per il potere espressivo delle regole. Con una negazione molto lieve cattura PTIME~\cite{dantsin2001complexity}.
+	\item \textbf{Calcolo numerico e aggregazioni}: Il linguaggio deve essere arricchito con funzioni di aggregazione per la gestione di valori numerici.
+	\item \textbf{Probabilistic Reasoning}: Il linguaggio dovrebbe essere adatto ad incorporare metodi di reasoning probabilistico e il sistema dovrebbe propagare probabilità o valori di certezza durante il processo di reasoning.
+	\item \textbf{Bassa complessità}: Il reasoning dovrebbe essere tracciabile nella complessità dei dati. Quando possibile il sistema dovrebbe essere in grado di riconoscere e trarre vantaggio da set di regole che possono essere elaborate in classi di complessità a basso livello di spazio. 
+	\item \textbf{Rule repository, Rule management and ontology editor}: È necessario fornire una libreria per l'archiviazione di regole e definizioni ricorrenti, ed un'interfaccia utente per la gestione delle regole.
+	\item \textbf{Orchestrazione dinamica}: Per applicazioni più grandi, deve essere presente un nodo master per l'orchestrazione di flussi di dati complessi.
 \end{itemize}
 
 \subsection{Accesso e gestione dei Big Data}
 
 \begin{itemize}
-	\item Accesso ai Big Data: Il sistema deve essere in grado di fornire un accesso efficace alle sorgenti e ai sistemi Big Data. L'integrazione di tali tecniche dovrebbe essere possibile se il volume dei dati lo rende necessario ~\cite{shkapsky2016big}.
-	\item Accesso a Database e Data Warehouse: Dovrebbe essere concesso un accesso a database relazionali, graph databases, data warehouse, RDF stores ed i maggiori NoSQL stores. I dati nei vari storage dovrebbero essere direttamente utilizzabili come fatti per il reasoning.
-	\item Ontology-based Data Access (OBDA): OBDA~\cite{calvanese2011mastro} consente ad un sistema di compilare una query che è stata formulata in testa ad un'ontologia direttamente all'interno del database.
-	\item Supporto multi-query: Laddove possibile e appropriato, i risultati parziali di query ripetute dovrebbero essere valutati una volta~\cite{roy2000efficient} e ottimizzati a questo proposito, per ottenere un guadagno temporale.
-	\item Pulizia dei dati, Scambio e Integrazione: L'integrazione, la modifica e la pulizia dei dati dovrebbero essere supportati direttamente (attraverso il linguaggio).
-	\item Estrazione di dati web, Interazione e IOT: Un KGMS dovrebbe essere in grado di interagire con il web mediante estrazione dei dati web rilevanti (prezzi pubblicizzati dai concorrenti) e integrandoli in database locali e scambiare dati con moduli e server web disponibili (API).
+	\item \textbf{Accesso ai Big Data}: Il sistema deve essere in grado di fornire un accesso efficace alle sorgenti e ai sistemi Big Data. L'integrazione di tali tecniche dovrebbe essere possibile se il volume dei dati lo rende necessario ~\cite{shkapsky2016big}.
+	\item \textbf{Accesso a Database e Data Warehouse}: Dovrebbe essere concesso un accesso a database relazionali, graph databases, data warehouse, RDF stores ed i maggiori NoSQL stores. I dati nei vari storage dovrebbero essere direttamente utilizzabili come fatti per il reasoning.
+	\item \textbf{Ontology-based Data Access (OBDA)}: OBDA~\cite{calvanese2011mastro} consente ad un sistema di compilare una query che è stata formulata in testa ad un'ontologia direttamente all'interno del database.
+	\item \textbf{Supporto multi-query}: Laddove possibile e appropriato, i risultati parziali di query ripetute dovrebbero essere valutati una volta~\cite{roy2000efficient} e ottimizzati a questo proposito, per ottenere un guadagno temporale.
+	\item \textbf{Pulizia dei dati, Scambio e Integrazione}: L'integrazione, la modifica e la pulizia dei dati dovrebbero essere supportati direttamente (attraverso il linguaggio).
+	\item \textbf{Estrazione di dati web, Interazione e IOT}: Un KGMS dovrebbe essere in grado di interagire con il web mediante estrazione dei dati web rilevanti (prezzi pubblicizzati dai concorrenti) e integrandoli in database locali e scambiare dati con moduli e server web disponibili (API).
 \end{itemize}
 
 \subsection{Inserimento di codice procedurale e di terze parti}
 
 \begin{itemize}
-	\item Codice procedurale: Il sistema dovrebbe disporre di metodi di incapsulamento per l'incorporazione di codice procedurale scritti in vari linguaggi di programmazione e offrire un'interfaccia logica ad esso.
-	\item Pacchetti di terze parti per il machine learning, text mining, NLP, Data Analytics e Data Visualization: Il sistema dovrebbe essere dotato di accesso diretto a potenti package esistenti per il machine learning, text mining, data analytics e data visualization. Esistono diversi software di terze parti per questi scopi, un KGMS dovrebbe essere in grado di utilizzare una moltitudine di tali pacchetti tramite opportune interfacce logiche.
+	\item \textbf{Codice procedurale}: Il sistema dovrebbe disporre di metodi di incapsulamento per l'incorporazione di codice procedurale scritti in vari linguaggi di programmazione e offrire un'interfaccia logica ad esso.
+	\item \textbf{Pacchetti di terze parti per il machine learning, text mining, NLP, Data Analytics e Data Visualization}: Il sistema dovrebbe essere dotato di accesso diretto a potenti package esistenti per il machine learning, text mining, data analytics e data visualization. Esistono diversi software di terze parti per questi scopi, un KGMS dovrebbe essere in grado di utilizzare una moltitudine di tali pacchetti tramite opportune interfacce logiche.
 \end{itemize}
 
 \section{Architettura}
@@ -78,7 +78,7 @@ In Figura~\ref{fig:query_plan_1} viene rappresentato un esempio di query plan di
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figure/query-plan-ex1}
-	\caption{Esempio di query plan.}
+	\caption{Esempio di query plan mostrata dalla Vadalog Console.}
 	\label{fig:query_plan_1}
 \end{figure}
 
@@ -106,7 +106,7 @@ Tuttavia per garantire buone prestazioni, le cache locali sono migliorate dall'i
 
 \subsection{Interfacce}
 
-L'utente ha due possibilità per interfacciarsi con il Vadalog Reasoner, o attraverso delle API Rest, o attraverso Java, integrando il progetto. \newline
+L'utente ha due possibilità per interfacciarsi con il Vadalog Reasoner: attraverso delle API Rest, o attraverso Java, integrando il progetto. \newline
 Le principali operazioni che si possono effettuare sono: 
 \begin{itemize}
 	\item Evaluate: Permette di eseguire codice Vadalog.
@@ -114,12 +114,12 @@ Le principali operazioni che si possono effettuare sono:
 	\item getExecutionPlan: Che ritorna il query plan del programma dato in input.
 	\item transformProgram: Restituisce il codice Vadalog dopo aver effettuato le ottimizzazioni (riscritture).
 \end{itemize}
-Come descritto in Figura~\ref{fig:architettura_2} sono presenti due controller, uno per la gestione delle chiamate rest (VadaRestController), ed uno per la gestione delle chiamate Java (LibraryController), che si interfacciano con un unico controller che gestisce le chiamate pervenute da entrambi. \newline
-
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figure/architettura-2}
 	\caption{Sistemi per interfacciarsi con il Vadalog Reasoner.}
 	\label{fig:architettura_2}
 \end{figure}
+Come descritto in Figura~\ref{fig:architettura_2} sono presenti due controller, uno per la gestione delle chiamate rest (VadaRestController), ed uno per la gestione delle chiamate Java (LibraryController), che si interfacciano con un unico controller che gestisce le chiamate pervenute da entrambi. \newline
+In particolare io mi sono occupato dell'implementazione delle operazioni di \emph{getExecutionPlan} e \emph{transformProgram}. Nella prima operazione vengono restituiti i valori da inserire nei nodi e i collegamenti tra nodi, che vengono poi utilizzati per la visualizzazione. Nella seconda operazione, molto semplicemente vengono applicate le riscritture applicate al codice Vadalog ed infine restituito.
 

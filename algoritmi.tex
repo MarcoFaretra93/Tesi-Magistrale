@@ -1,4 +1,4 @@
-In questo capitolo verranno descritte nel dettaglio le implementazioni di feature core del Vadalog Reasoner, di cui mi sono occupato durante il mio periodo di Tesi, per l'esecuzione di programmi Vadalog. \newline
+Nei capitoli precedenti abbiamo parlato in linea generale del funzionamento del Vadalog Reasoner e del linguaggio Vadalog, in questo capitolo verranno descritte nel dettaglio le implementazioni di feature core del Vadalog Reasoner, di cui mi sono occupato durante il mio periodo di tesi, per l'esecuzione di programmi Vadalog. \newline
 Il capitolo è organizzato come segue. Nella sezione 3.1 verranno descritte nel dettaglio le tecniche di ottimizzazione e le loro implementazioni, entreremo nel dettaglio dell'implementazione di ottimizzazioni note come \emph{Push Selections Down} e \emph{Push Projections Down}, ottimizzazioni in presenza di regole composti da più atomi nella testa ed in presenza di join multipli nel corpo di una regola ed infine dei dettagli sulla ricorsione e la loro ottimizzazione. \newline
 Nella sezione 3.2 verranno descritte le modalità di esecuzione delle annotazioni post-processing, l'architettura di gestione e l'implementazione delle operazioni dei tipi di dato nel Vadalog Reasoner, la gestione e l'implementazione delle nuove sorgenti ed infine l'implementazione e l'utilizzo delle funzioni e delle query parametriche in Vadalog. \newline
 Infine nella sezione 3.3 troveremo una descrizione sull'implementazione dell'editor grafico e della visualizzazione del grafo d'accesso.
@@ -17,6 +17,8 @@ Nel nostro caso, poiché ci troviamo di fronte ad un linguaggio della famiglia D
 Questo perché Datalog ha molti più casi da gestire rispetto al linguaggio SQL, ad esempio, vanno gestite le ricorsioni, le variabili esistenziali, regole che possono avere in testa l'atomo A, sul corpo l'atomo B ed un'altra regola che può avere in testa l'atomo B e sul corpo l'atomo A (un ciclo) e quant'altro. \newline \newline
 Nella fase di push selections down, l'obiettivo è quello di anticipare le selezioni il prima possibile, ovvero cercare di anticipare le selezioni il più vicino possibile alle regole che coinvolgono nodi di input. Come possiamo vedere nell'esempio~\ref{ex1} (un caso base): 
 \begin{example}\label{ex1}
+\normalfont
+\lstset{emph={X}, emphstyle=\itshape}
 \begin{lstlisting}
 	
 	b(1). 
@@ -28,6 +30,8 @@ Nella fase di push selections down, l'obiettivo è quello di anticipare le selez
 \end{example}
 Dopo la trasformazione diventa: 
 \begin{example}\label{ex2}
+	\normalfont
+	\lstset{emph={X}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	b(1). 
@@ -40,6 +44,8 @@ Dopo la trasformazione diventa:
 Nell'esempio~\ref{ex2} la selezione è stata anticipata alla regola più vicina al nodo input. \newline
 Spesso è necessario che una variabile va anticipata in N regole che coinvolgono (selezionano) tutte la stessa variabile che viene selezionata, come possiamo vedere nell'esempio~\ref{ex3}: 
 \begin{example}\label{ex3}
+\normalfont
+\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	b(1). 
@@ -52,6 +58,8 @@ Spesso è necessario che una variabile va anticipata in N regole che coinvolgono
 \end{example}
 Dopo la trasformazione diventa: 
 \begin{example}\label{ex4}
+\normalfont
+\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	b(1). 
@@ -65,6 +73,8 @@ Dopo la trasformazione diventa:
 Nell'esempio~\ref{ex4} la variabile X viene utilizzata in due regole, quindi la selezione viene anticipata in entrambe le regole che coinvolgono tale variabile. \newline
 In entrambe le fasi di push selections e projections down, si tiene conto della posizione della variabile nell'atomo anziché del nome della variabile, questo perché in altre regole i nomi delle variabili possono essere in ordine inverso, ne vediamo un'applicazione negli esempi~\ref{ex5} e \ref{ex6}:
 \begin{example}\label{ex5}
+	\normalfont
+	\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	b1(10,25). 
@@ -77,6 +87,8 @@ In entrambe le fasi di push selections e projections down, si tiene conto della 
 \end{example}
 Viene trasformato in:
 \begin{example}\label{ex6}
+\normalfont
+\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	b1(10,25). 
@@ -90,6 +102,8 @@ Viene trasformato in:
 Come possiamo vedere nell'esempio~\ref{ex6} la variabile su cui viene effettuata la selezione 'X', che corrisponde alla prima posizione dell'atomo b ed alla seconda posizione dell'atomo c, quando viene anticipata viene opportunamente cambiata di nome in base alla regola nella quale viene applicata. \newline \newline
 La fase di push projections down si occupa di anticipare le selezioni il più vicino possibile ai nodi di input ed inoltre di rimuovere le proiezioni inutilizzate, ad esempio se in una regola proietto due variabili, in cui una non è coinvolta con l'output o con un'interazione per produrre l'output. Possiamo vederne un'applicazione nell'esempio~\ref{ex7} e \ref{ex8}:
 \begin{example}\label{ex7}
+\normalfont
+\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	a(2). 
@@ -102,6 +116,8 @@ La fase di push projections down si occupa di anticipare le selezioni il più vi
 \end{example}
 Che viene trasformato in:
 \begin{example}\label{ex8}
+\normalfont
+\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	a(2). 
@@ -115,6 +131,8 @@ Che viene trasformato in:
 Come possiamo vedere nell'esempio~\ref{ex8}, nella regola c(X) :- a(X), q(X,Y) viene eliminata la variabile 'Y' poiché inutilizzata. \newline
 Mentre l'applicazione della proiezione anticipata, possiamo vederla nell'esempio~\ref{ex9} e \ref{ex10}:
 \begin{example}\label{ex9}
+\normalfont
+\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	b(1). 
@@ -127,6 +145,8 @@ Mentre l'applicazione della proiezione anticipata, possiamo vederla nell'esempio
 \end{example}
 Che viene trasformato in:
 \begin{example}\label{ex10}
+\normalfont
+\lstset{emph={X}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	b(1). 
@@ -144,7 +164,7 @@ Nella fase di push selections down, si visita il grafo d'esecuzione partendo dai
 	\item La variabile occorre in N atomi nel corpo e tutti gli atomi sono di input. In questo caso la condizione viene lasciata nella regola corrente, poiché non è possibile anticipare la selezione, si continua poi la visita del grafo per vedere se ci sono altre selezioni che è possibile anticipare.
 	\item La variabile occorre in atomi che sono di input e in atomi che non sono di input. In questo caso, viene lasciata la condizione alla regola corrente, ma si tiene conto degli altri atomi (che non sono di input) coinvolti, proseguendo la visita del grafo, quando arriveremo alle regole che hanno tali atomi in testa, vengono nuovamente verificati gli atomi nel corpo, nel caso in cui siano tutti di input allora viene aggiunta la selezione anche a queste regole, altrimenti si prosegue finché non arriviamo alla regola contenente soltanto atomi di input.
 \end{itemize}
-La fase di push projections down è molto simile, ma anziché controllare le condizioni, in ogni regola si verifica la presenza di costanti, in caso positivo si procede con lo stesso criterio del push selections down. Inoltre si verifica anche la presenza di variabili inutili, ad esempio nella testa ho le variabili [X,Y] e nel corpo [X,Y,J], in questa caso, J viene rimossa dall'atomo nel corpo della regola e conseguentemente dalla testa della regola contenente l'atomo coinvolto.
+La fase di push projections down è molto simile, ma anziché controllare le condizioni, in ogni regola si verifica la presenza di costanti, in caso positivo si procede con lo stesso criterio del push selections down. Inoltre si verifica anche la presenza di variabili inutili, ad esempio nella testa ho le variabili X e Y e nel corpo X,Y e J, in questa caso, J viene rimossa dall'atomo nel corpo della regola e conseguentemente dalla testa della regola contenente l'atomo coinvolto.
 
 \subsection{Gestione di teste multiple e join multipli}
 
@@ -152,6 +172,8 @@ In questa sezione verranno descritte le ottimizzazioni in presenza di teste e jo
 Vadalog è un linguaggio che permette regole standard da poter utilizzare nella forma head :- body, dove head è rappresentato da un singolo atomo e body da una lista di atomi e una lista di condizioni. \newline
 Tuttavia, vogliamo gestire diverse funzionalità che permettono un'espressività maggiore, una di queste è la possibilità di definire una regola con più teste, ad esempio se ho diversi atomi che sono composti dallo stesso corpo anziché far scrivere al programmatore un numero di regole pari al numero di atomi, viene effettuata una riscrittura che permette di scrivere una regola con più teste, possiamo vederne un'applicazione nell'esempio~\ref{ex11}. 
 \begin{example}\label{ex11}
+	\normalfont
+	\lstset{emph={X, Y, Z, M, W}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	h1(X,Y),h2(Y,Z),h3(Z,W) :- a(X,Y,Z),b(Z,M).
@@ -160,6 +182,8 @@ Tuttavia, vogliamo gestire diverse funzionalità che permettono un'espressività
 Dove gli atomi h1, h2, h3 condividono lo stesso corpo. \newline
 In questo caso viene riscritto, prima di essere dato in pasto al Vadalog Reasoner come nell'esempio~\ref{ex12}: 
 \begin{example}\label{ex12}
+	\normalfont
+	\lstset{emph={X, Y, Z, M, W}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	h_tmp(X,Y,Z,M) :- a(X,Y,Z),b(Z,M). 
@@ -172,16 +196,19 @@ Viene quindi definita una regola standard che contiene il corpo condiviso con le
 Inoltre è anche possibile definire delle regole "speciali", che hanno una sintassi diversa da quelle standard. Tali regole coinvolgono la testa della regola, permettendo di utilizzare un'uguaglianza come testa. \newline
 Tali regole vengono tradotte in regole esistenziali e implicitamente trattate come regole di output. Vediamo la trasformazione negli esempi~\ref{ex17} e \ref{ex18}:
 \begin{example}\label{ex17}
+	\normalfont
+	\lstset{emph={X, Y, Z}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
-		Y=Z :- a(X,Y),a(X,Z).
+	Y=Z :- a(X,Y),a(X,Z).
 	\end{lstlisting}
 \end{example}
-Che viene trasformato in: 
 \begin{example}\label{ex18}
+	\normalfont
+	\lstset{emph={X, Y, Z, J}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
-	egd1(X,Y,Z,J) :- a(X,Y),a(X,Z),J=Y==Z.
+	egd1(X,Y,Z,J) :- a(X,Y), a(X,Z),J=(Y == Z).
 	@output("egd1").
 	\end{lstlisting}
 \end{example}
@@ -189,6 +216,8 @@ Viene quindi creato un apposito atomo di testa che chiameremo \emph{$egd_{N}$} e
 Spesso sono presenti regole, che nel corpo hanno più di 2 atomi che sono vincolati tramite l'operazione di join, l'uno con l'altro (ad esempio join tra tre elementi o join incrociati tra tre atomi). \newline
 Quando sono presenti join tra tre o più atomi, l'aumento del tempo di computazione è proporzionale alla crescita del numero di atomi interessati. Vediamo un'applicazione pratica nell'esempio~\ref{ex13}:
 \begin{example}\label{ex13}
+	\normalfont
+	\lstset{emph={X, Y, M, K, Z}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	c(Z,X,M) :- a(X,Y),b(Y,K),c(K,M).
@@ -198,6 +227,8 @@ Nell'esempio~\ref{ex13} gli atomi a, b e c sono coinvolti in un join incrociato,
 Nella riscrittura la regola generalizzata composta da N atomi, di cui M (>=3) sono in join tra loro, viene splittata in M regole in cui vengono definiti join tra due elementi soltanto, e gli atomi non coinvolti nel join, vengono inseriti nella regola finale. \newline
 Nell'esempio~\ref{ex14} è possibile vedere il programma dopo il processo di riscrittura: 
 \begin{example}\label{ex14}
+	\normalfont
+	\lstset{emph={X, K, Y, M, Z}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	v_atom1(X,K) :- a(X,Y),b(Y,K). 
@@ -208,13 +239,15 @@ Il join viene quindi splittato in due regole, dando il medesimo risultato di out
 
 \subsection{Individuazione e inversione delle ricorsioni destre}
 
-Un altro collo di bottiglia per il tempo di computazione e l'efficienza è la ricorsione, in particolare le ricorsioni destre (atomo che ricorre si trova alla fine del corpo della regola) risultano meno efficienti delle ricorsioni sinistre (atomo che ricorre si trova all'inizio del corpo della regola). \newline
+Un altro collo di bottiglia per il tempo di computazione è la ricorsione, in particolare le ricorsioni destre (atomo che ricorre si trova alla fine del corpo della regola) risultano meno efficienti delle ricorsioni sinistre (atomo che ricorre si trova all'inizio del corpo della regola). \newline
 Tale perdita di efficienza si ha sopratutto in presenza di join. Ricordiamo che Vadalog utilizza un algoritmo di join simile al nested loop (ogni ennupla della prima relazione viene paragonata ad ogni ennupla della seconda relazione). \newline
 Supponiamo che ci sia una regola Vadalog del tipo head :- A,B, dove A è un atomo non ricorsivo e B un atomo ricorsivo, quindi una ricorsione destra, e che A abbia N ennuple, e B abbia M ennuple. \newline
 Quando andiamo ad effettuare il nested loop join, ogni ennupla di A effettua una chiamata ricorsiva su B (per paragonarla) per tutte le ennuple di B, vengono quindi fatte NxM chiamate ricorsive circa. \newline
 Nel caso in cui la regola abbia una ricorsione sinistra (quindi dopo la riscrittura), ovvero head :- B,A, in  questo caso è B che viene paragonata ad A, quindi vengono prima fatte le chiamate ricorsive e poi il risultato delle chiamate paragonato alle ennuple di B, quindi vengono fatte M chiamate ricorsive circa. Quindi la riscrittura porta un guadagno notevole sulla base del numero di chiamate ricorsive. \newline
 Vediamo un'applicazione pratica di come avviene la riscrittura negli esempi~\ref{ex15} e \ref{ex16}: 
 \begin{example}\label{ex15}
+\normalfont
+\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	a(Y) :- b(X,Y), a(X).
@@ -222,6 +255,8 @@ Vediamo un'applicazione pratica di come avviene la riscrittura negli esempi~\ref
 \end{example}
 Viene trasformato in:
 \begin{example}\label{ex16}
+\normalfont
+\lstset{emph={X, Y}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	a(Y) :- a(X), b(X,Y).
@@ -231,8 +266,8 @@ L'algoritmo di riscrittura ha lo scopo di portare l'atomo ricorsivo come primo a
 
 \section{Supporto a nuovi tipi di dato, sorgenti e funzionalità}
 
-Nel linguaggio Vadalog vengono supportati: diversi tipi di dato, semplici e strutturati; diverse sorgenti dati da cui prendere gli input, ad esempio da un database; diverse funzionalità varie che garantiscono l'usabilità all'utente finale: ad esempio la possibilità di fare operazioni standard dopo il calcolo del risultato (orderby, distinct, ecc.), possibilità di definire funzioni e query parametriche. \newline
-In seguito verranno descritte nel dettaglio le annotazioni post-processing (sezione 3.2.1), l'architettura utilizzata per la gestione dei tipi di dato e le loro operazioni con relativa implementazione (sezione 3.2.2) ed infine la gestione e l'utilizzo di funzioni e query parametriche in Vadalog (sezione 3.2.3).
+Nel linguaggio Vadalog vengono supportati: diversi tipi di dato, semplici e strutturati; diverse sorgenti dati da cui prendere gli input, ad esempio da un database; diverse funzionalità varie che garantiscono l'usabilità all'utente finale: ad esempio la possibilità di fare operazioni standard dopo il calcolo del risultato (orderby, distinct, min, max, argmin, argmax, ecc.), possibilità di definire funzioni e query parametriche. \newline
+In particolare mi sono occupato dell'implementazione delle operazioni di argmin e argmax (descritte nella sezione 3.2.1), dell'architettura utilizzata per la gestione dei tipi di dato e le loro operazioni con relativa implementazione (sezione 3.2.2) ed infine la gestione e l'utilizzo di funzioni e query parametriche in Vadalog (sezione 3.2.3).
 
 \subsection{Post-processing annotations}
 
@@ -250,6 +285,8 @@ In queste annotazioni è possibile specificare molte operazioni che si possono e
 Io mi sono occupato dell'implementazione delle operazioni di Argmin ed Argmax. \newline
 Negli esempi~\ref{ex19} e \ref{ex20} vediamo l'applicazione di Argmax e il risultato ottenuto.
 \begin{example}\label{ex19}
+\normalfont
+\lstset{emph={X, Y, Z, K}, emphstyle=\itshape}
 	\begin{lstlisting}
 		
 	f(1,3,"a",3).
@@ -263,6 +300,7 @@ Negli esempi~\ref{ex19} e \ref{ex20} vediamo l'applicazione di Argmax e il risul
 	\end{lstlisting}
 \end{example}
 \begin{example}\label{ex20}
+\normalfont
 	\begin{lstlisting}
 	
 	g(4,3,"a",5).
@@ -311,25 +349,29 @@ Per l'implementazione di scrittura viene semplicemente creato un file CSV nel pa
 Vadalog supporta le funzioni (chiamate \emph{funzioni di skolem}), che possono essere implementate con procedure esterne (\emph{user-defined functions}) scritte in altri linguaggi (Java o Python), se non vengono implementate allora producono un nullo. Io mi sono occupato sia dell'integrazione delle funzioni che dell'utilizzo di procedure esterne. \newline
 Negli esempi~\ref{ex21} e \ref{ex22} possiamo vedere due utilizzi di funzioni, nell'esempio~\ref{ex21} non è presente nessuna implementazione, viceversa nell'esempio~\ref{ex22}. 
 \begin{example}\label{ex21}
+\normalfont
+\lstset{emph={X, Y, Z, K}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
-		b(1,2).
-		a(X,Y,Z) :- b(X,Y),Z=#f(X,Y).
-		c(K) :- b(X,Y),K=#f(X,Y).
-		d(K) :- b(X,Y),K=#g(X,Y).
-		@output("a").
-		@output("c").
-		@output("d").
+	b(1,2).
+	a(X,Y,Z) :- b(X,Y),Z= #f(X,Y).
+	c(K) :- b(X,Y),K= #f(X,Y).
+	d(K) :- b(X,Y),K= #g(X,Y).
+	@output("a").
+	@output("c").
+	@output("d").
 	\end{lstlisting}
 \end{example}\label{ex22}
 \begin{example}
+\normalfont
+\lstset{emph={Y, Z, X1, X2}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
-		b(1,2).
-		c(3,2).
-		a(Y,Z) :- b(X1,Z),c(X2,Z),Y=#f(X1,X2).
-		@output("a").
-		@implement("#f","python","com.module1.module2","functionName").
+	b(1,2).
+	c(3,2).
+	a(Y,Z) :- b(X1,Z),c(X2,Z),Y= #f(X1,X2).
+	@output("a").
+	@implement("#f","python","com.module1","functionName").
 	\end{lstlisting}
 \end{example}
 Se le funzioni non vengono implementate allora esse producono un nullo, la particolarità è che tale nullo dovrà essere uguale nel caso in cui la stessa funzione prende gli stessi input, ad esempio se nella sostituzione ho la funzione \#f(1,2) e ritorna un valore nullo $Z_{1}$, allora se in un successivo passaggio viene invocata nuovamente la stessa funzione, dovrà restituire lo stesso risultato. \newline
@@ -345,24 +387,28 @@ Le funzioni vengono gestite attraverso il Visitor, che ha diversi compiti:
 Questa procedura viene eseguita ogni volta che viene utilizzata una funzione. \newline \newline
 Mi sono anche occupato dell'implementazione di query parametriche in Vadalog, come già detto è possibile avere diverse sorgenti, in particolare su database relazionali è possibile fare anche delle query per prenderne i risultati con l'annotazione di qbind, come mostrato nell'esempio~\ref{ex23}.
 \begin{example}\label{ex23}
+\normalfont
+\lstset{emph={X, Y, W, Z, V}, emphstyle=\itshape}
 	\begin{lstlisting}
 		
-		test("marco","luigi").
-		test("fabio", "antonio").
-		control(X,Y) :- own(X,Y,W), W>0.5.
-		control(X,Z) :- control(X,Y), own(Y,Z,W), V=msum(<Z>,W), V>0.5.
-		@output("control").
-		@input("own").
-		@bind("own","postgres","vada","ownerships").
-		@qbind("own","postgres","vada",
-		"select name1, name2, weight 
-		from ownerships2
-		where name1='Marco'
-		").
+	test("marco","luigi").
+	test("fabio", "antonio").
+	control(X,Y) :- own(X,Y,W), W>0.5.
+	control(X,Z) :- control(X,Y), own(Y,Z,W), V=msum(<Z>,W ), V>0.5.
+	@output("control").
+	@input("own").
+	@bind("own","postgres","vada","ownerships").
+	@qbind("own","postgres","vada",
+	"select name1, name2, weight 
+	from ownerships2
+	where name1='Marco'
+	").
 	\end{lstlisting}
 \end{example}
 Le query parametriche permettono di utilizzare dei parametri nelle selezioni, come possiamo vedere nell'esempio~\ref{ex24}.
 \begin{example}\label{ex24}
+	\normalfont
+	\lstset{emph={X, Y, W, Z, V}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	test("marco","luigi").
@@ -375,13 +421,15 @@ Le query parametriche permettono di utilizzare dei parametri nelle selezioni, co
 	@qbind("own","postgres","vada",
 	"select name1, name2, weight 
 	from ownerships2
-	where name1=\${1}
+	where name1=${1}
 	").
 	\end{lstlisting}
 \end{example}
 Nelle query parametriche viene specificato un valore del tipo \${1}, che sta a rappresentare i valori in prima posizione dell'atomo corrente. Solitamente il parametro che viene espresso è messo in join con un altro atomo, come avviene nell'esempio~\ref{ex24}, che viene messo in join con "control". In questo caso i valori di \${1} sono "luigi" ed "antonio", vengono quindi effettuate due query una con name1 uguale a "luigi" ed una "antonio". \newline
 Spesso invece i valori da sostituire possono essere presi direttamente dai fatti, come possiamo vedere nell'esempio~\ref{ex25}.
 \begin{example}\label{ex25}
+	\normalfont
+	\lstset{emph={X, Y, W}, emphstyle=\itshape}
 	\begin{lstlisting}
 	
 	own("marco",1,2).

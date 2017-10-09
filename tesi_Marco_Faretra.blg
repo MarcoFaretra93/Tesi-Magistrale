@@ -8,32 +8,32 @@ Warning--empty journal in furche2016data
 Warning--can't use both volume and number fields in roy2000efficient
 You've used 34 entries,
             2543 wiz_defined-function locations,
-            739 strings with 9905 characters,
-and the built_in function-call counts, 15391 in all, are:
-= -- 1523
-> -- 850
+            738 strings with 8853 characters,
+and the built_in function-call counts, 15351 in all, are:
+= -- 1520
+> -- 844
 < -- 18
-+ -- 316
-- -- 309
-* -- 1132
-:= -- 2507
++ -- 313
+- -- 306
+* -- 1127
+:= -- 2499
 add.period$ -- 100
 call.type$ -- 34
-change.case$ -- 238
+change.case$ -- 237
 chr.to.int$ -- 31
 cite$ -- 37
 duplicate$ -- 556
 empty$ -- 1060
-format.name$ -- 345
-if$ -- 3139
+format.name$ -- 342
+if$ -- 3133
 int.to.chr$ -- 4
 int.to.str$ -- 0
 missing$ -- 29
 newline$ -- 166
 num.names$ -- 102
-pop$ -- 292
+pop$ -- 291
 preamble$ -- 1
-purify$ -- 283
+purify$ -- 282
 quote$ -- 0
 skip$ -- 476
 stack$ -- 0

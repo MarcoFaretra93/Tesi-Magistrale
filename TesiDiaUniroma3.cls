@@ -91,7 +91,7 @@
       {\Large UNIVERSIT\`A DEGLI STUDI ROMA TRE} \\
       \vspace{5mm}
       {\LARGE Facolt\`a di Ingegneria} \\
-      {\Large Corso di Laurea in Ingegneria Informatica} \\
+      {\Large Corso di Laurea Magistrale in Ingegneria Informatica} \\
       \vspace{15mm}
       {\LARGE Tesi Di Laurea} \\
       \vspace{15mm}
