@@ -1,50 +1,50 @@
 This is BibTeX, Version 0.99d (TeX Live 2017)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: tesi_Marco_Faretra.aux
-The style file: alpha.bst
+The style file: abbrv.bst
 Database file #1: bibliografia.bib
 Warning--empty journal in bellomarini2017swift
 Warning--empty journal in furche2016data
 Warning--can't use both volume and number fields in roy2000efficient
 You've used 34 entries,
-            2543 wiz_defined-function locations,
-            738 strings with 8853 characters,
-and the built_in function-call counts, 15351 in all, are:
-= -- 1520
-> -- 844
-< -- 18
-+ -- 313
-- -- 306
-* -- 1127
-:= -- 2499
+            2118 wiz_defined-function locations,
+            681 strings with 9160 characters,
+and the built_in function-call counts, 12673 in all, are:
+= -- 1235
+> -- 674
+< -- 9
++ -- 270
+- -- 232
+* -- 893
+:= -- 2055
 add.period$ -- 100
 call.type$ -- 34
-change.case$ -- 237
-chr.to.int$ -- 31
+change.case$ -- 208
+chr.to.int$ -- 0
 cite$ -- 37
-duplicate$ -- 556
-empty$ -- 1060
-format.name$ -- 342
-if$ -- 3133
-int.to.chr$ -- 4
-int.to.str$ -- 0
-missing$ -- 29
-newline$ -- 166
-num.names$ -- 102
-pop$ -- 291
+duplicate$ -- 444
+empty$ -- 958
+format.name$ -- 232
+if$ -- 2664
+int.to.chr$ -- 0
+int.to.str$ -- 34
+missing$ -- 28
+newline$ -- 165
+num.names$ -- 68
+pop$ -- 264
 preamble$ -- 1
-purify$ -- 282
+purify$ -- 184
 quote$ -- 0
-skip$ -- 476
+skip$ -- 347
 stack$ -- 0
-substring$ -- 835
+substring$ -- 773
 swap$ -- 120
-text.length$ -- 18
-text.prefix$ -- 9
+text.length$ -- 9
+text.prefix$ -- 0
 top$ -- 0
-type$ -- 260
+type$ -- 132
 warning$ -- 3
-while$ -- 143
-width$ -- 42
-write$ -- 413
+while$ -- 119
+width$ -- 36
+write$ -- 345
 (There were 3 warnings)

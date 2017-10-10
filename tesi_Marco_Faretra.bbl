@@ -1,179 +1,179 @@
-\newcommand{\etalchar}[1]{$^{#1}$}
-\begin{thebibliography}{AGCM15}
+\begin{thebibliography}{10}
 
-\bibitem[ACPT06]{atzeni2006basi}
-Atzeni, Ceri, Paraboschi, and Torlone.
+\bibitem{arocena2015ibench}
+P.~C. Arocena, B.~Glavic, R.~Ciucanu, and R.~J. Miller.
+\newblock The ibench integration metadata generator.
+\newblock {\em VLDB}, 9(3):108--119, 2015.
+
+\bibitem{atzeni2006basi}
+P.~Atzeni, S.~Ceri, S.~Paraboschi, and R.~Torlone.
 \newblock {\em Basi di dati: modelli e linguaggi di interrogazione (seconda
   edizione)}.
 \newblock McGraw-Hill, 2006.
 
-\bibitem[AGCM15]{arocena2015ibench}
-Arocena, Glavic, Ciucanu, and Miller.
-\newblock The ibench integration metadata generator.
-\newblock {\em VLDB}, 9(3):108--119, 2015.
-
-\bibitem[BGPS17]{bellomarini2017swift}
-Bellomarini, Gottlob, Pieris, and Sallinger.
-\newblock Swift logic for big data and knowledge graphs.
-\newblock 2017.
-
-\bibitem[BLM{\etalchar{+}}15]{baget2015graal}
-Baget, Lecl{\`e}re, Mugnier, Rocher, and Sipieter.
+\bibitem{baget2015graal}
+J.-F. Baget, M.~Lecl{\`e}re, M.-L. Mugnier, S.~Rocher, and C.~Sipieter.
 \newblock Graal: A toolkit for query answering with existential rules.
 \newblock In {\em International Symposium on Rules and Rule Markup Languages
   for the Semantic Web}, pages 328--344. Springer, 2015.
 
-\bibitem[BLS11]{baget2011rules}
-Baget, Lecl{\`e}re, and Salvat.
+\bibitem{baget2011rules}
+J.-F. Baget, M.~Lecl{\`e}re, M.-L. Mugnier, and E.~Salvat.
 \newblock On rules with existential variables: Walking the decidability line.
 \newblock {\em Artificial Intelligence}, 175(9-10):1620--1654, 2011.
 
-\bibitem[BLT15]{benedikt2015querying}
-Benedikt, Leblay, and Tsamoura.
+\bibitem{bellomarini2017swift}
+L.~Bellomarini, G.~Gottlob, A.~Pieris, and E.~Sallinger.
+\newblock Swift logic for big data and knowledge graphs.
+\newblock 2017.
+
+\bibitem{benedikt2015querying}
+M.~Benedikt, J.~Leblay, and E.~Tsamoura.
 \newblock Querying with access patterns and integrity constraints.
 \newblock {\em VLDB}, 8(6):690--701, 2015.
 
-\bibitem[CGK13]{cali2013taming}
-Cal{\i}, Gottlob, and Kifer.
+\bibitem{cali2013taming}
+A.~Cal{\i}, G.~Gottlob, and M.~Kifer.
 \newblock Taming the infinite chase: Query answering under expressive
   relational constraints.
 \newblock {\em J. Artif. Intell. Res}, 48:115--174, 2013.
 
-\bibitem[CGL{\etalchar{+}}10]{cali2010datalog+}
-Cali, Gottlob, Lukasiewicz, Marnette, and Pieris.
+\bibitem{cali2010datalog+}
+A.~Cali, G.~Gottlob, T.~Lukasiewicz, B.~Marnette, and A.~Pieris.
 \newblock Datalog+/-: A family of logical knowledge representation and query
   languages for new applications.
 \newblock In {\em Logic in Computer Science (LICS), 2010 25th Annual IEEE
   Symposium on}, pages 228--242. IEEE, 2010.
 
-\bibitem[CGL{\etalchar{+}}11]{calvanese2011mastro}
-Calvanese, De~Giacomo, Lembo, Lenzerini, Poggi, Rodriguez-Muro, Rosati, Ruzzi,
-  and Savo.
-\newblock The mastro system for ontology-based data access.
-\newblock {\em Semantic Web}, 2(1):43--53, 2011.
-
-\bibitem[CGP12]{cali2012towards}
-Cali, Gottlob, and Pieris.
+\bibitem{cali2012towards}
+A.~Cali, G.~Gottlob, and A.~Pieris.
 \newblock Towards more expressive ontology languages: The query answering
   problem.
 \newblock {\em Artificial Intelligence}, 193:87--128, 2012.
 
-\bibitem[CGT12]{ceri2012logic}
-Ceri, Gottlob, and Tanca.
+\bibitem{calvanese2011mastro}
+D.~Calvanese, G.~De~Giacomo, D.~Lembo, M.~Lenzerini, A.~Poggi,
+  M.~Rodriguez-Muro, R.~Rosati, M.~Ruzzi, and D.~F. Savo.
+\newblock The mastro system for ontology-based data access.
+\newblock {\em Semantic Web}, 2(1):43--53, 2011.
+
+\bibitem{ceri2012logic}
+S.~Ceri, G.~Gottlob, and L.~Tanca.
 \newblock {\em Logic programming and databases}.
 \newblock Springer Science \& Business Media, 2012.
 
-\bibitem[Cod]{CODEMIRROR}
-CodeMirror.
-\newblock \url{https://codemirror.net/}.
-
-\bibitem[CV85]{chandra1985implication}
-Chandra and Vardi.
+\bibitem{chandra1985implication}
+A.~K. Chandra and M.~Y. Vardi.
 \newblock The implication problem for functional and inclusion dependencies is
   undecidable.
 \newblock {\em SIAM}, 14(3):671--677, 1985.
 
-\bibitem[DEGV01]{dantsin2001complexity}
-Dantsin, Eiter, Gottlob, and Voronkov.
+\bibitem{CODEMIRROR}
+CodeMirror.
+\newblock \url{https://codemirror.net/}.
+
+\bibitem{dantsin2001complexity}
+E.~Dantsin, T.~Eiter, G.~Gottlob, and A.~Voronkov.
 \newblock Complexity and expressive power of logic programming.
 \newblock {\em CSUR}, 33(3):374--425, 2001.
 
-\bibitem[FGG{\etalchar{+}}13]{furche2013oxpath}
-Furche, Gottlob, Grasso, Schallhart, and Sellers.
+\bibitem{fagin2005data}
+R.~Fagin, P.~G. Kolaitis, R.~J. Miller, and L.~Popa.
+\newblock Data exchange: semantics and query answering.
+\newblock {\em Theoretical Computer Science}, 336(1):89--124, 2005.
+
+\bibitem{furche2013oxpath}
+T.~Furche, G.~Gottlob, G.~Grasso, C.~Schallhart, and A.~Sellers.
 \newblock Oxpath: A language for scalable data extraction, automation, and
   crawling on the deep web.
 \newblock {\em VLDB}, 22(1):47--72, 2013.
 
-\bibitem[FGNS16]{furche2016data}
-Furche, Gottlob, Neumayr, and Sallinger.
+\bibitem{furche2016data}
+T.~Furche, G.~Gottlob, B.~Neumayr, and E.~Sallinger.
 \newblock Data wrangling for big data: Towards a lingua franca for data
   wrangling.
 \newblock 2016.
 
-\bibitem[FKMP05]{fagin2005data}
-Fagin, Kolaitis, Miller, and Lucian Popa.
-\newblock Data exchange: semantics and query answering.
-\newblock {\em Theoretical Computer Science}, 336(1):89--124, 2005.
-
-\bibitem[Gam95]{gamma1995design}
-Gamma.
-\newblock {\em Design patterns: elements of reusable object-oriented software}.
-\newblock Pearson Education India, 1995.
-
-\bibitem[GMPS14]{geerts2014s}
-Geerts, Mecca, Papotti, and Santoro.
+\bibitem{geerts2014s}
+F.~Geerts, G.~Mecca, P.~Papotti, and D.~Santoro.
 \newblock That's all folks!: llunatic goes open source.
 \newblock {\em VLDB}, 7(13):1565--1568, 2014.
 
-\bibitem[GP15]{gottlob2015beyond}
-Gottlob and Pieris.
+\bibitem{gottlob2015beyond}
+G.~Gottlob and A.~Pieris.
 \newblock Beyond sparql under owl 2 ql entailment regime: Rules to the rescue.
 \newblock In {\em IJCAI}, pages 2999--3007, 2015.
 
-\bibitem[HGL11]{huang2011datalog}
-Huang, Green, and Loo.
+\bibitem{huang2011datalog}
+S.~S. Huang, T.~J. Green, and B.~T. Loo.
 \newblock Datalog and emerging applications: an interactive tutorial.
 \newblock In {\em Proceedings of the 2011 ACM SIGMOD International Conference
   on Management of data}, pages 1213--1216. ACM, 2011.
 
-\bibitem[LMTV12]{leone2012efficiently}
-Leone, Manna, Terracina, and Veltri.
+\bibitem{leone2012efficiently}
+N.~Leone, M.~Manna, G.~Terracina, and P.~Veltri.
 \newblock Efficiently computable datalog$\exists$ programs.
 \newblock {\em KR}, 12:13--23, 2012.
 
-\bibitem[LPF{\etalchar{+}}06]{leone2006dlv}
-Leone, Pfeifer, Faber, Eiter, Gottlob, Perri, and Scarcello.
+\bibitem{leone2006dlv}
+N.~Leone, G.~Pfeifer, W.~Faber, T.~Eiter, G.~Gottlob, S.~Perri, and
+  F.~Scarcello.
 \newblock The dlv system for knowledge representation and reasoning.
 \newblock {\em TOCL}, 7(3):499--562, 2006.
 
-\bibitem[MNP{\etalchar{+}}14]{motik2014parallel}
-Motik, Nenov, Piro, Horrocks, and Olteanu.
+\bibitem{motik2014parallel}
+B.~Motik, Y.~Nenov, R.~Piro, I.~Horrocks, and D.~Olteanu.
 \newblock Parallel materialisation of datalog programs in centralised,
   main-memory rdf systems.
 \newblock In {\em AAAI}, pages 129--137, 2014.
 
-\bibitem[RSSB00]{roy2000efficient}
-Roy, Seshadri, Sudarshan, and Bhobe.
+\bibitem{roy2000efficient}
+P.~Roy, S.~Seshadri, S.~Sudarshan, and S.~Bhobe.
 \newblock Efficient and extensible algorithms for multi query optimization.
 \newblock In {\em ACM SIGMOD Record}, volume~29, pages 249--260. ACM, 2000.
 
-\bibitem[sig]{SIGMAJS}
-sigmajs.
-\newblock \url{http://sigmajs.org/}.
-
-\bibitem[SYI{\etalchar{+}}16]{shkapsky2016big}
-Shkapsky, Yang, Interlandi, Chiu, Condie, and Zaniolo.
+\bibitem{shkapsky2016big}
+A.~Shkapsky, M.~Yang, M.~Interlandi, H.~Chiu, T.~Condie, and C.~Zaniolo.
 \newblock Big data analytics with datalog queries on spark.
 \newblock In {\em Proceedings of the 2016 International Conference on
   Management of Data}, pages 1135--1149. ACM, 2016.
 
-\bibitem[SYZ15]{shkapsky2015optimizing}
-Shkapsky, Yang, and Zaniolo.
+\bibitem{shkapsky2015optimizing}
+A.~Shkapsky, M.~Yang, and C.~Zaniolo.
 \newblock Optimizing recursive queries with monotonic aggregates in deals.
 \newblock In {\em Data Engineering (ICDE), 2015 IEEE 31st International
   Conference on}, pages 867--878. IEEE, 2015.
 
-\bibitem[VAD]{VADA}
+\bibitem{SIGMAJS}
+sigmajs.
+\newblock \url{http://sigmajs.org/}.
+
+\bibitem{VADA}
 VADA.
 \newblock http://vada.org.uk/.
 
-\bibitem[W3Ca]{OWL2QL}
+\bibitem{vlissides1995design}
+J.~Vlissides, R.~Helm, R.~Johnson, and E.~Gamma.
+\newblock Design patterns: Elements of reusable object-oriented software.
+\newblock {\em Reading: Addison-Wesley}, 49(120):11, 1995.
+
+\bibitem{OWL2QL}
 W3C.
 \newblock https://www.w3.org/TR/owl2-profiles/.
 
-\bibitem[W3Cb]{RDFW3C}
+\bibitem{RDFW3C}
 W3C.
 \newblock https://www.w3.org/TR/rdf-schema/.
 
-\bibitem[W3Cc]{SPARQLW3C}
+\bibitem{SPARQLW3C}
 W3C.
 \newblock https://www.w3.org/TR/rdf-sparql-query/.
 
-\bibitem[Wika]{WIKI:CONOSCENZA}
+\bibitem{WIKI:CONOSCENZA}
 Wikipedia.
 \newblock \url{https://en.wikipedia.org/wiki/Knowledge_economy}.
 
-\bibitem[Wikb]{WIKI:STREAM}
+\bibitem{WIKI:STREAM}
 Wikipedia.
 \newblock \url{https://it.wikipedia.org/wiki/Stream_processing}.
 

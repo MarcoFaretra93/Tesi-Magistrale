@@ -16,7 +16,7 @@ Il core dei linguaggi Datalog$^\pm $ è costituito da regole note come \emph{reg
 che esprime che ogni persona, ha un padre e che anche questo a sua volta è una persona. \newline
 In generale, una regola esistenziale è una formula del primo ordine: \[\forall \bar{x} \forall \bar{y} (\phi(\bar{x}, \bar{y}) \rightarrow \exists \bar{z} \psi (\bar{x}, \bar{z})\]
 dove $\phi$ il corpo) e $\psi$  (la testa) sono congiunzioni di atomi con costanti e variabili. \newline
-La semantica dell'applicazione di un insieme di regole esistenziali $\Sigma$ su un database $D$, in simboli $\Sigma$(D), è definita mediante una procedura di \emph{chase}~\cite{fagin2005data}. Durante questa procedura vengono aggiunti nuovi atomi a D (coinvolgendo anche valori nulli per soddisfare le variabili esistenziali), finché il risultato finale $\Sigma$(D) non soddisfa tutte le regole esistenziali. \newline
+La semantica dell'applicazione di un insieme di regole esistenziali $\Sigma$ su un database $D$, in simboli $\Sigma$(D), è definita mediante una procedura di \emph{chase}~\cite{fagin2005data}. Durante questa procedura vengono aggiunti nuovi atomi a D (coinvolgendo anche valori nulli per soddisfare le variabili esistenziali), finché il risultato finale $\Sigma$(D) non soddisfa tutte le regole esistenziali coinvolte. \newline
 Vediamo un esempio di tale procedura: \newline
 Consideriamo un Database D = \{Person(Bob)\}, e la regola esistenziale: \[Person(x) \rightarrow \exists y ~HasFather(x,y), Person(y)\]
 L'atomo del database D innesca la regola esistenziale e vengono aggiunti i seguenti atomi: \[HasFather(Bob, \nu_{1}) ~e~ Person(\nu_{1})\]
@@ -78,7 +78,7 @@ Anche se la data complexity di Vadalog è accettabile per applicazioni convenzio
 Ciò solleva il problema relativo all'esistenza di frammenti di Warded Datalog$^\pm$ che garantiscano una minore complessità dei dati, ma mantengano allo stesso tempo le proprietà descritte in precedenza. \newline
 Tale frammento di Warded Datalog$^\pm$, definito "\emph{StronglyWarded}", dovrebbe avere complessità NLOGSPACE e si potrebbe ottenere limitando il modo in cui viene utilizzata la ricorsione. Prima di dare la definizione di StronglyWarded diamo la nozione di grafo dei predicati. \newline
 Il grafo dei predicati di $\Sigma$, chiamato PG($\Sigma$), è un grafo diretto (V,E), in cui l'insieme dei nodi V è composto da tutti i predicati presenti in $\Sigma$, ed abbiamo un arco da un predicato P ad un predicato R se esiste $\sigma \in \Sigma$ tale che P è presente nel corpo di $\sigma$ ed R è presente nella testa di $\sigma$. Si consideri un insieme di nodi S $\subseteq$ V e un nodo R $\in$ V, diciamo che R è $\Sigma$-raggiungibile da S se esiste almeno un nodo P $\in$ S che può raggiungere R attraverso un percorso in PG($\Sigma$). \newline
-Possiamo ora introdurre la definizione di \emph{strong wardedness}. Un insieme di regole esistenziali $\Sigma$ viene chiamato strongly-warded se $\Sigma$ è warded e per ogni $\sigma \in \Sigma$ nella forma \[\phi(\bar{x}, \bar{y}) \rightarrow \exists \bar{z} P_{1}(\bar{x}, \bar{y}), ..., P_{n}(\bar{x}, \bar{y})\] esiste al massimo un atomo di $\phi(\bar{x}, \bar{y})$ il cui predicato è $\Sigma$-raggiungibile da \{$P_{1}, ..., P_{n}$\}. \newline
+Possiamo ora introdurre la definizione di \emph{strong wardedness}. Un insieme di regole esistenziali $\Sigma$ viene chiamato strongly-warded se $\Sigma$ è warded e per ogni $\sigma \in \Sigma$ nella forma: \[\phi(\bar{x}, \bar{y}) \rightarrow \exists \bar{z} P_{1}(\bar{x}, \bar{y}), ..., P_{n}(\bar{x}, \bar{y})\] esiste al massimo un atomo di $\phi(\bar{x}, \bar{y})$ il cui predicato è $\Sigma$-raggiungibile da \{$P_{1}, ..., P_{n}$\}. \newline
 Strongly-Warded Datalog$^\pm$ è composto da insiemi finiti di regole esistenziali che sono strongly-warded. Intuitivamente, in un insieme di regole esistenziali strongly-warded, ogni regola $\sigma$ non è ricorsiva. Si può quindi dimostrare che il nostro principale compito, l'inferenza di tuple nel processo di reasoning, in Strongly-Warded Datalog$^\pm$ è NLOGSPACE nella complessità dei dati. Inoltre questo linguaggio raffinato rimane abbastanza potente per catturare OWL 2 QL e esteso con una lieve negazione può esprimere ogni query SPARQL. \newline
 Come detto in precedenza, la complessità dei dati NLOGSPACE esclude immediatamente il datalog completo. Tuttavia Strongly-Warded Datalog$^\pm$ include alcuni importanti e ben studiati frammenti di Datalog:
 \begin{itemize}
@@ -271,7 +271,8 @@ Nell'esempio~\ref{esempio_6} invece le espressioni vengono utilizzate per assegn
 	c(3,2). 
 	a(Y,Z) :- b(X1,Z),c(X2,Z),Y= #f(X1,X2). 
 	@output("a"). 
-	@implement("#f","java","com.package1.package2.myClass","staticmethodName").
+	@implement("#f","java",
+	"com.package1.myClass","staticmethodName").
 \end{lstlisting}
 \end{example}
 Nell'esempio~\ref{esempio_7} non vengono definite le implementazioni delle funzioni, quindi ritorneranno un valore nullo, \#f(X,Y) rappresenta una funzione in questo esempio. La particolarità delle funzioni è che se in due regole la stessa funzione prende come input gli stessi valori, allora quest'ultima produrrà lo stesso nullo. In questo esempio il risultato prodotto sarà a(1,2,$z_{1}$), c($z_{1}$) e d($z_{2}$), dove $z_{1}$ e $z_{2}$ rappresentano i nulli. 
