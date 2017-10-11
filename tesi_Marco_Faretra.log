@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  10 OCT 2017 18:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.8.16)  11 OCT 2017 16:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1036,6 +1036,36 @@ Underfull \hbox (badness 10000) in paragraph at lines 1--33
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--33
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--33
+
+ []
+
 [3
 
 ] (./tesi_Marco_Faretra.toc [4]) [5] (./introduzione.tex
@@ -1422,7 +1452,7 @@ ist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2017/texmf-dis
 t/fonts/type1/public/cm-super/sfti0800.pfb></usr/local/texlive/2017/texmf-dist/
 fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2017/texmf-dist/fo
 nts/type1/public/cm-super/sftt1095.pfb>
-Output written on tesi_Marco_Faretra.pdf (69 pages, 1121759 bytes).
+Output written on tesi_Marco_Faretra.pdf (69 pages, 1122239 bytes).
 PDF statistics:
  1204 PDF objects out of 1440 (max. 8388607)
  1076 compressed objects within 11 object streams
